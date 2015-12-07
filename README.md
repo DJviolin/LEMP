@@ -1,5 +1,7 @@
 # LEMP stack built on Docker
 
+Work in progress!
+
 ## Usage
 
 1. Clone this repo to your computer.
