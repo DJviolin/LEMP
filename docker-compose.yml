@@ -1,0 +1,16 @@
+lanti-debian-base:
+  build: ./debian
+  container_name: lanti-debian-base
+  ports:
+    - "8080:80"
+    - "8081:443"
+    - "8082:22"
+lanti-debian-web:
+  build: ./web
+  container_name: lanti-debian-web
+  ports:
+    - "8080:80"
+    - "8081:443"
+    - "8082:22"
+  volumes:
+    - "/home/core/www:/var/www:rw"
