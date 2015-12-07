@@ -1,0 +1,21 @@
+[Unit]
+Description=LEMP
+After=etcd.service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+#KillMode=none
+#EnvironmentFile=/etc/environment
+ExecStartPre=-/bin/bash cd /home/core/work/lemp && docker-compose kill
+ExecStartPre=-/bin/bash cd /home/core/work/lemp && docker-compose rm -Y
+ExecStart=/bin/bash cd /home/core/work/lemp && docker-compose up -d
+ExecStartPost=/usr/bin/etcdctl set /LEMP Running
+ExecStop=/bin/bash cd /home/core/work/lemp && docker-compose stop
+ExecStopPost=/usr/bin/etcdctl rm /LEMP
+Restart=always
+#RestartSec=30s
+
+[X-Fleet]
+Conflicts=lanti-debian.service
