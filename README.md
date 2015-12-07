@@ -1,4 +1,4 @@
-# LEMP stack built on Docker
+# LEMP stack built on Docker for CoreOS hosts
 
 Work in progress!
 
