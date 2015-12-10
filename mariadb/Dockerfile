@@ -9,7 +9,7 @@ LABEL Description="MariaDB" Vendor="Istvan Lantos" Version="1.0"
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
-#RUN apt-get -y --purge remove mysql* mariadb*
+RUN apt-get -y --purge remove mysql* mariadb*
 
 RUN echo -e \
 "# MariaDB 10.1 repository list - created 2015-12-10 16:34 UTC\n\
@@ -26,7 +26,6 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
 RUN apt-get -y update \
     && time apt-get -y dist-upgrade \
     && apt-get -y --force-yes install --fix-missing \
-        software-properties-common \
         mariadb-server
 
 ### Start of MariaDB setup
