@@ -1,9 +1,15 @@
+debian:
+  image: debian
 lanti-debian-base:
   build: ./debian
   container_name: lanti-debian-base
+  links:
+    - debian
 lanti-debian-web:
   build: ./web
   container_name: lanti-debian-web
+  links:
+    - lanti-debian-base
   ports:
     - "8080:80"
     - "8081:443"
@@ -13,6 +19,8 @@ lanti-debian-web:
 lanti-debian-mariadb:
   build: ./mariadb
   container_name: lanti-debian-mariadb
+  links:
+    - lanti-debian-base
   ports:
     - "8083:3306"
     - "8084:22"
