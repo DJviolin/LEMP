@@ -1,10 +1,6 @@
-debian:
-  image: debian
 lanti-debian-base:
   build: ./debian
   container_name: lanti-debian-base
-  links:
-    - debian
 lanti-debian-web:
   build: ./web
   container_name: lanti-debian-web
