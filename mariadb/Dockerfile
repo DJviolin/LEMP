@@ -23,7 +23,12 @@ RUN echo -e \
 Pin: release o=MariaDB\n\
 Pin-Priority: 999" > /etc/apt/preferences.d/mariadb
 RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
-RUN apt-get -y update \
+# We set debconf keys to make APT a little quieter
+RUN { \
+    echo mariadb-server-10.1 mysql-server/root_password password 'unused'; \
+    echo mariadb-server-10.1 mysql-server/root_password_again password 'unused'; \
+    } | debconf-set-selections \
+    && apt-get -y update \
     && time apt-get -y dist-upgrade \
     && apt-get -y --force-yes install --fix-missing \
         mariadb-server
