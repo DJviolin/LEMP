@@ -36,13 +36,13 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 RUN echo -e '\ncd /root' >> /root/.bashrc
 ### End of OpenSSH setup
 
-### Start of Last Cleanup
+### Start of Cleanup
 RUN apt-get -y install -f; \
     apt-get -y --purge autoremove; \
     apt-get autoclean; \
     apt-get clean; \
     apt-get check
-### End of Last Cleanup
+### End of Cleanup
 
 EXPOSE 80 443 22
 

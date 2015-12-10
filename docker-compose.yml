@@ -16,7 +16,6 @@ lanti-debian-mariadb:
   build: ./mariadb
   container_name: lanti-debian-mariadb
   links:
-    - lanti-debian-base
     - lanti-debian-web
   ports:
     - "8083:3306"

@@ -13,3 +13,10 @@ Work in progress!
 6. If everything works, now you have a working Nginx + PHP-FPM 7 webserver through FastCGI!
 7. Visit the index page on your localhost IP at port `:8080`. You will have to see a basic `phpinfo();`.
 8. If you want to stop the environment, type `./service-stop.sh`.
+
+##### Notes
+
+Remove all docker containers
+
+    $ docker stop $(docker ps -a -q)
+    $ docker rm $(docker ps -a -q)
