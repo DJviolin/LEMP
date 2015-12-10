@@ -27,8 +27,8 @@ RUN apt-get -y update \
         openssh-server
 
 ### Start of OpenSSH setup
-RUN mkdir /var/run/sshd
-RUN mkdir /root/.ssh
+RUN mkdir -p /var/run/sshd
+RUN mkdir -p /root/.ssh
 COPY root/.ssh/authorized_keys /root/.ssh/
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 ENV NOTVISIBLE "in users profile"

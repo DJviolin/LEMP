@@ -24,21 +24,20 @@ RUN apt-get -y update \
 COPY etc/nginx/conf.d/default.conf /etc/nginx/conf.d/
 COPY etc/nginx/conf.d/php.conf /etc/nginx/conf.d/
 # NGINX WEBSERVER FILES
-RUN mkdir /var/www
+RUN mkdir -p /var/www
 COPY usr/share/nginx/html/404.html /usr/share/nginx/html/
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # Allow Nginx to access /var/run/php-fpm.sock
 RUN usermod -aG www-data nginx
-#VOLUME ["/var/cache/nginx"]
 ### End of Nginx setup
 
 ### Start of PHP 7 setup
 COPY usr/local/php7/etc/php.ini /usr/local/php7/etc/
 COPY usr/local/php7/etc/php-fpm.conf /usr/local/php7/etc/
 COPY usr/local/php7/etc/php-fpm.d/www.conf /usr/local/php7/etc/php-fpm.d/
-RUN mkdir /var/log/php-fpm
+RUN mkdir -p /var/log/php-fpm
 ### End of PHP 7 setup
 
 COPY etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/
