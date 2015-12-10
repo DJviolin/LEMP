@@ -9,13 +9,19 @@ LABEL Description="MariaDB" Vendor="Istvan Lantos" Version="1.0"
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
-RUN apt-get -y --purge remove mysql* mariadb*
+#RUN apt-get -y --purge remove mysql* mariadb*
 
 RUN echo -e \
 "# MariaDB 10.1 repository list - created 2015-12-10 16:34 UTC\n\
 # http://mariadb.org/mariadb/repositories/\n\
 deb [arch=amd64,i386] http://ftp.bme.hu/pub/mirrors/mariadb/repo/10.1/debian jessie main\n\
 deb-src http://ftp.bme.hu/pub/mirrors/mariadb/repo/10.1/debian jessie main" > /etc/apt/sources.list.d/mariadb.list
+# add repository pinning to make sure dependencies from this MariaDB repo are preferred over Debian dependencies
+# libmariadbclient18 : Depends: libmysqlclient18 (= 5.5.42+maria-1~wheezy) but 5.5.43-0+deb7u1 is to be installed
+RUN echo -e \
+"Package: *\n\
+Pin: release o=MariaDB\n\
+Pin-Priority: 999" > /etc/apt/preferences.d/mariadb
 RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
 RUN apt-get -y update \
     && time apt-get -y dist-upgrade \
