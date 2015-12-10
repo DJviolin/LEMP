@@ -12,13 +12,13 @@ lanti-debian-web:
     - "8082:22"
   volumes:
     - "/home/core/www:/var/www:rw"
-lanti-debian-mariadb:
-  build: ./mariadb
-  container_name: lanti-debian-mariadb
-  links:
-    - lanti-debian-web
-  ports:
-    - "8083:3306"
-    - "8084:22"
-  volumes:
-    - "/home/core/sql:/var/lib/mysql:rw"
+#lanti-debian-mariadb:
+#  build: ./mariadb
+#  container_name: lanti-debian-mariadb
+#  links:
+#    - lanti-debian-web
+#  ports:
+#    - "8083:3306"
+#    - "8084:22"
+#  volumes:
+#    - "/home/core/sql:/var/lib/mysql:rw"
