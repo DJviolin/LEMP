@@ -17,6 +17,7 @@ lanti-debian-web:
 lanti-debian-mariadb:
   build: ./mariadb
   container_name: lanti-debian-mariadb
+  env_file: ./mariadb/mariadb.env
   links:
     - lanti-debian-web
   ports:
