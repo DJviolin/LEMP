@@ -20,7 +20,7 @@ Work in progress!
 Remove all docker containers
 
     $ docker stop $(docker ps -a -q)
-    $ docker rm $(docker ps -a -q)
+    $ docker rm -f $(docker ps -a -q)
 
 Managing persistent data backups with Docker (ie. databases)
 

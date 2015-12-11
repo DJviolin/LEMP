@@ -44,7 +44,7 @@ RUN { \
 RUN rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/lib/mysql \
     && mkdir -p /var/lib/mysql \
-    && chown mysql:mysql /var/lib/mysql
+    && chown -R mysql:mysql /var/lib/mysql
 # comment out a few problematic configuration values
 # don't reverse lookup hostnames, they are usually another container
 COPY etc/mysql/my.cnf /etc/mysql/
