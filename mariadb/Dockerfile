@@ -18,7 +18,7 @@ RUN mkdir /docker-entrypoint-initdb.d
 
 RUN echo -e \
 "# MariaDB $MARIADB_MAJOR repository list\n\
-# http://mariadb.org/mariadb/repositories\n\
+# http://downloads.mariadb.org/mariadb/repositories\n\
 deb [arch=amd64,i386] http://lon1.mirrors.digitalocean.com/mariadb/repo/$MARIADB_MAJOR/debian jessie main\n\
 deb-src http://lon1.mirrors.digitalocean.com/mariadb/repo/$MARIADB_MAJOR/debian jessie main" > /etc/apt/sources.list.d/mariadb.list
 RUN cat /etc/apt/sources.list.d/mariadb.list
