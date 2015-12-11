@@ -17,8 +17,6 @@ ExecStartPost=/usr/bin/etcdctl set /LEMP Running
 ExecStop=/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml stop
 ExecStopPost=/usr/bin/etcdctl rm /LEMP
 ExecStopPost=-/usr/bin/docker cp sqlbackup:/var/lib/mysql /home/core/sql && /usr/bin/tar -zcvf /home/core/sql/sqlbackup-$(date +%Y-%m-%d_%H-%M-%S)-ExecStopPost.tar.gz /home/core/sql/mysql --remove-files
-#ExecStopPost=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml kill
-#ExecStopPost=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml rm --force
 Restart=always
 #RestartSec=30s
 
