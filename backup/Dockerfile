@@ -2,17 +2,11 @@
 #
 # VERSION               1.0.0
 
-FROM lemp_lanti-debian-mariadb:latest
+FROM lemp_lanti-debian-base:latest
 MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="MariaDB_Backup" Vendor="Istvan Lantos" Version="1.0"
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of other deps added later
-RUN groupadd -r sqlbackup \
-    && useradd -r -g sqlbackup sqlbackup
-RUN mkdir -p /var/lib/mysql \
-    && chown -R sqlbackup:sqlbackup /var/lib/mysql
-VOLUME /var/lib/mysql
-USER sqlbackup
+RUN mkdir -p /var/lib/mysql
 
 EXPOSE 22
 

@@ -15,8 +15,8 @@ ExecStart=/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml
 ExecStartPost=/usr/bin/etcdctl set /LEMP Running
 ExecStop=/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml stop
 ExecStopPost=/usr/bin/etcdctl rm /LEMP
-ExecStopPost=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml kill
-ExecStopPost=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml rm --force
+#ExecStopPost=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml kill
+#ExecStopPost=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml rm --force
 Restart=always
 #RestartSec=30s
 

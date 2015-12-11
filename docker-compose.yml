@@ -36,8 +36,12 @@ lanti-debian-mariadb:
 #  volumes_from:
 #    - lanti-debian-mariadb
 sqlbackup:
-  image: scratch
+  build: ./backup
   container_name: sqlbackup
-  command: tail -f /dev/null
+  links:
+    - lanti-debian-mariadb
+  ports:
+    - "8085:22"
+  #command: tail -f /dev/null
   volumes_from:
     - lanti-debian-mariadb
