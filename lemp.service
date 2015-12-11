@@ -8,7 +8,7 @@ Requires=docker.service
 TimeoutStartSec=0
 #KillMode=none
 ExecStartPre=-/usr/bin/docker cp sqlbackup:/var/lib/mysql /home/core/sql
-ExecStartPre=-/usr/bin/tar -zcvf /home/core/sql/sqlbackup-`$(date +%Y-%m-%d_%H-%M-%S)`-ExecStartPre.tar.gz /home/core/sql/mysql --remove-files
+ExecStartPre=-/usr/bin/tar -zcvf /home/core/sql/sqlbackup-ExecStartPre.tar.gz /home/core/sql/mysql --remove-files
 ExecStartPre=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml kill
 ExecStartPre=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml rm --force
 #ExecStartPre=-/usr/bin/sudo rm -rf /var/lib/docker/linkgraph.db
@@ -18,7 +18,7 @@ ExecStartPost=/usr/bin/etcdctl set /LEMP Running
 ExecStop=/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml stop
 ExecStopPost=/usr/bin/etcdctl rm /LEMP
 ExecStopPost=-/usr/bin/docker cp sqlbackup:/var/lib/mysql /home/core/sql
-ExecStopPost=-/usr/bin/tar -zcvf /home/core/sql/sqlbackup-`$(date +%Y-%m-%d_%H-%M-%S)`-ExecStopPost.tar.gz /home/core/sql/mysql --remove-files
+ExecStopPost=-/usr/bin/tar -zcvf /home/core/sql/sqlbackup-ExecStopPost.tar.gz /home/core/sql/mysql --remove-files
 Restart=always
 #RestartSec=30s
 
