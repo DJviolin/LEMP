@@ -20,3 +20,16 @@ Remove all docker containers
 
     $ docker stop $(docker ps -a -q)
     $ docker rm $(docker ps -a -q)
+
+Managing persistent data backups with Docker (ie. databases)
+
+    http://stackoverflow.com/questions/18496940/how-to-deal-with-persistent-storage-e-g-databases-in-docker
+
+    http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/
+
+    http://container42.com/2014/11/18/data-only-container-madness/
+
+    https://docs.docker.com/engine/reference/commandline/volume_create/
+
+    http://stackoverflow.com/questions/23544282/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes/27021154#27021154
+

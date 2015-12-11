@@ -22,5 +22,22 @@ lanti-debian-mariadb:
   ports:
     - "8083:3306"
     - "8084:22"
-  volumes:
-    - "/home/core/sql:/var/lib/mysql:rw"
+#  volumes:
+#    - "/home/core/sql:/var/lib/mysql:rw"
+#  volumes_from:
+#    - lanti-debian-mariadb -v $(pwd):/home/core/sql busybox tar cvf /home/core/sql/backup.tar /lanti-debian-mariadb
+#lanti-debian-mariadb-backup:
+#  build: ./backup
+#  container_name: lanti-debian-mariadb-backup
+#  links:
+#    - lanti-debian-mariadb
+#  ports:
+#    - "8085:22"
+#  volumes_from:
+#    - lanti-debian-mariadb
+sqlbackup:
+  image: scratch
+  container_name: sqlbackup
+  command: tail -f /dev/null
+  volumes_from:
+    - lanti-debian-mariadb

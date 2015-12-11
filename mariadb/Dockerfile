@@ -1,4 +1,4 @@
-# Lanti/DebianWeb
+# Lanti/DebianMariaDB
 #
 # VERSION               1.0.0
 
@@ -52,7 +52,8 @@ COPY etc/mysql/my.cnf_orig /etc/mysql/
 #COPY etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
+VOLUME /var/lib/mysql
+
 EXPOSE 3306 22
 
-#CMD ["/bin/bash"]
 CMD ["mysqld"]
