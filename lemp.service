@@ -21,4 +21,4 @@ Restart=always
 #RestartSec=30s
 
 [X-Fleet]
-Conflicts=lanti-debian.service
+Conflicts=lemp.service
