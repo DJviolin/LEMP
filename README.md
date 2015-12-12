@@ -10,10 +10,10 @@ Work in progress!
 3. Place your personal SSH public key in `debian/root/.ssh/authorized_keys` file (you have to create this folder structure here in your locally cloned repo).
 4. Create a file in `mariadb/mariadb.env` with the following content:
 
-```
-# Set MySQL Root Password
-MYSQL_ROOT_PASSWORD=type-your-secret-password-here
-```
+    ```
+    # Set MySQL Root Password
+    MYSQL_ROOT_PASSWORD=type-your-secret-password-here
+    ```
 
 5. On CoreOS, you have to install docker-compose! Use the provided install script here `./docker-compose-1.5.2-coreos-installer.sh` or refresh this script with the latest version from the original repo (recommended). If the script fails to run as superuser, than type in the commands from the script manually!
 6. Run the `$ chmod +x service-start.sh service-stop.sh docker-compose-1.5.2-coreos-installer.sh && ./service-start.sh` commands.
