@@ -8,7 +8,7 @@ Requires=docker.service
 TimeoutStartSec=0
 #KillMode=none
 ExecStartPre=-/usr/bin/docker cp sqlbackup:/var/lib/mysql /home/core/sql
-ExecStartPre=-=/bin/bash -c '/usr/bin/tar -zcvf /home/core/sql/sqlbackup-`date +"%Y-%m-%d_%H-%M-%S"`-ExecStartPre.tar.gz /home/core/sql/mysql --remove-files'
+ExecStartPre=-/bin/bash -c '/usr/bin/tar -zcvf /home/core/sql/sqlbackup-`date +"%Y-%m-%d_%H-%M-%S"`-ExecStartPre.tar.gz /home/core/sql/mysql --remove-files'
 ExecStartPre=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml kill
 ExecStartPre=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml rm --force
 #ExecStartPre=-/usr/bin/sudo rm -rf /var/lib/docker/linkgraph.db
