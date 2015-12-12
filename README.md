@@ -24,7 +24,7 @@ Work in progress!
 7. On CoreOS, you have to install docker-compose! Use the provided install script here `./docker-compose-1.5.2-coreos-installer.sh` or refresh this script with the latest version from the original repo (recommended). If the script fails to run as superuser, than type in the commands from the script manually!
 8. Run the `$ chmod +x service-start.sh service-stop.sh && ./service-start.sh` commands.
 9. If everything works, now you have a working Nginx + PHP-FPM 7 webserver through FastCGI!
-10. Visit the index page on your localhost IP at port `:8080`. You will have to see a basic `phpinfo();`.
+10. Visit the index page on your localhost IP at port `:8080`.
 11. If you want to stop the environment, type `./service-stop.sh` (60 seconds wait time was introduced to have enough time to `fleetctl stop` making the sql backups from the container).
 
 ##### Notes
