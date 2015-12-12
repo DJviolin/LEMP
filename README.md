@@ -12,19 +12,19 @@ Work in progress!
 1. Clone this repo into your `/home/core/work/lemp` folder on your CoreOS host (this environment works with other local folders / linux OS, but in this case you have to manually adjust every single local folder which are hardcoded into the scripts).
 2. Navigate to this folder on your Linux Host OS with Docker installed (preferably CoreOS).
 3. Create a folder in `/home/core/www`. This will be the folder to your webserver files.
-3. Place your personal SSH public key in `debian/root/.ssh/authorized_keys` file (you have to create this folder structure here in your locally cloned repo).
-4. Create a file in `mariadb/mariadb.env` with the following content:
+4. Place your personal SSH public key in `debian/root/.ssh/authorized_keys` file (you have to create this folder structure here in your locally cloned repo).
+5. Create a file in `mariadb/mariadb.env` with the following content:
 
     ```
     # Set MySQL Root Password
     MYSQL_ROOT_PASSWORD=type-your-secret-password-here
     ```
 
-5. On CoreOS, you have to install docker-compose! Use the provided install script here `./docker-compose-1.5.2-coreos-installer.sh` or refresh this script with the latest version from the original repo (recommended). If the script fails to run as superuser, than type in the commands from the script manually!
-6. Run the `$ chmod +x service-start.sh service-stop.sh && ./service-start.sh` commands.
-7. If everything works, now you have a working Nginx + PHP-FPM 7 webserver through FastCGI!
-8. Visit the index page on your localhost IP at port `:8080`. You will have to see a basic `phpinfo();`.
-9. If you want to stop the environment, type `./service-stop.sh`.
+6. On CoreOS, you have to install docker-compose! Use the provided install script here `./docker-compose-1.5.2-coreos-installer.sh` or refresh this script with the latest version from the original repo (recommended). If the script fails to run as superuser, than type in the commands from the script manually!
+7. Run the `$ chmod +x service-start.sh service-stop.sh && ./service-start.sh` commands.
+8. If everything works, now you have a working Nginx + PHP-FPM 7 webserver through FastCGI!
+9. Visit the index page on your localhost IP at port `:8080`. You will have to see a basic `phpinfo();`.
+10. If you want to stop the environment, type `./service-stop.sh`.
 
 ##### Notes
 
