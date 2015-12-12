@@ -2,6 +2,11 @@
 
 Work in progress!
 
+## Prerequisites
+
+1. Your VM needs at least 1GB of Ram, otherwise MariaDB install will throw an error.
+2. In virtual machines use fixed size disks to avoid problems.
+
 ## Usage
 
 1. Clone this repo into your `/home/core/work/lemp` folder on your CoreOS host (this environment works with other local folders / linux OS, but in this case you have to manually adjust every single local folder which are hardcoded into the scripts).
@@ -20,7 +25,6 @@ Work in progress!
 7. If everything works, now you have a working Nginx + PHP-FPM 7 webserver through FastCGI!
 8. Visit the index page on your localhost IP at port `:8080`. You will have to see a basic `phpinfo();`.
 9. If you want to stop the environment, type `./service-stop.sh`.
-10. Your VM needs at least 1GB of Ram, otherwise install will throw an error.
 
 ##### Notes
 
