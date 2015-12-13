@@ -26,6 +26,4 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 RUN usermod -aG www-data nginx
 ### End of Nginx setup
 
-EXPOSE 80 443
-
 CMD ["/usr/sbin/nginx", "-g", "'daemon off;'"]
