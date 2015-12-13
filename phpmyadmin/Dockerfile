@@ -12,8 +12,7 @@ LABEL Description="PHPMyAdmin" Vendor="Istvan Lantos" Version="1.0"
 RUN apt-get -y --force-yes install --fix-missing \
     curl
 
-RUN mkdir -p /var/www/phpmyadmin \
-    && curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz -o /var/www/phpMyAdmin-latest-all-languages.tar.gz \
+RUN curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz -o /var/www/phpMyAdmin-latest-all-languages.tar.gz \
     && tar -xzf /var/www/phpMyAdmin-latest-all-languages.tar.gz -C /var/www \
     && rm -rf /var/www/phpMyAdmin-latest-all-languages.tar.gz \
     && mv /var/www/phpMyAdmin* /var/www/phpmyadmin \
