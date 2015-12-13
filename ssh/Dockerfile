@@ -41,7 +41,7 @@ RUN apt-get -y install -f; \
 ### End of Cleanup
 
 ### Start of Nginx WEBSERVER FILES
-mkdir -p /var/www
+RUN mkdir -p /var/www
 ### End of Nginx WEBSERVER FILES
 
 CMD ["/usr/sbin/sshd", "-D"]
