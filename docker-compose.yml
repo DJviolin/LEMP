@@ -38,7 +38,7 @@ php:
   volumes:
     - /var/run/php-fpm
   volumes_from:
-    - ssh
+    - ssh:rw
     - mariadb
     - phpmyadmin
 nginx:
@@ -50,4 +50,4 @@ nginx:
     - "8080:80"
     - "8081:443"
   volumes_from:
-    - php
+    - php:rw
