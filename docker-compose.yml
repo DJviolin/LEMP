@@ -2,7 +2,7 @@ ssh:
   build: ./ssh
   container_name: lemp_ssh
   ports:
-    - 8079:22
+    - 2222:22
   volumes:
     - /home/core/www:/var/www:rw
 nginx:
