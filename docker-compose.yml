@@ -12,6 +12,8 @@ lanti-debian-web:
     - "8080:80"
     - "8081:443"
     - "8082:22"
+  volumes_from:
+    - lanti-debian-mariadb
   volumes:
     - "/home/core/www:/var/www:rw"
 lanti-debian-mariadb:
@@ -23,3 +25,13 @@ lanti-debian-mariadb:
   ports:
     - "8083:3306"
     - "8084:22"
+  volumes:
+    - /var/run/mysqld
+#lanti-debian-phpmyadmin:
+#  build: ./lanti-debian-phpmyadmin
+#  container_name: lanti-debian-phpmyadmin
+#  links:
+#    - lanti-debian-mariadb
+#  ports:
+#    - "8085:8080"
+#    - "8086:22"
