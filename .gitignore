@@ -1,3 +1,5 @@
 debian/root/.ssh/authorized_keys
+ssh/root/.ssh/authorized_keys
 web/etc/nginx/conf.d/cert/
+nginx/etc/nginx/conf.d/cert/
 mariadb/mariadb.env

@@ -1,4 +1,4 @@
-# Lanti/DebianBase
+# Lanti/DebianSSH
 #
 # VERSION               1.0.0
 
@@ -20,9 +20,6 @@ deb-src http://httpredir.debian.org/debian stable-updates main contrib non-free"
 RUN apt-get -y update \
     && time apt-get -y dist-upgrade \
     && apt-get -y --force-yes install --fix-missing \
-        #dialog apt-utils \
-        #sudo curl \
-        #supervisor \
         openssh-server
 
 ### Start of OpenSSH setup
@@ -46,9 +43,5 @@ RUN apt-get -y install -f; \
 ### Start of WEBSERVER FILES
 mkdir -p /var/www
 ### End of WEBSERVER FILES
-
-#EXPOSE 80 443 22
-
-#CMD ["/bin/bash"]
 
 CMD ["/usr/sbin/sshd", "-D"]
