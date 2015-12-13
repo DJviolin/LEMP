@@ -14,11 +14,11 @@ RUN apt-get -y --force-yes install --fix-missing \
 
 RUN mkdir -p /var/www/phpmyadmin \
     && curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz -o /var/www/phpMyAdmin-latest-all-languages.tar.gz \
-    && tar -xzf /var/www/phpMyAdmin-latest-all-languages.tar.gz \
-    && ls -al /var/www && ls -al /var/www/phpmyadmin \
+    && tar -xzf /var/www/phpMyAdmin-latest-all-languages.tar.gz -C /var/www \
+    && rm -rf /var/www/phpMyAdmin-latest-all-languages.tar.gz \
     && mv /var/www/phpMyAdmin* /var/www/phpmyadmin \
     && rm -rf /var/www/phpmyadmin/js/jquery/src/ /var/www/phpmyadmin/examples /var/www/phpmyadmin/po/ \
-    && rm -rf /var/www/phpMyAdmin-latest-all-languages.tar.gz
+    && ls -al /var/www && ls -al /var/www/phpmyadmin
 
 COPY var/www/phpmyadmin/config.inc.php /var/www/phpmyadmin/config.inc.php
 
