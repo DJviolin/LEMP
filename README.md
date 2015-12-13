@@ -33,7 +33,7 @@ Work in progress!
 2. Into this new table, import `sql/create_tables.sql` from the original PhpmyAdmin archive.
 3. At the Privileges tab, create a new user called `pma` with the password `pmapass` and grant all privileges!
 
-##### Notes
+## Notes
 
 Remove all docker containers
 
