@@ -20,6 +20,8 @@ deb-src http://httpredir.debian.org/debian stable-updates main contrib non-free"
 RUN apt-get -y update \
     && time apt-get -y dist-upgrade \
     && apt-get -y --force-yes install --fix-missing \
+        dialog \
+        apt-utils \
         openssh-server
 
 ### Start of OpenSSH setup
