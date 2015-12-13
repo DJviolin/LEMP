@@ -2,15 +2,15 @@ ssh:
   build: ./ssh
   container_name: lemp_ssh
   ports:
-    - 2222:22
+    - "2222:22"
   volumes:
     - /home/core/www:/var/www:rw
 nginx:
   build: ./nginx
   container_name: lemp_nginx
   ports:
-    - 8080:80
-    - 8081:443
+    - "8080:80"
+    - "8081:443"
   volumes_from:
     - ssh
 php-fpm:
@@ -28,9 +28,9 @@ php-fpm:
 #  links:
 #    - lanti-debian-base
 #  ports:
-#    - 8080:80
-#    - 8081:443
-#    - 8082:22
+#    - "8080:80"
+#    - "8081:443"
+#    - "8082:22"
 #  volumes_from:
 #    - lanti-debian-mariadb
 #    - lanti-debian-phpmyadmin
@@ -43,8 +43,8 @@ php-fpm:
 #  links:
 #    - lanti-debian-base
 #  ports:
-#    - 8083:3306
-#    - 8084:22
+#    - "8083:3306"
+#    - "8084:22"
 #  volumes:
 #    - /var/run/mysqld
 #lanti-debian-phpmyadmin:
@@ -56,7 +56,7 @@ php-fpm:
 #  links:
 #    - lanti-debian-mariadb
 #  ports:
-#    - 8085:8080
-#    - 8086:22
+#    - "8085:8080"
+#    - "8086:22"
 #  volumes:
 #    - /var/www/phpmyadmin

@@ -36,6 +36,4 @@ RUN echo -e '\ncd /root' >> /root/.bashrc
 RUN mkdir -p /var/www
 ### End of Nginx WEBSERVER FILES
 
-EXPOSE 22
-
 CMD ["/usr/sbin/sshd", "-D"]
