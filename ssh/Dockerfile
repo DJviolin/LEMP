@@ -33,15 +33,17 @@ RUN echo -e '\ncd /root' >> /root/.bashrc
 ### End of OpenSSH setup
 
 ### Start of Cleanup
-RUN apt-get -y install -f; \
-    apt-get -y --purge autoremove; \
-    apt-get autoclean; \
-    apt-get clean; \
-    apt-get check
+#RUN apt-get -y install -f; \
+#    apt-get -y --purge autoremove; \
+#    apt-get autoclean; \
+#    apt-get clean; \
+#    apt-get check
 ### End of Cleanup
 
 ### Start of Nginx WEBSERVER FILES
 RUN mkdir -p /var/www
 ### End of Nginx WEBSERVER FILES
+
+EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D"]
