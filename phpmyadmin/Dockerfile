@@ -16,8 +16,12 @@ RUN curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-l
  && mv phpMyAdmin* /var/www/phpmyadmin \
  && rm -rf /var/www/phpmyadmin/js/jquery/src/ /var/www/phpmyadmin/examples /var/www/phpmyadmin/po/
 
-COPY config.inc.linked.php config.inc.arbitrary.php /var/www/phpmyadmin/
-COPY run.sh /run.sh
-RUN chmod u+rwx /run.sh
+#COPY config.inc.linked.php config.inc.arbitrary.php /var/www/phpmyadmin/
+#COPY run.sh /run.sh
+#RUN chmod u+rwx /run.sh
 
-ENTRYPOINT [ "/run.sh" ]
+COPY config.inc.linked.php /var/www/phpmyadmin/config.inc.php
+
+#ENTRYPOINT [ "/run.sh" ]
+
+CMD ["tail", "-f", "/dev/null"]
