@@ -22,7 +22,7 @@ COPY usr/share/nginx/html/404.html /usr/share/nginx/html/
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
-# Allow Nginx to access /var/run/php-fpm.sock
+# Allow Nginx to access /var/run/php-fpm/php-fpm.sock
 RUN usermod -aG www-data nginx
 ### End of Nginx setup
 

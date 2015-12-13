@@ -2,7 +2,7 @@
 #
 # VERSION               1.0.0
 
-FROM lemp_lanti-debian-base:latest
+FROM lemp_ssh:latest
 MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="MariaDB" Vendor="Istvan Lantos" Version="1.0"
 
@@ -13,8 +13,6 @@ ENV MARIADB_VERSION 10.1.9+maria-1~jessie
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
 RUN mkdir /docker-entrypoint-initdb.d
-
-#RUN apt-get -y --purge remove mysql* mariadb*
 
 RUN echo -e \
 "# MariaDB $MARIADB_MAJOR repository list\n\
@@ -51,12 +49,8 @@ COPY etc/mysql/my.cnf /etc/mysql/
 COPY etc/mysql/my.cnf_orig /etc/mysql/
 ### End of MariaDB setup
 
-VOLUME /var/lib/mysql
-
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
-EXPOSE 3306 22
 
 CMD ["mysqld"]

@@ -5,58 +5,34 @@ ssh:
     - "2222:22"
   volumes:
     - /home/core/www:/var/www:rw
+mariadb:
+  build: ./mariadb
+  container_name: lemp_mariadb
+  env_file: ./mariadb/mariadb.env
+  links:
+    - ssh
+  ports:
+    - 8082:3306
+  volumes:
+    - /var/run/mysqld
+    - /var/lib/mysql
+php:
+  build: ./php
+  container_name: lemp_php
+  links:
+    - ssh
+  volumes:
+    - /var/run/php-fpm
+  volumes_from:
+    - ssh
+    - mariadb
 nginx:
   build: ./nginx
   container_name: lemp_nginx
+  links:
+    - php
   ports:
     - "8080:80"
     - "8081:443"
   volumes_from:
-    - ssh
-php-fpm:
-  build: ./php-fpm
-  container_name: lemp_php-fpm
-  links:
-    - nginx
-
-
-
-
-#lanti-debian-web:
-#  build: ./web
-#  container_name: lanti-debian-web
-#  links:
-#    - lanti-debian-base
-#  ports:
-#    - "8080:80"
-#    - "8081:443"
-#    - "8082:22"
-#  volumes_from:
-#    - lanti-debian-mariadb
-#    - lanti-debian-phpmyadmin
-#  volumes:
-#    - /home/core/www:/var/www:rw
-#lanti-debian-mariadb:
-#  build: ./mariadb
-#  container_name: lanti-debian-mariadb
-#  env_file: ./mariadb/mariadb.env
-#  links:
-#    - lanti-debian-base
-#  ports:
-#    - "8083:3306"
-#    - "8084:22"
-#  volumes:
-#    - /var/run/mysqld
-#lanti-debian-phpmyadmin:
-#  build: ./lanti-debian-phpmyadmin
-#  container_name: lanti-debian-phpmyadmin
-#  environment:
-#     - PMA_ARBITRARY=1
-#  restart: always
-#  links:
-#    - lanti-debian-mariadb
-#  ports:
-#    - "8085:8080"
-#    - "8086:22"
-#  volumes:
-#    - /var/www/phpmyadmin
+    - php
