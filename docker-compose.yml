@@ -20,10 +20,10 @@ mariadb:
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
-  environment:
-     - PMA_ARBITRARY=0
-     - PMA_HOST=0.0.0.0
-     - PMA_PORT=3306
+  #environment:
+  #   - PMA_ARBITRARY=0
+  #   - PMA_HOST=0.0.0.0
+  #   - PMA_PORT=3306
   links:
     - ssh
   #ports:
