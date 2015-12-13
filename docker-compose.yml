@@ -13,10 +13,23 @@ mariadb:
     - ssh
   ports:
     - "8082:3306"
-    - "8083: 22"
+    - "8083:22"
   volumes:
     - /var/run/mysqld
     - /var/lib/mysql
+phpmyadmin:
+  build: ./phpmyadmin
+  container_name: lemp_phpmyadmin
+  environment:
+     - PMA_ARBITRARY=0
+     - PMA_HOST=0.0.0.0
+     - PMA_PORT=8082
+  links:
+    - ssh
+  ports:
+    - 8084:8080
+  volumes:
+    - /var/www/phpmyadmin
 php:
   build: ./php
   container_name: lemp_php
@@ -27,17 +40,7 @@ php:
   volumes_from:
     - ssh
     - mariadb
-phpmyadmin:
-  build: ./phpmyadmin
-  container_name: lemp_phpmyadmin
-  environment:
-     - PMA_ARBITRARY=1
-  links:
-    - ssh
-  ports:
-    - 8084:8080
-  volumes:
-    - /var/www/phpmyadmin
+    - phpmyadmin
 nginx:
   build: ./nginx
   container_name: lemp_nginx
@@ -48,4 +51,3 @@ nginx:
     - "8081:443"
   volumes_from:
     - php
-    - phpmyadmin
