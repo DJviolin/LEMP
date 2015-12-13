@@ -5,20 +5,19 @@ ssh:
     - 8079:22
   volumes:
     - /home/core/www:/var/www:rw
+php-fpm:
+  build: ./php-fpm
+  container_name: lemp_php-fpm
 nginx:
   build: ./nginx
   container_name: lemp_nginx
+  links:
+    - php-fpm
   ports:
     - 8080:80
     - 8081:443
   volumes_from:
     - ssh
-php-fpm:
-  build: ./php-fpm
-  container_name: lemp_php-fpm
-  links:
-    - nginx
-
 
 
 

@@ -18,8 +18,6 @@ RUN apt-get -y update \
 ### Start of Nginx setup
 COPY etc/nginx/conf.d/default.conf /etc/nginx/conf.d/
 COPY etc/nginx/conf.d/php.conf /etc/nginx/conf.d/
-# NGINX WEBSERVER FILES
-#RUN mkdir -p /var/www
 COPY usr/share/nginx/html/404.html /usr/share/nginx/html/
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log

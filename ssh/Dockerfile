@@ -40,8 +40,8 @@ RUN apt-get -y install -f; \
     apt-get check
 ### End of Cleanup
 
-### Start of WEBSERVER FILES
+### Start of Nginx WEBSERVER FILES
 mkdir -p /var/www
-### End of WEBSERVER FILES
+### End of Nginx WEBSERVER FILES
 
 CMD ["/usr/sbin/sshd", "-D"]
