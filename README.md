@@ -50,3 +50,13 @@ Change Virtualbox Disk Size:
 
     $ VBoxManage clonehd D:\VM\coreos-01\coreos_production_884.0.0.vdi D:\VM\coreos-01\coreos_production_884.0.0-fixed.vdi --variant Fixed
     $ VBoxManage modifyhd D:\VM\coreos-01\coreos_production_884.0.0-fixed.vdi --resize 20480
+
+### Not installed for production, only in development
+
+    $ curl vim man
+
+    $ build-essential fakeroot devscripts module-assistant
+    $ m-a prepare -y; m-a update
+
+    $ python make gcc g++
+    $ software-properties-common

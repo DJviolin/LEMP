@@ -21,7 +21,7 @@ lanti-debian-mariadb:
   container_name: lanti-debian-mariadb
   env_file: ./mariadb/mariadb.env
   links:
-    - lanti-debian-web
+    - lanti-debian-base
   ports:
     - "8083:3306"
     - "8084:22"
