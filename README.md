@@ -27,6 +27,12 @@ Work in progress!
 10. Visit the index page on your localhost IP at port `:8080`.
 11. If you want to stop the environment, type `./service-stop.sh` (60 seconds wait time was introduced to have enough time to `fleetctl stop` making the sql backups from the container).
 
+## PhpMYAdmin further setup
+
+1. Create a new table called `phpmyadmin`
+2. Into this new table, import `sql/create_tables.sql` from the original PhpmyAdmin archive.
+3. At the Privileges tab, create a new user called `pma` with the password `pmapass` and grant all privileges!
+
 ##### Notes
 
 Remove all docker containers
