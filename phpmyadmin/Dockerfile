@@ -12,16 +12,13 @@ LABEL Description="PHPMyAdmin" Vendor="Istvan Lantos" Version="1.0"
 RUN apt-get -y --force-yes install --fix-missing \
     curl
 
-RUN mkdir -p /var/www/phpmyadmin \
-    && curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz --output /var/www/phpmyadmin/phpMyAdmin-latest-all-languages.tar.gz | tar xzf - \
+RUN mkdir -p /var/www \
+    && curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz -o /var/www/phpMyAdmin-latest-all-languages.tar.gz \
+    && tar -xvzf /var/www/phpMyAdmin-latest-all-languages.tar.gz \
+    && rm -rf /var/www/phpMyAdmin-latest-all-languages.tar.gz \
+    && mv /var/www/phpMyAdmin* /var/www/phpmyadmin \
     && rm -rf /var/www/phpmyadmin/js/jquery/src/ /var/www/phpmyadmin/examples /var/www/phpmyadmin/po/
 
-#COPY config.inc.linked.php config.inc.arbitrary.php /var/www/phpmyadmin/
-#COPY run.sh /run.sh
-#RUN chmod u+rwx /run.sh
-
-COPY config.inc.linked.php /var/www/phpmyadmin/config.inc.php
-
-#ENTRYPOINT [ "/run.sh" ]
+COPY var/www/phpmyadmin/config.inc.php /var/www/phpmyadmin/config.inc.php
 
 CMD ["tail", "-f", "/dev/null"]
