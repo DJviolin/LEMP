@@ -33,7 +33,7 @@ Work in progress!
 1. Create a new table called `phpmyadmin`
 2. Into this new table, import `sql/create_tables.sql` from the original PhpmyAdmin archive.
 3. At the Privileges tab, create a new user called `pma` with the password `pmapass` and grant all privileges!
-4. Please not remove the `/home/core/www/phpmyadmin` folder on the host, although it's empty in some SSH session! this is the folder of the PhpMyAdmin installation.
+4. Please not remove the `/home/core/www/phpmyadmin` folder on the host, although it's empty! This is the folder of the PhpMyAdmin installation.
 
 ## Notes
 
