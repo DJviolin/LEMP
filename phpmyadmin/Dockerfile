@@ -21,6 +21,4 @@ RUN curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-l
     && rm -rf /var/www/phpmyadmin/js/jquery/src/ /var/www/phpmyadmin/examples /var/www/phpmyadmin/po/ \
     && ls -al /var/www && ls -al /var/www/phpmyadmin
 
-#COPY var/www/phpmyadmin/config.inc.php /var/www/phpmyadmin/
-
 CMD ["tail", "-f", "/dev/null"]

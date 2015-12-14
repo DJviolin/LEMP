@@ -43,10 +43,8 @@ RUN rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/lib/mysql \
     && mkdir -p /var/lib/mysql \
     && chown -R mysql:mysql /var/lib/mysql
-# comment out a few problematic configuration values
-# don't reverse lookup hostnames, they are usually another container
-#COPY etc/mysql/my.cnf /etc/mysql/
-#COPY etc/mysql/my.cnf_orig /etc/mysql/
+# etc/mysql/my.cnf: comment out a few problematic configuration values
+# etc/mysql/my.cnf: don't reverse lookup hostnames, they are usually another container
 ### End of MariaDB setup
 
 COPY docker-entrypoint.sh /
