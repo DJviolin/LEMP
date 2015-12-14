@@ -17,6 +17,7 @@ mariadb:
   volumes:
     - /var/run/mysqld
     - /var/lib/mysql
+    - /home/core/mysql:/var/lib/mysql:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -38,7 +39,7 @@ php:
   volumes:
     - /var/run/php-fpm
   volumes_from:
-    - ssh:rw
+    - ssh
     - mariadb
     - phpmyadmin
 nginx:
@@ -50,4 +51,4 @@ nginx:
     - "8080:80"
     - "8081:443"
   volumes_from:
-    - php:rw
+    - php
