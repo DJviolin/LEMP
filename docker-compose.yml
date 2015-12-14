@@ -53,3 +53,10 @@ nginx:
     - ./nginx/etc/nginx/conf.d/cert/:/etc/nginx/conf.d/cert/:ro
   volumes_from:
     - php
+#ajenti:
+#  build: ./ajenti
+#  container_name: lemp_ajenti
+#  links:
+#    - ssh
+#  ports:
+#    - "8082:8000"
