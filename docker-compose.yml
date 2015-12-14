@@ -53,3 +53,15 @@ nginx:
     - ./nginx/etc/nginx/conf.d/cert/:/etc/nginx/conf.d/cert/:ro
   volumes_from:
     - php
+cadvisor:
+  image: google/cadvisor:latest
+  container_name: lemp_cadvisor
+  links:
+    - ssh
+  ports:
+    - "8082:8080"
+  volumes:
+    - "/:/rootfs:ro"
+    - "/var/run:/var/run:rw"
+    - "/sys:/sys:ro"
+    - "/var/lib/docker/:/var/lib/docker:ro"
