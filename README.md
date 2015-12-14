@@ -53,6 +53,8 @@ Nginx microcaching:
 
 https://github.com/kevinohashi/WordPressVPS/blob/master/setup-nginx-php-fpm-microcache.sh
 
+https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/
+
 http://reviewsignal.com/blog/2014/06/25/40-million-hits-a-day-on-wordpress-using-a-10-vps/
 
 Fine tuning here: /etc/defaults, /etc/sysctl.conf and /etc/security/limits.conf
@@ -60,6 +62,9 @@ Fine tuning here: /etc/defaults, /etc/sysctl.conf and /etc/security/limits.conf
 Increase open files limit: https://easyengine.io/tutorials/linux/increase-open-files-limit/
 
 EasyEngine tutorials: https://easyengine.io/tutorials/
+
+
+
 
 Wordpress related:
 
@@ -72,6 +77,7 @@ https://github.com/EasyEngine/easyengine
 https://ttmm.io/tech/ludicrous-speed-wordpress-caching-with-redis/
 
 https://www.digitalocean.com/community/tutorials/how-to-configure-redis-caching-to-speed-up-wordpress-on-ubuntu-14-04
+http://www.jeedo.net/lightning-fast-wordpress-with-nginx-redis/
 
 https://deliciousbrains.com/hosting-wordpress-yourself-server-monitoring-caching/
 
