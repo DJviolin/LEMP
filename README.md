@@ -1,6 +1,10 @@
 # LEMP stack built on Docker for CoreOS hosts
 
+Nginx + PHP-FPM 7 webserver through FastCGI with microcaching + MariaDB + included PhpMyAdmin, cAdvisor, SSH!
+
 Work in progress!
+
+Wordpress still needs some configuration, like WP specific settings in Nginx .conf files and SFTP access.
 
 ## Prerequisites
 
@@ -26,7 +30,7 @@ Work in progress!
 
 8. On CoreOS, you have to install docker-compose! Use the provided install script here `./docker-compose-1.5.2-coreos-installer.sh` or refresh this script with the latest version from the original repo (recommended). If the script fails to run as superuser, than type in the commands from the script manually!
 9. Run the `$ chmod +x service-start.sh service-stop.sh && ./service-start.sh` commands.
-10. If everything works, now you have a working Nginx + PHP-FPM 7 webserver through FastCGI!
+10. If everything works, now you have a working LEMP stack on steroids.
 11. Visit the index page on your localhost IP at port `:8080`.
 12. If you want to stop the environment, type `./service-stop.sh` (60 seconds wait time was introduced to have enough time to `fleetctl stop` making the sql backups from the container).
 
