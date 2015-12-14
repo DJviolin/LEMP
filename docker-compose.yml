@@ -15,7 +15,7 @@ mariadb:
     - "2223:22"
   volumes:
     - /var/run/mysqld
-    - /var/lib/mysql
+    #- /var/lib/mysql
     - /home/core/mysql:/var/lib/mysql:rw
 phpmyadmin:
   build: ./phpmyadmin
