@@ -6,7 +6,7 @@ Work in progress!
 
 1. Your VM needs at least 1GB of Ram, otherwise MariaDB install will throw an error.
 2. In virtual machines use fixed size disks to avoid problems.
-3. Keep the original folder structure on the host (or you have to inspect and manually adjust every host folder in the stack)!
+3. Keep the original folder structure on the host (or you have to inspect and manually adjust every host folder in `docker-compose.yml` and `lemp.service` files)!
 4. Use CoreOS! This environment works with other local folders / linux OS, but in this case read 3.).
 
 ## Usage
