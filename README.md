@@ -45,6 +45,10 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 
 ## Notes
 
+cAdvisor + InfluxDB + Grafana monitoring stack compose script:
+
+https://github.com/vegasbrianc/docker-monitoring
+
 Remove all docker containers
 
     $ docker stop $(docker ps -a -q) && docker rm -f $(docker ps -a -q)
