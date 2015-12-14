@@ -61,6 +61,16 @@ Increase open files limit: https://easyengine.io/tutorials/linux/increase-open-f
 
 EasyEngine tutorials: https://easyengine.io/tutorials/
 
+Wordpress related:
+
+https://deliciousbrains.com/http2-https-lets-encrypt-wordpress/
+
+https://www.nginx.com/resources/wiki/start/topics/recipes/wordpress/
+
+https://github.com/EasyEngine/easyengine
+
+https://ttmm.io/tech/ludicrous-speed-wordpress-caching-with-redis/
+
 Remove all docker containers
 
     $ docker stop $(docker ps -a -q) && docker rm -f $(docker ps -a -q)

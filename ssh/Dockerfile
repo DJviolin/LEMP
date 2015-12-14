@@ -47,7 +47,7 @@ root            soft    nofile            500000" >> /etc/security/limits.conf
 RUN echo -e "session required pam_limits.so" >> /etc/pam.d/common-session
 RUN echo -e "fs.file-max = 2097152" >> /etc/sysctl.conf \
     && sysctl -p
-# Verifying new limits: max limit of file descriptors && Hard Limit && Soft Limit && Check limit for other user && Check limits of a running process:
+# Verifying new limits: max limit of file descriptors && Hard Limit && Soft Limit && Check limit for other user && Check limits of a running process
 RUN cat /proc/sys/fs/file-max \
     && ulimit -Hn \
     && ulimit -Sn \
