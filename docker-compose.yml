@@ -12,7 +12,6 @@ mariadb:
   links:
     - ssh
   ports:
-    #- "8082:3306"
     - "2223:22"
   volumes:
     - /var/run/mysqld
@@ -21,14 +20,8 @@ mariadb:
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
-  #environment:
-  #   - PMA_ARBITRARY=0
-  #   - PMA_HOST=0.0.0.0
-  #   - PMA_PORT=3306
   links:
     - ssh
-  #ports:
-  #  - "8084:8080"
   volumes:
     - /var/www/phpmyadmin
 php:
