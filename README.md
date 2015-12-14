@@ -14,7 +14,7 @@ Work in progress!
 3. Create a folder in `/home/core/www`. This will be the shared folder for your webserver files.
 4. Create a folder in `/home/core/mysql`. This will be the shared folder for your MySQL database. The container will populate this folder at the first boot and locking down the sub-folders and files to superuser access (you have to `sudo su` on the host able to access these files).
 5. Create a folder in `/home/core/sqlbackup`. This will be the folder for your MySQL backups. The tar archives here created straight from the container by the systemd init script. So you will have a shared folder at `/home/core/mysql` which is the actual database and a `/home/core/sqlbackup` folder with tar archives in it, which is a backup when the service halted for some reason.
-6. Place your personal SSH public key in `debian/root/.ssh/authorized_keys` file (you have to create this folder structure here in your locally cloned repo).
+6. Place your personal SSH public key in `ssh/root/.ssh/authorized_keys` file (you have to create this folder structure here in your locally cloned repo).
 7. Create a file in `mariadb/mariadb.env` with the following content:
 
     ```
