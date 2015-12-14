@@ -4,6 +4,8 @@ Nginx + PHP-FPM 7 webserver through FastCGI with microcaching + MariaDB + includ
 
 Work in progress!
 
+PHP 7 using the nightly release channel from zend. It will be built from source in the future for further optimization (probably Nginx too).
+
 Wordpress still needs some configuration, like WP specific settings in Nginx .conf files and SFTP access.
 
 ## Prerequisites
