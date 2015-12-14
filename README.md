@@ -11,21 +11,22 @@ Work in progress!
 
 1. Clone this repo into your `/home/core/work/lemp` folder on your CoreOS host (this environment works with other local folders / linux OS, but in this case you have to manually adjust every single local folder which are hardcoded into the scripts).
 2. Navigate to this folder on your Linux Host OS with Docker installed (preferably CoreOS).
-3. Create a folder in `/home/core/www`. This will be the folder to your webserver files.
-4. Create a folder in `/home/core/sql`. This will be the folder to your sql backups.
-5. Place your personal SSH public key in `debian/root/.ssh/authorized_keys` file (you have to create this folder structure here in your locally cloned repo).
-6. Create a file in `mariadb/mariadb.env` with the following content:
+3. Create a folder in `/home/core/www`. This will be the shared folder to your webserver files.
+4. Create a folder in `/home/core/mysql`. This will be the shared folder to your MySQL database. The container will populate this folder at the first boot and locking down the sub-folders and files to superuser access (you have to `sudo su` on the host able to access these files).
+5. Create a folder in `/home/core/sqlbackup`. This will be the folder to your sql backups.
+6. Place your personal SSH public key in `debian/root/.ssh/authorized_keys` file (you have to create this folder structure here in your locally cloned repo).
+7. Create a file in `mariadb/mariadb.env` with the following content:
 
     ```
     # Set MySQL Root Password
     MYSQL_ROOT_PASSWORD=type-your-secret-password-here
     ```
 
-7. On CoreOS, you have to install docker-compose! Use the provided install script here `./docker-compose-1.5.2-coreos-installer.sh` or refresh this script with the latest version from the original repo (recommended). If the script fails to run as superuser, than type in the commands from the script manually!
-8. Run the `$ chmod +x service-start.sh service-stop.sh && ./service-start.sh` commands.
-9. If everything works, now you have a working Nginx + PHP-FPM 7 webserver through FastCGI!
-10. Visit the index page on your localhost IP at port `:8080`.
-11. If you want to stop the environment, type `./service-stop.sh` (60 seconds wait time was introduced to have enough time to `fleetctl stop` making the sql backups from the container).
+8. On CoreOS, you have to install docker-compose! Use the provided install script here `./docker-compose-1.5.2-coreos-installer.sh` or refresh this script with the latest version from the original repo (recommended). If the script fails to run as superuser, than type in the commands from the script manually!
+9. Run the `$ chmod +x service-start.sh service-stop.sh && ./service-start.sh` commands.
+10. If everything works, now you have a working Nginx + PHP-FPM 7 webserver through FastCGI!
+11. Visit the index page on your localhost IP at port `:8080`.
+12. If you want to stop the environment, type `./service-stop.sh` (60 seconds wait time was introduced to have enough time to `fleetctl stop` making the sql backups from the container).
 
 ## PhpMyAdmin further setup
 
