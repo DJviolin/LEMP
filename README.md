@@ -5,7 +5,7 @@ Work in progress!
 ## Prerequisites
 
 1. Your VM needs at least 1GB of Ram, otherwise MariaDB install will throw an error.
-2. In virtual machines use fixed size disks to avoid problems.
+2. In virtual machines use fixed size disks to avoid problems (preferably 20gb minimum).
 3. Keep the original folder structure on the host (or you have to inspect and manually adjust every host folder in `docker-compose.yml` and `lemp.service` files)!
 4. Use CoreOS! This environment works with other local folders / linux OS, but in this case read 3.).
 
@@ -16,7 +16,7 @@ Work in progress!
 3. Create a folder in `/home/core/www`. This will be the shared folder for your webserver files.
 4. Create a folder in `/home/core/mysql`. This will be the shared folder for your MySQL database. The container will populate this folder at the first boot and locking down the sub-folders and files to superuser access (you have to `sudo su` on the host able to access these files).
 5. Create a folder in `/home/core/sqlbackup`. This will be the folder for your MySQL backups. The tar archives here created straight from the container by the systemd init script. So you will have a shared folder at `/home/core/mysql` which is the actual database and a `/home/core/sqlbackup` folder with tar archives in it, which is a backup when the service halted for some reason.
-6. Place your personal SSH public key in `~/.ssh/authorized_keys` file on your HOST!
+6. Place your personal SSH public key in `~/.ssh/authorized_keys` file on your HOST (usually this is already done by the cloud-config file on CoreOS VPS)!
 7. Create a file in `mariadb/mariadb.env` with the following content:
 
     ```
