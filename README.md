@@ -6,10 +6,12 @@ Work in progress!
 
 1. Your VM needs at least 1GB of Ram, otherwise MariaDB install will throw an error.
 2. In virtual machines use fixed size disks to avoid problems.
+3. Keep the original folder structure on the host (or you have to inspect and manually adjust every host folder in the stack)!
+4. Use CoreOS! This environment works with other local folders / linux OS, but in this case read 3.).
 
 ## Usage
 
-1. Clone this repo into your `/home/core/work/lemp` folder on your CoreOS host (this environment works with other local folders / linux OS, but in this case you have to manually adjust every single local folder which are hardcoded into the scripts).
+1. Clone this repo into your `/home/core/work/lemp` folder on your CoreOS host.
 2. Navigate to this folder on your Linux Host OS with Docker installed (preferably CoreOS).
 3. Create a folder in `/home/core/www`. This will be the shared folder for your webserver files.
 4. Create a folder in `/home/core/mysql`. This will be the shared folder for your MySQL database. The container will populate this folder at the first boot and locking down the sub-folders and files to superuser access (you have to `sudo su` on the host able to access these files).
