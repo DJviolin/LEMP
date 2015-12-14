@@ -49,6 +49,12 @@ cAdvisor + InfluxDB + Grafana monitoring stack compose script:
 
 https://github.com/vegasbrianc/docker-monitoring
 
+Nginx microcaching:
+
+https://github.com/kevinohashi/WordPressVPS/blob/master/setup-nginx-php-fpm-microcache.sh
+
+http://reviewsignal.com/blog/2014/06/25/40-million-hits-a-day-on-wordpress-using-a-10-vps/
+
 Remove all docker containers
 
     $ docker stop $(docker ps -a -q) && docker rm -f $(docker ps -a -q)
