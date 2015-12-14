@@ -33,7 +33,7 @@ phpmyadmin:
     - ssh
   volumes:
     - /var/www/phpmyadmin
-    - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
+    - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:ro
 php:
   build: ./php
   container_name: lemp_php
