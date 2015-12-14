@@ -19,6 +19,7 @@ RUN apt-get -y update \
 #COPY etc/nginx/conf.d/default.conf /etc/nginx/conf.d/
 #COPY etc/nginx/conf.d/php.conf /etc/nginx/conf.d/
 COPY usr/share/nginx/html/404.html /usr/share/nginx/html/
+RUN mkdir -p /usr/share/nginx/cache
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log

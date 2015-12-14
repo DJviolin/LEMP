@@ -16,9 +16,9 @@ RUN apt-get -y update \
         php7-nightly
 
 ### Start of PHP 7 setup
-COPY usr/local/php7/etc/php.ini /usr/local/php7/etc/
-COPY usr/local/php7/etc/php-fpm.conf /usr/local/php7/etc/
-COPY usr/local/php7/etc/php-fpm.d/www.conf /usr/local/php7/etc/php-fpm.d/
+#COPY usr/local/php7/etc/php.ini /usr/local/php7/etc/
+#COPY usr/local/php7/etc/php-fpm.conf /usr/local/php7/etc/
+#COPY usr/local/php7/etc/php-fpm.d/www.conf /usr/local/php7/etc/php-fpm.d/
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 ### End of PHP 7 setup
 
