@@ -45,6 +45,6 @@ nginx:
     - "8080:80"
     - "8081:443"
   volumes:
-    - ./nginx/etc/nginx/conf.d/:/etc/nginx/conf.d/:ro
+    - ./nginx/etc/nginx/:/etc/nginx/:ro
   volumes_from:
     - php

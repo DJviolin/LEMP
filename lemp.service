@@ -12,7 +12,6 @@ ExecStartPre=-/bin/bash -c '/usr/bin/tar -zcvf /home/core/sql/sqlbackup_$$(date 
 ExecStartPre=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml kill
 ExecStartPre=-/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml rm --force
 ExecStart=/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml up --force-recreate
-#ExecStartPost=/usr/bin/docker volume create --name lemp_sqlbackup
 ExecStartPost=/usr/bin/etcdctl set /LEMP Running
 ExecStop=/opt/bin/docker-compose --file /home/core/work/lemp/docker-compose.yml stop
 ExecStopPost=/usr/bin/etcdctl rm /LEMP
