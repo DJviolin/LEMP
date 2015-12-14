@@ -71,6 +71,14 @@ https://github.com/EasyEngine/easyengine
 
 https://ttmm.io/tech/ludicrous-speed-wordpress-caching-with-redis/
 
+https://www.digitalocean.com/community/tutorials/how-to-configure-redis-caching-to-speed-up-wordpress-on-ubuntu-14-04
+
+https://deliciousbrains.com/hosting-wordpress-yourself-server-monitoring-caching/
+
+http://serverfault.com/questions/584403/nginx-cache-shared-between-multiple-servers
+
+http://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#example
+
 Remove all docker containers
 
     $ docker stop $(docker ps -a -q) && docker rm -f $(docker ps -a -q)
