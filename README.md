@@ -55,6 +55,12 @@ https://github.com/kevinohashi/WordPressVPS/blob/master/setup-nginx-php-fpm-micr
 
 http://reviewsignal.com/blog/2014/06/25/40-million-hits-a-day-on-wordpress-using-a-10-vps/
 
+Fine tuning here: /etc/defaults, /etc/sysctl.conf and /etc/security/limits.conf
+
+Increase open files limit: https://easyengine.io/tutorials/linux/increase-open-files-limit/
+
+EasyEngine tutorials: https://easyengine.io/tutorials/
+
 Remove all docker containers
 
     $ docker stop $(docker ps -a -q) && docker rm -f $(docker ps -a -q)

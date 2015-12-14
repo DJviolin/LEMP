@@ -37,4 +37,22 @@ RUN echo -e '\ncd /root' >> /root/.bashrc
 RUN mkdir -p /var/www
 ### End of Nginx WEBSERVER FILES
 
+### Start of optimizations
+# https://easyengine.io/tutorials/linux/increase-open-files-limit/
+RUN echo -e "\n\
+*               hard    nofile            500000\n\
+*               soft    nofile            500000\n\
+root            hard    nofile            500000\n\
+root            soft    nofile            500000" >> /etc/security/limits.conf
+RUN echo -e "session required pam_limits.so" >> /etc/pam.d/common-session
+RUN echo -e "fs.file-max = 2097152" >> /etc/sysctl.conf \
+    && sysctl -p
+# Verifying new limits: max limit of file descriptors && Hard Limit && Soft Limit && Check limit for other user && Check limits of a running process:
+RUN cat /proc/sys/fs/file-max \
+    && ulimit -Hn \
+    && ulimit -Sn \
+    && su - www-data -c 'ulimit -aHS' -s '/bin/bash' \
+    && ps aux | grep sshd
+### End of optimizations
+
 CMD ["/usr/sbin/sshd", "-D"]
