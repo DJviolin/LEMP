@@ -12,8 +12,8 @@ mariadb:
   env_file: ./mariadb/mariadb.env
   links:
     - ssh
-  ports:
-    - "2223:22"
+  #ports:
+  #  - "2223:22"
   volumes:
     - /var/run/mysqld
     #- /var/lib/mysql
