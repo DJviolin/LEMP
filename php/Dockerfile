@@ -19,8 +19,7 @@ RUN set -xe \
 # Add PHP to $PATH
 RUN echo 'export PATH="$PATH:/usr/local/php7/bin:/usr/local/php7/sbin"' >> /etc/bash.bashrc
 
-RUN apt-get -y update \
-    && time apt-get -y dist-upgrade \
+RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y --force-yes install \
         # persistent / runtime deps \
         ca-certificates \
