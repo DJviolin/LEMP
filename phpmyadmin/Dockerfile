@@ -11,8 +11,7 @@ FROM lemp_ssh:latest
 MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="PHPMyAdmin" Vendor="Istvan Lantos" Version="1.0"
 
-RUN apt-get -y update \
-    && time apt-get -y dist-upgrade \
+RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y --force-yes install \
         curl
 

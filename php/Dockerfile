@@ -65,6 +65,8 @@ RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILEN
     && tar -xf "$PHP_FILENAME" -C /usr/src/php --strip-components=1 \
     && rm "$PHP_FILENAME"*
 RUN set -x
+# Fixing "configure: error: Unable to locate gmp.h"
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h 
 # Configuring the build
 # http://wordpress.stackexchange.com/questions/42098/what-are-php-extensions-and-libraries-wp-needs-and-or-uses
 # https://wordpress.org/support/topic/wowdpress-php-dependencies

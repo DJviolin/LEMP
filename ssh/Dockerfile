@@ -17,8 +17,7 @@ deb http://security.debian.org stable/updates main contrib non-free\n\
 deb-src http://security.debian.org stable/updates main contrib non-free\n\
 deb http://httpredir.debian.org/debian stable-updates main contrib non-free\n\
 deb-src http://httpredir.debian.org/debian stable-updates main contrib non-free" > /etc/apt/sources.list
-RUN apt-get -y update \
-    && time apt-get -y dist-upgrade \
+RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y --force-yes install \
         dialog \
         apt-utils \
