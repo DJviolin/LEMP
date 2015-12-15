@@ -66,6 +66,7 @@ RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILEN
     && rm "$PHP_FILENAME"* \
     && cd /usr/src/php
 # Configure the build OPTIONS LIST
+RUN set -x
 RUN ./configure --help
 # Configuring the build
 # http://wordpress.stackexchange.com/questions/42098/what-are-php-extensions-and-libraries-wp-needs-and-or-uses
