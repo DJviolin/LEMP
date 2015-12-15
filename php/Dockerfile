@@ -37,6 +37,8 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         make \
         pkg-config \
         re2c --no-install-recommends \
+        # Need for tar.xz \
+        xz-utils --no-install-recommends \
     && rm -r /var/lib/apt/lists/*
 ### End of DEV environment deps
 
@@ -60,7 +62,6 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libsqlite3-dev --no-install-recommends \
         libssl-dev --no-install-recommends \
         libxml2-dev --no-install-recommends \
-        xz-utils --no-install-recommends \
         # Own dependencies \
         libbz2-dev --no-install-recommends \
         libjpeg-dev --no-install-recommends \
