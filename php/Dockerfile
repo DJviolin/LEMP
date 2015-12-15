@@ -56,6 +56,7 @@ RUN apt-get -y update \
         libjpeg-dev --no-install-recommends \
         libpng12-dev --no-install-recommends \
         libxpm-dev --no-install-recommends \
+        libfreetype6-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 # Downloading source files
 RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILENAME" \
