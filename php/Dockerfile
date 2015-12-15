@@ -88,7 +88,7 @@ RUN ./configure \
         --with-config-file-path=/usr/local/php7/etc \
         --with-config-file-scan-dir=/usr/local/php7/etc/conf.d \
         # Extensions \
-        --with-openssl=/usr/bin \
+        --with-openssl \
         --with-zlib=/usr \
         --with-zlib-dir=/usr \
         --enable-bcmath \
