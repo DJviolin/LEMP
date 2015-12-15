@@ -8,10 +8,18 @@ LABEL Description="PHP-FPM 7 through FastCGI built from source" Vendor="Istvan L
 
 ENV PHP_VERSION 7.0.0
 ENV PHP_FILENAME php-7.0.0.tar.xz
-ENV PHP_SHA256 7dbdda74c502960febe0544b3e3a7c430389a7a4260e94c73fd8ca26c33b8540
+# --with-config-file-path and --with-config-file-scan-dir
 ENV PHP_INI_DIR /usr/local/php7/etc
 RUN mkdir -p $PHP_INI_DIR/conf.d
-
+# Checksum
+ENV PHP_SHA256 7dbdda74c502960febe0544b3e3a7c430389a7a4260e94c73fd8ca26c33b8540
+# Adding GPG key
+ENV GPG_KEYS 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
+RUN set -xe \
+    && for key in $GPG_KEYS; do \
+        gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
+    done
+# Add PHP to $PATH
 RUN echo 'export PATH="$PATH:/usr/local/php7/bin:/usr/local/php7/sbin"' >> /etc/bash.bashrc
 
 # persistent / runtime deps
@@ -37,20 +45,7 @@ RUN apt-get -y update \
         pkg-config \
         re2c --no-install-recommends \
     && rm -r /var/lib/apt/lists/*
-RUN apt-key adv --recv-keys --keyserver ha.pool.sks-keyservers.net 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
-
-# Zend build commands:
-# './configure' '--prefix=/usr/local/php7' '--with-config-file-path=/usr/local/php7/etc' '--with-config-file-scan-dir=/usr/local/php7/etc/conf.d' '--enable-mbstring' '--enable-zip' '--enable-bcmath' '--enable-pcntl' '--enable-ftp' '--enable-exif' '--enable-calendar' '--enable-sysvmsg' '--enable-sysvsem' '--enable-sysvshm' '--enable-wddx' '--with-curl' '--with-mcrypt' '--with-iconv' '--with-gmp=/usr' '--with-pspell' '--with-gd' '--with-jpeg-dir=/usr' '--with-png-dir=/usr' '--with-zlib-dir=/usr' '--with-xpm-dir=/usr' '--with-freetype-dir=/usr' '--enable-gd-native-ttf' '--enable-gd-jis-conv' '--with-openssl' '--with-mysql=/usr' '--with-pdo-mysql=/usr' '--with-gettext=/usr' '--with-zlib=/usr' '--with-bz2=/usr' '--with-recode=/usr' '--with-mysqli=/usr/bin/mysql_config' '--enable-fpm' '--enable-intl' '--enable-soap' '--without-pear' '--with-apxs2=/usr/bin/apxs2' '--with-libdir=/lib/x86_64-linux-gnu' 
-
-
-
-
-
-ENV PHP_EXTRA_CONFIGURE_ARGS \
-        --enable-fpm \
-        --with-fpm-user=www-data \
-        --with-fpm-group=www-data
-
+# PHP extra build dependencies
 # --enable-mysqlnd is included below because it's harder to compile after the fact the extensions are (since it's a plugin for several extensions, not an extension in itself)
 RUN buildDeps=" \
         $PHP_EXTRA_BUILD_DEPS \
@@ -62,17 +57,27 @@ RUN buildDeps=" \
         libxml2-dev \
         xz-utils \
     " \
-    && set -x \
-    && apt-get -y update && apt-get -y --force-yes install $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
-    && curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILENAME" \
+RUN set -x \
+    apt-get -y update \
+    && time apt-get -y dist-upgrade \
+    && apt-get -y --force-yes install \
+        $buildDeps --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+# Downloading source files
+RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILENAME" \
     && echo "$PHP_SHA256 *$PHP_FILENAME" | sha256sum -c - \
     && curl -fSL "http://php.net/get/$PHP_FILENAME.asc/from/this/mirror" -o "$PHP_FILENAME.asc" \
     && gpg --verify "$PHP_FILENAME.asc" \
     && mkdir -p /usr/src/php \
     && tar -xf "$PHP_FILENAME" -C /usr/src/php --strip-components=1 \
     && rm "$PHP_FILENAME"* \
-    && cd /usr/src/php \
-    && ./configure \
+    && cd /usr/src/php
+# Configuring the build
+ENV PHP_EXTRA_CONFIGURE_ARGS \
+        --enable-fpm \
+        --with-fpm-user=www-data \
+        --with-fpm-group=www-data
+RUN ./configure \
         --with-config-file-path="$PHP_INI_DIR" \
         --with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
         $PHP_EXTRA_CONFIGURE_ARGS \
@@ -82,8 +87,18 @@ RUN buildDeps=" \
         --with-openssl \
         --with-readline \
         --with-recode \
-        --with-zlib \
-    && make -j"$(nproc)" \
+        --with-zlib
+
+
+
+
+# Zend build commands:
+# './configure' '--prefix=/usr/local/php7' '--with-config-file-path=/usr/local/php7/etc' '--with-config-file-scan-dir=/usr/local/php7/etc/conf.d' '--enable-mbstring' '--enable-zip' '--enable-bcmath' '--enable-pcntl' '--enable-ftp' '--enable-exif' '--enable-calendar' '--enable-sysvmsg' '--enable-sysvsem' '--enable-sysvshm' '--enable-wddx' '--with-curl' '--with-mcrypt' '--with-iconv' '--with-gmp=/usr' '--with-pspell' '--with-gd' '--with-jpeg-dir=/usr' '--with-png-dir=/usr' '--with-zlib-dir=/usr' '--with-xpm-dir=/usr' '--with-freetype-dir=/usr' '--enable-gd-native-ttf' '--enable-gd-jis-conv' '--with-openssl' '--with-mysql=/usr' '--with-pdo-mysql=/usr' '--with-gettext=/usr' '--with-zlib=/usr' '--with-bz2=/usr' '--with-recode=/usr' '--with-mysqli=/usr/bin/mysql_config' '--enable-fpm' '--enable-intl' '--enable-soap' '--without-pear' '--with-apxs2=/usr/bin/apxs2' '--with-libdir=/lib/x86_64-linux-gnu' 
+
+
+
+
+RUN make -j"$(nproc)" \
     && make install \
     && { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
