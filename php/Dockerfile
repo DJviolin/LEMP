@@ -44,21 +44,17 @@ RUN apt-get -y update \
     && rm -r /var/lib/apt/lists/*
 # PHP extra build dependencies
 # --enable-mysqlnd is included below because it's harder to compile after the fact the extensions are (since it's a plugin for several extensions, not an extension in itself)
-ENV buildDeps=" \
-        $PHP_EXTRA_BUILD_DEPS \
-        libcurl4-openssl-dev \
-        libreadline6-dev \
-        librecode-dev \
-        libsqlite3-dev \
-        libssl-dev \
-        libxml2-dev \
-        xz-utils \
-    "
 #RUN set -x
 RUN apt-get -y update \
     && time apt-get -y dist-upgrade \
     && apt-get -y --force-yes install \
-        $buildDeps --no-install-recommends \
+        libcurl4-openssl-dev --no-install-recommends \
+        libreadline6-dev --no-install-recommends \
+        librecode-dev --no-install-recommends \
+        libsqlite3-dev --no-install-recommends \
+        libssl-dev --no-install-recommends \
+        libxml2-dev --no-install-recommends \
+        xz-utils --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 # Downloading source files
 RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILENAME" \
