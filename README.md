@@ -45,6 +45,19 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 
 ## Notes
 
+PHP7 zend vs Source differences:
+
+    Not installed in Zend PHP build: mysqlnd readline
+
+    Not installed in source PHP build: pdo_mysql
+
+    Zend -> Source
+
+    OpenSSL Header Version:  OpenSSL 1.0.1f 6 Jan 2014  -> OpenSSL 1.0.1k 8 Jan 2015 
+
+    PDO drivers:   mysql, sqlite -> sqlite
+
+
 cAdvisor + InfluxDB + Grafana monitoring stack compose script:
 
 https://github.com/vegasbrianc/docker-monitoring
