@@ -150,4 +150,6 @@ RUN make -j"$(nproc)" \
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 ### End of PHP 7 setup
 
+RUN rm -rf /var/lib/apt/lists/*
+
 CMD ["/usr/local/php7/sbin/php-fpm", "--nodaemonize", "--fpm-config", "/usr/local/php7/etc/php-fpm.conf"]
