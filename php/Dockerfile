@@ -40,7 +40,6 @@ RUN apt-get -y update \
     && rm -r /var/lib/apt/lists/*
 # PHP extra build dependencies
 # --enable-mysqlnd is included below because it's harder to compile after the fact the extensions are (since it's a plugin for several extensions, not an extension in itself)
-#RUN set -x
 RUN apt-get -y update \
     && time apt-get -y dist-upgrade \
     && apt-get -y --force-yes install \
@@ -132,7 +131,7 @@ RUN cd /usr/src/php && ./configure \
         #--with-readline \
         #--with-recode \
         #--with-zlib \
-    && echo -e "hello"
+    && echo -e "Configuration done!"
 
 RUN make -j"$(nproc)" \
     && make install \
