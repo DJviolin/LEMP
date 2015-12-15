@@ -8,9 +8,6 @@ LABEL Description="PHP-FPM 7 through FastCGI built from source" Vendor="Istvan L
 
 ENV PHP_VERSION 7.0.0
 ENV PHP_FILENAME php-7.0.0.tar.xz
-# --with-config-file-path and --with-config-file-scan-dir
-ENV PHP_INI_DIR /usr/local/php7/etc
-RUN mkdir -p $PHP_INI_DIR/conf.d
 # Checksum
 ENV PHP_SHA256 7dbdda74c502960febe0544b3e3a7c430389a7a4260e94c73fd8ca26c33b8540
 # Adding GPG key
@@ -72,37 +69,37 @@ RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILEN
     && tar -xf "$PHP_FILENAME" -C /usr/src/php --strip-components=1 \
     && rm "$PHP_FILENAME"* \
     && cd /usr/src/php
+# Conigure the build OPTIONS LIST
+RUN ./configure --help
 # Configuring the build
-ENV PHP_EXTRA_CONFIGURE_ARGS \
+RUN ./configure \
+        #Basic config \
+        --prefix=/usr/local/php7 \
+        --with-config-file-path=/usr/local/php7/etc \
+        --with-config-file-scan-dir=/usr/local/php7/etc/conf.d \
+        #SAPI modules \
         --enable-fpm \
         --with-fpm-user=www-data \
-        --with-fpm-group=www-data
-RUN ./configure \
-        --with-config-file-path="$PHP_INI_DIR" \
-        --with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
-        $PHP_EXTRA_CONFIGURE_ARGS \
+        --with-fpm-group=www-data \
         --disable-cgi \
+        #WP related config \
         --enable-mysqlnd \
+        --with-mysqli=/usr/bin/mysql_config \
         --with-curl \
         --with-openssl \
         --with-readline \
         --with-recode \
-        --with-zlib
+        --with-zlib \
 
-
+RUN make -j"$(nproc)" \
+    && make install \
+    && { find /usr/local/php7/bin /usr/local/php7/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
+    && make clean
 
 
 # Zend build commands:
 # './configure' '--prefix=/usr/local/php7' '--with-config-file-path=/usr/local/php7/etc' '--with-config-file-scan-dir=/usr/local/php7/etc/conf.d' '--enable-mbstring' '--enable-zip' '--enable-bcmath' '--enable-pcntl' '--enable-ftp' '--enable-exif' '--enable-calendar' '--enable-sysvmsg' '--enable-sysvsem' '--enable-sysvshm' '--enable-wddx' '--with-curl' '--with-mcrypt' '--with-iconv' '--with-gmp=/usr' '--with-pspell' '--with-gd' '--with-jpeg-dir=/usr' '--with-png-dir=/usr' '--with-zlib-dir=/usr' '--with-xpm-dir=/usr' '--with-freetype-dir=/usr' '--enable-gd-native-ttf' '--enable-gd-jis-conv' '--with-openssl' '--with-mysql=/usr' '--with-pdo-mysql=/usr' '--with-gettext=/usr' '--with-zlib=/usr' '--with-bz2=/usr' '--with-recode=/usr' '--with-mysqli=/usr/bin/mysql_config' '--enable-fpm' '--enable-intl' '--enable-soap' '--without-pear' '--with-apxs2=/usr/bin/apxs2' '--with-libdir=/lib/x86_64-linux-gnu' 
-
-
-
-
-RUN make -j"$(nproc)" \
-    && make install \
-    && { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
-    && make clean
 
 #RUN echo -e \
 #"deb http://repos.zend.com/zend-server/early-access/php7/repos ubuntu/" > /etc/apt/sources.list.d/php.list
