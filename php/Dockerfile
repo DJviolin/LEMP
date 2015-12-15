@@ -80,8 +80,8 @@ RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
 # Configuring the build
 # http://wordpress.stackexchange.com/questions/42098/what-are-php-extensions-and-libraries-wp-needs-and-or-uses
 # https://wordpress.org/support/topic/wowdpress-php-dependencies
-RUN set -x \
-    && cd /usr/src/php \
+#RUN set -x
+RUN cd /usr/src/php \
     && ./configure \
         # Installation directories \
         --prefix=/usr/local/php7 \
@@ -146,7 +146,8 @@ RUN set -x \
         #--with-zlib \
     && echo -e "Configuration done!"
 
-RUN make -j"$(nproc)" \
+RUN cd /usr/src/php \
+    && make -j"$(nproc)" \
     && make install \
     && { find /usr/local/php7/bin /usr/local/php7/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
