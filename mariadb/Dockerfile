@@ -39,13 +39,14 @@ RUN { \
 
 ### Start of MariaDB setup
 # the "/var/lib/mysql" stuff here is because the mysql-server postinst doesn't have an explicit way to disable the mysql_install_db codepath besides having a database already "configured" (ie, stuff in /var/lib/mysql/mysql)
-RUN rm -rf /var/lib/apt/lists/* \
-    && rm -rf /var/lib/mysql \
+RUN rm -rf /var/lib/mysql \
     && mkdir -p /var/lib/mysql \
     && chown -R mysql:mysql /var/lib/mysql
 # etc/mysql/my.cnf: comment out a few problematic configuration values
 # etc/mysql/my.cnf: don't reverse lookup hostnames, they are usually another container
 ### End of MariaDB setup
+
+RUN rm -rf /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh

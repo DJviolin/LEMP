@@ -25,4 +25,6 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 RUN usermod -aG www-data nginx
 ### End of Nginx setup
 
+RUN rm -rf /var/lib/apt/lists/*
+
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

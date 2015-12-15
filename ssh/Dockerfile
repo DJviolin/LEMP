@@ -55,4 +55,6 @@ RUN echo -e "fs.file-max = 2097152" >> /etc/sysctl.conf
 #    && ps aux | grep sshd
 ### End of optimizations
 
+RUN rm -rf /var/lib/apt/lists/*
+
 CMD ["/usr/sbin/sshd", "-D"]
