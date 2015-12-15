@@ -39,8 +39,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
     && rm -r /var/lib/apt/lists/*
 # PHP extra build dependencies
 # --enable-mysqlnd is included below because it's harder to compile after the fact the extensions are (since it's a plugin for several extensions, not an extension in itself)
-RUN apt-get -y update \
-    && time apt-get -y dist-upgrade \
+RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y --force-yes install \
         libcurl4-openssl-dev --no-install-recommends \
         libreadline6-dev --no-install-recommends \
