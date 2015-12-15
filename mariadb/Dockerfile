@@ -34,7 +34,7 @@ RUN { \
     } | debconf-set-selections \
     && apt-get -y update \
     && time apt-get -y dist-upgrade \
-    && apt-get -y --force-yes install --fix-missing \
+    && apt-get -y --force-yes install \
         mariadb-server=$MARIADB_VERSION
 
 ### Start of MariaDB setup

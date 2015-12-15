@@ -19,7 +19,7 @@ deb http://httpredir.debian.org/debian stable-updates main contrib non-free\n\
 deb-src http://httpredir.debian.org/debian stable-updates main contrib non-free" > /etc/apt/sources.list
 RUN apt-get -y update \
     && time apt-get -y dist-upgrade \
-    && apt-get -y --force-yes install --fix-missing \
+    && apt-get -y --force-yes install \
         dialog \
         apt-utils \
         openssh-server

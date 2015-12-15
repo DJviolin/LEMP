@@ -11,7 +11,7 @@ FROM lemp_ssh:latest
 MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="PHPMyAdmin" Vendor="Istvan Lantos" Version="1.0"
 
-RUN apt-get -y --force-yes install --fix-missing \
+RUN apt-get -y --force-yes install \
     curl
 
 RUN curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz -o /var/www/phpMyAdmin-latest-all-languages.tar.gz \

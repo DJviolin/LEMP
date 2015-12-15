@@ -12,7 +12,7 @@ deb-src http://nginx.org/packages/mainline/debian/ jessie nginx" > /etc/apt/sour
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
 RUN apt-get -y update \
     && time apt-get -y dist-upgrade \
-    && apt-get -y --force-yes install --fix-missing \
+    && apt-get -y --force-yes install \
         nginx
 
 ### Start of Nginx setup
