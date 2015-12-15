@@ -90,6 +90,10 @@ Remove all docker containers
     $ docker stop $(docker ps -a -q) && docker rm -f $(docker ps -a -q)
     $ docker rmi -f $(docker images -q)
 
+Build options info
+
+    $ ./configure --help
+
 Managing persistent data backups with Docker (ie. databases)
 
     http://stackoverflow.com/questions/18496940/how-to-deal-with-persistent-storage-e-g-databases-in-docker

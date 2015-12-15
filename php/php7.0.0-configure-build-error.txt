@@ -1,0 +1,449 @@
+[27359]: checking for grep that handles long lines and -e... /bin/grep
+[27359]: checking for egrep... /bin/grep -E
+[27359]: checking for a sed that does not truncate output... /bin/sed
+[27359]: checking build system type... x86_64-unknown-linux-gnu
+[27359]: checking host system type... x86_64-unknown-linux-gnu
+[27359]: checking target system type... x86_64-unknown-linux-gnu
+[27359]: checking for cc... cc
+[27359]: checking whether the C compiler works... yes
+[27359]: checking for C compiler default output file name... a.out
+[27359]: checking for suffix of executables...
+[27359]: checking whether we are cross compiling... no
+[27359]: checking for suffix of object files... o
+[27359]: checking whether we are using the GNU C compiler... yes
+[27359]: checking whether cc accepts -g... yes
+[27359]: checking for cc option to accept ISO C89... none needed
+[27359]: checking how to run the C preprocessor... cc -E
+[27359]: checking for icc... no
+[27359]: checking for suncc... no
+[27359]: checking whether cc understands -c and -o together... yes
+[27359]: checking how to run the C preprocessor... cc -E
+[27359]: checking for ANSI C header files... yes
+[27359]: checking for sys/types.h... yes
+[27359]: checking for sys/stat.h... yes
+[27359]: checking for stdlib.h... yes
+[27359]: checking for string.h... yes
+[27359]: checking for memory.h... yes
+[27359]: checking for strings.h... yes
+[27359]: checking for inttypes.h... yes
+[27359]: checking for stdint.h... yes
+[27359]: checking for unistd.h... yes
+[27359]: checking minix/config.h usability... no
+[27359]: checking minix/config.h presence... no
+[27359]: checking for minix/config.h... no
+[27359]: checking whether it is safe to define __EXTENSIONS__... yes
+[27359]: checking whether ln -s works... yes
+[27359]: checking for system library directory... /lib/x86_64-linux-gnu
+[27359]: checking whether to enable runpaths... yes
+[27359]: checking if compiler supports -R... no
+[27359]: checking if compiler supports -Wl,-rpath,... yes
+[27359]: checking for gawk... no
+[27359]: checking for nawk... nawk
+[27359]: checking if nawk is broken... no
+[27359]: checking for bison... no
+[27359]: checking for byacc... no
+[27359]: checking for bison version... invalid
+[27359]: configure: WARNING: This bison version is not supported for regeneration of the Zend/PHP parsers (found: none, min: 204, excluded: ).
+[27359]: checking for re2c... re2c
+[27359]: checking for re2c version... 0.13.5 (ok)
+[27359]: checking whether to enable computed goto gcc extension with re2c... no
+[27359]: checking whether to force non-PIC code in shared modules... no
+[27359]: checking whether /dev/urandom exists... yes
+[27359]: checking whether /dev/arandom exists... no
+[27359]: checking for global register variables support... yes
+[27359]: checking for pthreads_cflags... -pthread
+[27359]: checking for pthreads_lib...
+[27359]: Configuring SAPI modules
+[27359]: checking for Apache 2.0 handler-module support via DSO through APXS... no
+[27359]: checking for setproctitle... no
+[27359]: checking sys/pstat.h usability... no
+[27359]: checking sys/pstat.h presence... no
+[27359]: checking for sys/pstat.h... no
+[27359]: checking for PS_STRINGS... no
+[27359]: checking for CLI build... yes
+[27359]: checking for embedded SAPI library support... no
+[27359]: checking for FPM build... yes
+[27359]: checking for setenv... yes
+[27359]: checking for clearenv... yes
+[27359]: checking for setproctitle... (cached) no
+[27359]: checking for library containing socket... none required
+[27359]: checking for library containing inet_addr... none required
+[27359]: checking errno.h usability... yes
+[27359]: checking errno.h presence... yes
+[27359]: checking for errno.h... yes
+[27359]: checking fcntl.h usability... yes
+[27359]: checking fcntl.h presence... yes
+[27359]: checking for fcntl.h... yes
+[27359]: checking stdio.h usability... yes
+[27359]: checking stdio.h presence... yes
+[27359]: checking for stdio.h... yes
+[27359]: checking for stdlib.h... (cached) yes
+[27359]: checking for unistd.h... (cached) yes
+[27359]: checking sys/uio.h usability... yes
+[27359]: checking sys/uio.h presence... yes
+[27359]: checking for sys/uio.h... yes
+[27359]: checking sys/select.h usability... yes
+[27359]: checking sys/select.h presence... yes
+[27359]: checking for sys/select.h... yes
+[27359]: checking sys/socket.h usability... yes
+[27359]: checking sys/socket.h presence... yes
+[27359]: checking for sys/socket.h... yes
+[27359]: checking sys/time.h usability... yes
+[27359]: checking sys/time.h presence... yes
+[27359]: checking for sys/time.h... yes
+[27359]: checking arpa/inet.h usability... yes
+[27359]: checking arpa/inet.h presence... yes
+[27359]: checking for arpa/inet.h... yes
+[27359]: checking netinet/in.h usability... yes
+[27359]: checking netinet/in.h presence... yes
+[27359]: checking for netinet/in.h... yes
+[27359]: checking sysexits.h usability... yes
+[27359]: checking sysexits.h presence... yes
+[27359]: checking for sysexits.h... yes
+[27359]: checking for prctl... yes
+[27359]: checking for clock_gettime... yes
+[27359]: checking for ptrace... yes
+[27359]: checking whether ptrace works... yes
+[27359]: checking for proc mem file... mem
+[27359]: checking if gcc supports __sync_bool_compare_and_swap... yes
+[27359]: checking for TCP_INFO... yes
+[27359]: checking for sysconf... yes
+[27359]: checking for times... yes
+[27359]: checking for kqueue... no
+[27359]: checking for port framework... no
+[27359]: checking for /dev/poll... no
+[27359]: checking for epoll... yes
+[27359]: checking for poll... yes
+[27359]: checking for select... yes
+[27359]: checking for apparmor... no
+[27359]: checking for LiteSpeed support... no
+[27359]: checking for phpdbg support... yes
+[27359]: checking for phpdbg web SAPI support... no
+[27359]: checking for phpdbg debug build... no
+[27359]: checking whether termios.h defines TIOCGWINSZ... no
+[27359]: checking whether sys/ioctl.h defines TIOCGWINSZ... yes
+[27359]: checking for CGI build... yes
+[27359]: checking for chosen SAPI module... none
+[27359]: checking for executable SAPI binaries...  cli fpm phpdbg
+[27359]: Running system checks
+[27359]: checking for sendmail... no
+[27359]: checking whether system uses EBCDIC... no
+[27359]: checking whether byte ordering is bigendian... no
+[27359]: checking whether writing to stdout works... This is the test message -- yes
+[27359]: checking for socket... yes
+[27359]: checking for socketpair... yes
+[27359]: checking for htonl... yes
+[27359]: checking for gethostname... yes
+[27359]: checking for gethostbyaddr... yes
+[27359]: checking for yp_get_default_domain... no
+[27359]: checking for __yp_get_default_domain... no
+[27359]: checking for yp_get_default_domain in -lnsl... yes
+[27359]: checking for dlopen... no
+[27359]: checking for __dlopen... no
+[27359]: checking for dlopen in -ldl... yes
+[27359]: checking for sin in -lm... yes
+[27359]: checking for inet_aton... yes
+[27359]: checking for ANSI C header files... (cached) yes
+[27359]: checking for dirent.h that defines DIR... yes
+[27359]: checking for library containing opendir... none required
+[27359]: checking for inttypes.h... (cached) yes
+[27359]: checking for stdint.h... (cached) yes
+[27359]: checking for dirent.h... yes
+[27359]: checking for ApplicationServices/ApplicationServices.h... no
+[27359]: checking for sys/param.h... yes
+[27359]: checking for sys/types.h... (cached) yes
+[27359]: checking for sys/time.h... (cached) yes
+[27359]: checking for netinet/in.h... (cached) yes
+[27359]: checking for alloca.h... yes
+[27359]: checking for arpa/inet.h... (cached) yes
+[27359]: checking for arpa/nameser.h... yes
+[27359]: checking for assert.h... yes
+[27359]: checking for crypt.h... yes
+[27359]: checking for dns.h... no
+[27359]: checking for fcntl.h... (cached) yes
+[27359]: checking for grp.h... yes
+[27359]: checking for ieeefp.h... no
+[27359]: checking for langinfo.h... yes
+[27359]: checking for limits.h... yes
+[27359]: checking for locale.h... yes
+[27359]: checking for monetary.h... yes
+[27359]: checking for netdb.h... yes
+[27359]: checking for pwd.h... yes
+[27359]: checking for resolv.h... yes
+[27359]: checking for signal.h... yes
+[27359]: checking for stdarg.h... yes
+[27359]: checking for stdlib.h... (cached) yes
+[27359]: checking for string.h... (cached) yes
+[27359]: checking for syslog.h... yes
+[27359]: checking for sysexits.h... (cached) yes
+[27359]: checking for sys/ioctl.h... yes
+[27359]: checking for sys/file.h... yes
+[27359]: checking for sys/mman.h... yes
+[27359]: checking for sys/mount.h... yes
+[27359]: checking for sys/poll.h... yes
+[27359]: checking for sys/resource.h... yes
+[27359]: checking for sys/select.h... (cached) yes
+[27359]: checking for sys/socket.h... (cached) yes
+[27359]: checking for sys/stat.h... (cached) yes
+[27359]: checking for sys/statfs.h... yes
+[27359]: checking for sys/statvfs.h... yes
+[27359]: checking for sys/vfs.h... yes
+[27359]: checking for sys/sysexits.h... no
+[27359]: checking for sys/varargs.h... no
+[27359]: checking for sys/wait.h... yes
+[27359]: checking for sys/loadavg.h... no
+[27359]: checking for termios.h... yes
+[27359]: checking for unistd.h... (cached) yes
+[27359]: checking for unix.h... no
+[27359]: checking for utime.h... yes
+[27359]: checking for sys/utsname.h... yes
+[27359]: checking for sys/ipc.h... yes
+[27359]: checking for dlfcn.h... yes
+[27359]: checking for assert.h... (cached) yes
+[27359]: checking for fopencookie... yes
+[27359]: checking for broken getcwd... no
+[27359]: checking for broken libc stdio... yes
+[27359]: checking whether struct tm is in sys/time.h or time.h... time.h
+[27359]: checking for struct tm.tm_zone... yes
+[27359]: checking for missing declarations of reentrant functions... done
+[27359]: checking for fclose declaration... ok
+[27359]: checking for tm_gmtoff in struct tm... yes
+[27359]: checking for struct flock... yes
+[27359]: checking for socklen_t... yes
+[27359]: checking size of size_t... 8
+[27359]: checking size of long long... 8
+[27359]: checking size of long long int... 8
+[27359]: checking size of long... 8
+[27359]: checking size of int... 4
+[27359]: checking size of intmax_t... 8
+[27359]: checking size of ssize_t... 8
+[27359]: checking size of ptrdiff_t... 8
+[27359]: checking size of short... 2
+[27359]: checking size of int... (cached) 4
+[27359]: checking size of long... (cached) 8
+[27359]: checking size of long long... (cached) 8
+[27359]: checking for int8... no
+[27359]: checking for int16... no
+[27359]: checking for int32... no
+[27359]: checking for int64... no
+[27359]: checking for int8_t... yes
+[27359]: checking for int16_t... yes
+[27359]: checking for int32_t... yes
+[27359]: checking for int64_t... yes
+[27359]: checking for uint8... no
+[27359]: checking for uint16... no
+[27359]: checking for uint32... no
+[27359]: checking for uint64... no
+[27359]: checking for uint8_t... yes
+[27359]: checking for uint16_t... yes
+[27359]: checking for uint32_t... yes
+[27359]: checking for uint64_t... yes
+[27359]: checking for u_int8_t... yes
+[27359]: checking for u_int16_t... yes
+[27359]: checking for u_int32_t... yes
+[27359]: checking for u_int64_t... yes
+[27359]: checking for __builtin_expect... yes
+[27359]: checking for struct stat.st_blksize... yes
+[27359]: checking for struct stat.st_blocks... yes
+[27359]: checking for struct stat.st_rdev... yes
+[27359]: checking for size_t... yes
+[27359]: checking for uid_t in sys/types.h... yes
+[27359]: checking for struct sockaddr_storage... yes
+[27359]: checking for field sa_len in struct sockaddr... no
+[27359]: checking for IPv6 support... yes
+[27359]: checking for vprintf... yes
+[27359]: checking for _doprnt... no
+[27359]: checking for alphasort... yes
+[27359]: checking for asctime_r... yes
+[27359]: checking for chroot... yes
+[27359]: checking for ctime_r... yes
+[27359]: checking for cuserid... yes
+[27359]: checking for crypt... no
+[27359]: checking for flock... yes
+[27359]: checking for ftok... yes
+[27359]: checking for funopen... no
+[27359]: checking for gai_strerror... yes
+[27359]: checking for gcvt... yes
+[27359]: checking for getloadavg... yes
+[27359]: checking for getlogin... yes
+[27359]: checking for getprotobyname... yes
+[27359]: checking for getprotobynumber... yes
+[27359]: checking for getservbyname... yes
+[27359]: checking for getservbyport... yes
+[27359]: checking for gethostname... (cached) yes
+[27359]: checking for getrusage... yes
+[27359]: checking for gettimeofday... yes
+[27359]: checking for gmtime_r... yes
+[27359]: checking for getpwnam_r... yes
+[27359]: checking for getgrnam_r... yes
+[27359]: checking for getpwuid_r... yes
+[27359]: checking for grantpt... yes
+[27359]: checking for inet_ntoa... yes
+[27359]: checking for inet_ntop... yes
+[27359]: checking for inet_pton... yes
+[27359]: checking for isascii... yes
+[27359]: checking for link... yes
+[27359]: checking for localtime_r... yes
+[27359]: checking for lockf... yes
+[27359]: checking for lchown... yes
+[27359]: checking for lrand48... yes
+[27359]: checking for memcpy... yes
+[27359]: checking for memmove... yes
+[27359]: checking for mkstemp... yes
+[27359]: checking for mmap... yes
+[27359]: checking for nl_langinfo... yes
+[27359]: checking for perror... yes
+[27359]: checking for poll... yes
+[27359]: checking for ptsname... yes
+[27359]: checking for putenv... yes
+[27359]: checking for realpath... yes
+[27359]: checking for random... yes
+[27359]: checking for rand_r... yes
+[27359]: checking for scandir... yes
+[27359]: checking for setitimer... yes
+[27359]: checking for setlocale... yes
+[27359]: checking for localeconv... yes
+[27359]: checking for setenv... (cached) yes
+[27359]: checking for setpgid... yes
+[27359]: checking for setsockopt... yes
+[27359]: checking for setvbuf... yes
+[27359]: checking for shutdown... yes
+[27359]: checking for sin... yes
+[27359]: checking for snprintf... yes
+[27359]: checking for srand48... yes
+[27359]: checking for srandom... yes
+[27359]: checking for statfs... yes
+[27359]: checking for statvfs... yes
+[27359]: checking for std_syslog... no
+[27359]: checking for strcasecmp... yes
+[27359]: checking for strcoll... yes
+[27359]: checking for strdup... yes
+[27359]: checking for strerror... yes
+[27359]: checking for strftime... yes
+[27359]: checking for strnlen... yes
+[27359]: checking for strptime... yes
+[27359]: checking for strstr... yes
+[27359]: checking for strtok_r... yes
+[27359]: checking for symlink... yes
+[27359]: checking for tempnam... yes
+[27359]: checking for tzset... yes
+[27359]: checking for unlockpt... yes
+[27359]: checking for unsetenv... yes
+[27359]: checking for usleep... yes
+[27359]: checking for utime... yes
+[27359]: checking for vsnprintf... yes
+[27359]: checking for vasprintf... yes
+[27359]: checking for asprintf... yes
+[27359]: checking for nanosleep... yes
+[27359]: checking for nanosleep in -lrt... yes
+[27359]: checking for getaddrinfo... yes
+[27359]: checking for __sync_fetch_and_add... yes
+[27359]: checking for strlcat... no
+[27359]: checking for strlcpy... no
+[27359]: checking for getopt... yes
+[27359]: checking for utime.h... (cached) yes
+[27359]: checking whether utime accepts a null argument... yes
+[27359]: checking for working alloca.h... yes
+[27359]: checking for alloca... yes
+[27359]: checking for declared timezone... yes
+[27359]: checking for type of reentrant time-related functions... POSIX
+[27359]: checking for readdir_r... yes
+[27359]: checking for type of readdir_r... POSIX
+[27359]: checking for in_addr_t... yes
+[27359]: checking for crypt_r... no
+[27359]: General settings
+[27359]: checking whether to include gcov symbols... no
+[27359]: checking whether to include debugging symbols... no
+[27359]: checking layout of installed files... PHP
+[27359]: checking path to configuration file... /usr/local/php7/etc
+[27359]: checking where to scan for configuration files... /usr/local/php7/etc/conf.d
+[27359]: checking whether to enable PHP's own SIGCHLD handler... no
+[27359]: checking whether to explicitly link against libgcc... no
+[27359]: checking whether to enable short tags by default... yes
+[27359]: checking whether to enable dmalloc... no
+[27359]: checking whether to enable IPv6 support... yes
+[27359]: checking whether to enable DTrace support... no
+[27359]: checking how big to make fd sets... using system default
+[27359]: Configuring extensions
+[27359]: checking size of long... (cached) 8
+[27359]: checking size of int... (cached) 4
+[27359]: checking for int32_t... yes
+[27359]: checking for uint32_t... yes
+[27359]: checking for sys/types.h... (cached) yes
+[27359]: checking for inttypes.h... (cached) yes
+[27359]: checking for stdint.h... (cached) yes
+[27359]: checking for string.h... (cached) yes
+[27359]: checking for stdlib.h... (cached) yes
+[27359]: checking for strtoll... yes
+[27359]: checking for atoll... yes
+[27359]: checking for strftime... (cached) yes
+[27359]: checking whether to enable LIBXML support... yes
+[27359]: checking libxml2 install dir... no
+[27359]: checking for xml2-config path... /usr/bin/xml2-config
+[27359]: checking whether libxml build works... yes
+[27359]: checking for OpenSSL support... yes
+[27359]: checking for Kerberos support... no
+[27359]: checking whether to use system default cipher list instead of hardcoded value... no
+[27359]: checking for RAND_egd... no
+[27359]: checking for pkg-config... /usr/bin/pkg-config
+[27359]: checking for PCRE library to use... bundled
+[27359]: checking whether to enable the SQLite3 extension... yes
+[27359]: checking bundled sqlite3 library... yes
+[27359]: checking for ZLIB support... yes
+[27359]: checking if the location of ZLIB install directory is defined... /usr
+[27359]: checking for zlib version >= 1.2.0.4... 1.2.8
+[27359]: checking for gzgets in -lz... yes
+[27359]: checking whether to enable bc style precision math functions... yes
+[27359]: checking for BZip2 support... yes
+[27359]: checking for BZ2_bzerror in -lbz2... yes
+[27359]: checking whether to enable calendar conversion support... yes
+[27359]: checking whether to enable ctype functions... yes
+[27359]: checking for cURL support... yes
+[27359]: checking for cURL in default path... found in /usr
+[27359]: checking for cURL 7.10.5 or greater... libcurl 7.38.0
+[27359]: checking for SSL support in libcurl... yes
+[27359]: checking how to run the C preprocessor... cc -E
+[27359]: checking for openssl support in libcurl... yes
+[27359]: checking openssl/crypto.h usability... yes
+[27359]: checking openssl/crypto.h presence... yes
+[27359]: checking for openssl/crypto.h... yes
+[27359]: checking for gnutls support in libcurl... no
+[27359]: checking for curl_easy_perform in -lcurl... yes
+[27359]: checking for curl_easy_strerror in -lcurl... yes
+[27359]: checking for curl_multi_strerror in -lcurl... yes
+[27359]: checking for QDBM support... no
+[27359]: checking for GDBM support... no
+[27359]: checking for NDBM support... no
+[27359]: checking for TCADB support... no
+[27359]: checking for Berkeley DB4 support... no
+[27359]: checking for Berkeley DB3 support... no
+[27359]: checking for Berkeley DB2 support... no
+[27359]: checking for DB1 support... no
+[27359]: checking for DBM support... no
+[27359]: checking for CDB support... no
+[27359]: checking for INI File support... no
+[27359]: checking for FlatFile support... no
+[27359]: checking whether to enable DBA interface... no
+[27359]: checking whether to enable DOM support... yes
+[27359]: checking for xml2-config path... (cached) /usr/bin/xml2-config
+[27359]: checking whether libxml build works... (cached) yes
+[27359]: checking for ENCHANT support... no
+[27359]: checking whether to enable EXIF (metadata from images) support... yes
+[27359]: checking for fileinfo support... yes
+[27359]: checking for strcasestr... yes
+[27359]: checking for utimes... yes
+[27359]: checking for strndup... yes
+[27359]: checking whether to enable input filter support... yes
+[27359]: checking pcre install prefix... no
+[27359]: checking whether to enable FTP support... yes
+[27359]: checking OpenSSL dir for FTP... no
+[27359]: checking for GD support... yes
+[27359]: checking for the location of libwebp... no
+[27359]: checking for the location of libjpeg... /usr
+[27359]: checking for the location of libpng... /usr
+[27359]: checking for the location of libXpm... /usr
+[27359]: checking for FreeType 2... /usr
+[27359]: checking whether to enable truetype string function in GD... yes
+[27359]: checking whether to enable JIS-mapped Japanese font support in GD... yes
+[27359]: If configure fails try --with-webp-dir=<DIR>
+[27359]: configure: error: jpeglib.h not found.

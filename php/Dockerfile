@@ -55,6 +55,11 @@ RUN apt-get -y update \
         libssl-dev --no-install-recommends \
         libxml2-dev --no-install-recommends \
         xz-utils --no-install-recommends \
+        # Own dependencies \
+        libbz2-dev --no-install-recommends \
+        libjpeg-dev --no-install-recommends \
+        libpng12-dev --no-install-recommends \
+        libxpm-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 # Downloading source files
 RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILENAME" \
@@ -68,7 +73,7 @@ RUN set -x
 # Configuring the build
 # http://wordpress.stackexchange.com/questions/42098/what-are-php-extensions-and-libraries-wp-needs-and-or-uses
 # https://wordpress.org/support/topic/wowdpress-php-dependencies
-RUN cd /usr/src/php && ./configure --help && ./configure \
+RUN cd /usr/src/php && ./configure \
         # Installation directories \
         --prefix=/usr/local/php7 \
         # Fine tuning of the installation directories \
