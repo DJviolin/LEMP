@@ -69,27 +69,70 @@ RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILEN
     && tar -xf "$PHP_FILENAME" -C /usr/src/php --strip-components=1 \
     && rm "$PHP_FILENAME"* \
     && cd /usr/src/php
-# Conigure the build OPTIONS LIST
+# Configure the build OPTIONS LIST
 RUN ./configure --help
 # Configuring the build
+# http://wordpress.stackexchange.com/questions/42098/what-are-php-extensions-and-libraries-wp-needs-and-or-uses
+# https://wordpress.org/support/topic/wowdpress-php-dependencies
 RUN ./configure \
-        #Basic config \
+        # Installation directories \
         --prefix=/usr/local/php7 \
-        --with-config-file-path=/usr/local/php7/etc \
-        --with-config-file-scan-dir=/usr/local/php7/etc/conf.d \
-        #SAPI modules \
+        # Fine tuning of the installation directories \
+        --with-libdir=/lib/x86_64-linux-gnu \
+        # SAPI modules \
         --enable-fpm \
         --with-fpm-user=www-data \
         --with-fpm-group=www-data \
         --disable-cgi \
-        #WP related config \
-        --enable-mysqlnd \
-        --with-mysqli=/usr/bin/mysql_config \
-        --with-curl \
+        # General settings \
+        --with-config-file-path=/usr/local/php7/etc \
+        --with-config-file-scan-dir=/usr/local/php7/etc/conf.d \
+        # Extensions \
         --with-openssl \
+        --with-zlib=/usr \
+        --with-zlib-dir=/usr \
+        --enable-bcmath \
+        --with-bz2=/usr \
+        --enable-calendar \
+        --with-curl \
+        --enable-exif \
+        --enable-ftp \
+        --with-gd \
+        --with-jpeg-dir=/usr \
+        --with-png-dir=/usr \
+        --with-xpm-dir=/usr \
+        --with-freetype-dir=/usr \
+        --enable-gd-native-ttf \
+        --enable-gd-jis-conv \
+        --with-gettext=/usr \
+        --with-gmp=/usr \
+        --with-iconv \
+        --enable-intl \
+        --enable-mbstring \
+        --with-mcrypt \
+        --with-mysqli=/usr/bin/mysql_config \
+        --enable-pcntl \
+        --with-pdo-mysql=/usr \
+        --with-pspell \
         --with-readline \
-        --with-recode \
-        --with-zlib \
+        --with-recode=/usr \
+        --enable-soap \
+        --enable-sysvmsg \
+        --enable-sysvsem \
+        --enable-sysvshm \
+        --enable-wddx \
+        --enable-zip \
+        --enable-mysqlnd \
+        # PEAR \
+        --without-pear \
+        # Misc \
+        #--enable-mysqlnd \
+        #--with-mysqli=/usr/bin/mysql_config \
+        #--with-curl \
+        #--with-openssl \
+        #--with-readline \
+        #--with-recode \
+        #--with-zlib \
 
 RUN make -j"$(nproc)" \
     && make install \
