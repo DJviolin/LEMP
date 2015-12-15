@@ -128,7 +128,7 @@ RUN ./configure \
         # Zend added \
         --with-mysql=/usr \
         --with-apxs2=/usr/bin/apxs2 \
-        # Misc \
+        # Misc - Added by Docker installer \
         #--enable-mysqlnd \
         #--with-mysqli=/usr/bin/mysql_config \
         #--with-curl \
