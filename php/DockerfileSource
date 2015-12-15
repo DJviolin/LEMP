@@ -125,6 +125,9 @@ RUN ./configure \
         --enable-mysqlnd \
         # PEAR \
         --without-pear \
+        # Zend added \
+        --with-mysql=/usr \
+        --with-apxs2=/usr/bin/apxs2 \
         # Misc \
         #--enable-mysqlnd \
         #--with-mysqli=/usr/bin/mysql_config \
@@ -139,10 +142,6 @@ RUN make -j"$(nproc)" \
     && { find /usr/local/php7/bin /usr/local/php7/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
     && make clean
-
-
-# Zend build commands:
-# '--prefix=/usr/local/php7' '--with-config-file-path=/usr/local/php7/etc' '--with-config-file-scan-dir=/usr/local/php7/etc/conf.d' '--enable-mbstring' '--enable-zip' '--enable-bcmath' '--enable-pcntl' '--enable-ftp' '--enable-exif' '--enable-calendar' '--enable-sysvmsg' '--enable-sysvsem' '--enable-sysvshm' '--enable-wddx' '--with-curl' '--with-mcrypt' '--with-iconv' '--with-gmp=/usr' '--with-pspell' '--with-gd' '--with-jpeg-dir=/usr' '--with-png-dir=/usr' '--with-zlib-dir=/usr' '--with-xpm-dir=/usr' '--with-freetype-dir=/usr' '--enable-gd-native-ttf' '--enable-gd-jis-conv' '--with-openssl' '--with-mysql=/usr' '--with-pdo-mysql=/usr' '--with-gettext=/usr' '--with-zlib=/usr' '--with-bz2=/usr' '--with-recode=/usr' '--with-mysqli=/usr/bin/mysql_config' '--enable-fpm' '--enable-intl' '--enable-soap' '--without-pear' '--with-apxs2=/usr/bin/apxs2' '--with-libdir=/lib/x86_64-linux-gnu' 
 
 #RUN echo -e \
 #"deb http://repos.zend.com/zend-server/early-access/php7/repos ubuntu/" > /etc/apt/sources.list.d/php.list
