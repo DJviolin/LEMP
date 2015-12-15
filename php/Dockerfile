@@ -19,6 +19,7 @@ RUN set -xe \
 # Add PHP to $PATH
 RUN echo 'export PATH="$PATH:/usr/local/php7/bin:/usr/local/php7/sbin"' >> /etc/bash.bashrc
 
+### Start of DEV environment deps
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y --force-yes install \
         # persistent / runtime deps \
@@ -37,6 +38,18 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         pkg-config \
         re2c --no-install-recommends \
     && rm -r /var/lib/apt/lists/*
+### End of DEV environment deps
+
+### Start of Downloading source files
+RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILENAME" \
+    && echo "$PHP_SHA256 *$PHP_FILENAME" | sha256sum -c - \
+    && curl -fSL "http://php.net/get/$PHP_FILENAME.asc/from/this/mirror" -o "$PHP_FILENAME.asc" \
+    && gpg --verify "$PHP_FILENAME.asc" \
+    && mkdir -p /usr/src/php \
+    && tar -xf "$PHP_FILENAME" -C /usr/src/php --strip-components=1 \
+    && rm "$PHP_FILENAME"*
+### End of Downloading source files
+
 # PHP extra build dependencies
 # --enable-mysqlnd is included below because it's harder to compile after the fact the extensions are (since it's a plugin for several extensions, not an extension in itself)
 RUN apt-get -y update && apt-get -y dist-upgrade \
@@ -56,21 +69,14 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libfreetype6-dev --no-install-recommends \
         libgmp-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
-# Downloading source files
-RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILENAME" \
-    && echo "$PHP_SHA256 *$PHP_FILENAME" | sha256sum -c - \
-    && curl -fSL "http://php.net/get/$PHP_FILENAME.asc/from/this/mirror" -o "$PHP_FILENAME.asc" \
-    && gpg --verify "$PHP_FILENAME.asc" \
-    && mkdir -p /usr/src/php \
-    && tar -xf "$PHP_FILENAME" -C /usr/src/php --strip-components=1 \
-    && rm "$PHP_FILENAME"*
-RUN set -x
 # Fixing "configure: error: Unable to locate gmp.h"
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h 
 # Configuring the build
 # http://wordpress.stackexchange.com/questions/42098/what-are-php-extensions-and-libraries-wp-needs-and-or-uses
 # https://wordpress.org/support/topic/wowdpress-php-dependencies
-RUN cd /usr/src/php && ./configure \
+RUN set -x
+    && cd /usr/src/php \
+    && ./configure \
         # Installation directories \
         --prefix=/usr/local/php7 \
         # Fine tuning of the installation directories \
@@ -139,13 +145,6 @@ RUN make -j"$(nproc)" \
     && { find /usr/local/php7/bin /usr/local/php7/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
     && make clean
-
-#RUN echo -e \
-#"deb http://repos.zend.com/zend-server/early-access/php7/repos ubuntu/" > /etc/apt/sources.list.d/php.list
-#RUN apt-get -y update \
-#    && time apt-get -y dist-upgrade \
-#    && apt-get -y --force-yes install --fix-missing \
-#        php7-nightly
 
 ### Start of PHP 7 setup
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
