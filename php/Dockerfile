@@ -63,15 +63,12 @@ RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILEN
     && gpg --verify "$PHP_FILENAME.asc" \
     && mkdir -p /usr/src/php \
     && tar -xf "$PHP_FILENAME" -C /usr/src/php --strip-components=1 \
-    && rm "$PHP_FILENAME"* \
-    && cd /usr/src/php
-# Configure the build OPTIONS LIST
+    && rm "$PHP_FILENAME"*
 RUN set -x
-RUN ./configure --help
 # Configuring the build
 # http://wordpress.stackexchange.com/questions/42098/what-are-php-extensions-and-libraries-wp-needs-and-or-uses
 # https://wordpress.org/support/topic/wowdpress-php-dependencies
-RUN ./configure \
+RUN cd /usr/src/php && ./configure --help && ./configure \
         # Installation directories \
         --prefix=/usr/local/php7 \
         # Fine tuning of the installation directories \
@@ -132,7 +129,8 @@ RUN ./configure \
         #--with-openssl \
         #--with-readline \
         #--with-recode \
-        #--with-zlib
+        #--with-zlib \
+    && echo -e "hello"
 
 RUN make -j"$(nproc)" \
     && make install \
