@@ -70,6 +70,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libfreetype6-dev --no-install-recommends \
         libgmp-dev --no-install-recommends \
         libicu-dev --no-install-recommends \
+        libmcrypt-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 # Fixing "configure: error: Unable to locate gmp.h"
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h 
