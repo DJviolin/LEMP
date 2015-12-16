@@ -33,9 +33,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile \
 ### End of OpenSSH setup
 
 ### Start of Nginx WEBSERVER setup
-RUN mkdir -p /var/www \
-    && usermod -aG 500 www-data \
-    && usermod -aG 1000 www-data
+RUN mkdir -p /var/www
 ### End of Nginx WEBSERVER setup
 
 ### Start of optimizations

@@ -22,6 +22,13 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # Allow Nginx to access /var/run/php-fpm/php-fpm.sock
 RUN usermod -aG www-data nginx
+# Add permissions to shared volumes
+RUN usermod -aG 500 www-data \
+    && usermod -aG 1000 www-data \
+    && usermod -aG 500 root \
+    && usermod -aG 1000 root \
+    && usermod -aG 500 nginx \
+    && usermod -aG 1000 nginx
 ### End of Nginx setup
 
 RUN rm -rf /var/lib/apt/lists/*
