@@ -30,7 +30,6 @@ RUN mkdir -p /var/run/sshd \
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile \
     && echo -e '\ncd /root' >> /root/.bashrc
-RUN ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ### End of OpenSSH setup
 
 ### Start of Nginx WEBSERVER FILES
