@@ -163,10 +163,11 @@ RUN cd /usr/src/php \
 
 ### Start of PECL SSH2
 #RUN cd ~ \
+#    && mkdir -p /usr/src/ssh2 \
 #    && curl -fSL "https://pecl.php.net/get/ssh2-0.12.tgz" -o "ssh2-0.12.tgz" \
-#    && tar -xf "ssh2-0.12.tgz" -C /usr/src/php --strip-components=1 \
+#    && tar -xzf "ssh2-0.12.tgz" -C /usr/src/ssh2 --strip-components=1 \
 #    && rm -rf ssh2-0.12.tgz \
-#    cd ~/ssh2-0.12 \
+#    cd cd /usr/src/ssh2 \
 #    && phpize \
 #    && ./configure --with-ssh2 --with-php-config=/usr/local/php7/bin/php-config \
 #    && make \
@@ -177,6 +178,6 @@ RUN cd /usr/src/php \
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 ### End of PHP 7 setup
 
-RUN rm -rf /var/lib/apt/lists/*
+RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
 CMD ["/usr/local/php7/sbin/php-fpm", "--nodaemonize", "--fpm-config", "/usr/local/php7/etc/php-fpm.conf"]

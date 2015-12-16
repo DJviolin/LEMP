@@ -1,8 +1,57 @@
-png12 -licui18n -licuuc -licudata -licuio -lmysqlclient -lz -lm -ldl -lxml2 -lxml2 -lcrypt -lxml2 -lxml2 -lxml2 -lxml2 -lssl -lcrypto -lcrypt   -o sapi/phpdbg/phpdbg
-Dec 15 22:18:06 core-01 docker-compose[17460]: Generating phar.php
-Dec 15 22:18:08 core-01 docker-compose[17460]: Generating phar.phar
-Dec 15 22:18:08 core-01 docker-compose[17460]: PEAR package PHP_Archive not installed: generated phar will require PHP's phar extension be enabled.
-Dec 15 22:18:08 core-01 docker-compose[17460]: invertedregexiterator.inc
-Dec 15 22:18:08 core-01 docker-compose[17460]: pharcommand.inc
-Dec 15 22:18:08 core-01 docker-compose[17460]: directorygraphiterator.inc
-Dec 15 22:18:08 core-01 docker-compose[17460]: clicommand.inc
+Dec 16 18:30:34 core-01 docker-compose[14821]: -lcrypt   -o sapi/phpdbg/phpdbg
+Dec 16 18:30:47 core-01 docker-compose[14821]: Generating phar.php
+Dec 16 18:30:49 core-01 docker-compose[14821]: Generating phar.phar
+Dec 16 18:30:50 core-01 docker-compose[14821]: PEAR package PHP_Archive not installed: generated phar will require PHP's phar extension be enabled.
+Dec 16 18:30:50 core-01 docker-compose[14821]: invertedregexiterator.inc
+Dec 16 18:30:50 core-01 docker-compose[14821]: pharcommand.inc
+Dec 16 18:30:50 core-01 docker-compose[14821]: directorygraphiterator.inc
+Dec 16 18:30:50 core-01 docker-compose[14821]: clicommand.inc
+Dec 16 18:30:50 core-01 docker-compose[14821]: directorytreeiterator.inc
+Dec 16 18:30:50 core-01 docker-compose[14821]: phar.inc
+Dec 16 18:30:50 core-01 docker-compose[14821]: Build complete.
+Dec 16 18:30:50 core-01 docker-compose[14821]: Don't forget to run 'make test'.
+Dec 16 18:30:50 core-01 docker-compose[14821]: Installing shared extensions:     /usr/local/php7/lib/php/extensions/no-debug-non-zts-20151012/
+Dec 16 18:30:51 core-01 docker-compose[14821]: Installing PHP CLI binary:        /usr/local/php7/bin/
+Dec 16 18:30:51 core-01 docker-compose[14821]: Installing PHP CLI man page:      /usr/local/php7/php/man/man1/
+Dec 16 18:30:52 core-01 docker-compose[14821]: Installing PHP FPM binary:        /usr/local/php7/sbin/
+Dec 16 18:30:52 core-01 docker-compose[14821]: Installing PHP FPM config:        /usr/local/php7/etc/
+Dec 16 18:30:54 core-01 docker-compose[14821]: Installing PHP FPM man page:      /usr/local/php7/php/man/man8/
+Dec 16 18:30:54 core-01 docker-compose[14821]: Installing PHP FPM status page:      /usr/local/php7/php/php/fpm/
+Dec 16 18:30:54 core-01 docker-compose[14821]: Installing phpdbg binary:         /usr/local/php7/bin/
+Dec 16 18:30:55 core-01 docker-compose[14821]: Installing phpdbg man page:       /usr/local/php7/php/man/man1/
+Dec 16 18:30:56 core-01 docker-compose[14821]: Installing build environment:     /usr/local/php7/lib/php/build/
+Dec 16 18:31:04 core-01 docker-compose[14821]: Installing header files:          /usr/local/php7/include/php/
+Dec 16 18:31:18 core-01 docker-compose[14821]: Installing helper programs:       /usr/local/php7/bin/
+Dec 16 18:31:18 core-01 docker-compose[14821]: program: phpize
+Dec 16 18:31:18 core-01 docker-compose[14821]: program: php-config
+Dec 16 18:31:18 core-01 docker-compose[14821]: Installing man pages:             /usr/local/php7/php/man/man1/
+Dec 16 18:31:18 core-01 docker-compose[14821]: page: phpize.1
+Dec 16 18:31:18 core-01 docker-compose[14821]: page: php-config.1
+Dec 16 18:31:18 core-01 docker-compose[14821]: /usr/src/php/build/shtool install -c ext/phar/phar.phar /usr/local/php7/bin
+Dec 16 18:31:19 core-01 docker-compose[14821]: ln -s -f phar.phar /usr/local/php7/bin/phar
+Dec 16 18:31:19 core-01 docker-compose[14821]: strip:/usr/local/php7/bin/phar.phar: File format not recognized
+Dec 16 18:31:19 core-01 docker-compose[14821]: strip:/usr/local/php7/bin/phpize: File format not recognized
+Dec 16 18:31:19 core-01 docker-compose[14821]: strip:/usr/local/php7/bin/php-config: File format not recognized
+Dec 16 18:31:22 core-01 docker-compose[14821]: Reading package lists...
+Dec 16 18:31:22 core-01 docker-compose[14821]: Building dependency tree...
+Dec 16 18:31:22 core-01 docker-compose[14821]: Reading state information...
+Dec 16 18:31:22 core-01 docker-compose[14821]: The following packages will be REMOVED:
+Dec 16 18:31:22 core-01 docker-compose[14821]: krb5-locales* libxext6* libxmuu1* ncurses-term* tcpd* xauth*
+Dec 16 18:31:25 core-01 docker-compose[14821]: 0 upgraded, 0 newly installed, 6 to remove and 0 not upgraded.
+Dec 16 18:31:25 core-01 docker-compose[14821]: After this operation, 5364 kB disk space will be freed.
+Dec 16 18:31:26 core-01 docker-compose[14821]: [614B blob data]
+Dec 16 18:31:26 core-01 docker-compose[14821]: Removing krb5-locales (1.12.1+dfsg-19+deb8u1) ...
+Dec 16 18:31:26 core-01 docker-compose[14821]: Removing xauth (1:1.0.9-1) ...
+Dec 16 18:31:26 core-01 docker-compose[14821]: Removing libxext6:amd64 (2:1.3.3-1) ...
+Dec 16 18:31:26 core-01 docker-compose[14821]: Purging configuration files for libxext6:amd64 (2:1.3.3-1) ...
+Dec 16 18:31:26 core-01 docker-compose[14821]: Removing libxmuu1:amd64 (2:1.1.2-1) ...
+Dec 16 18:31:26 core-01 docker-compose[14821]: Purging configuration files for libxmuu1:amd64 (2:1.1.2-1) ...
+Dec 16 18:31:26 core-01 docker-compose[14821]: Removing ncurses-term (5.9+20140913-1) ...
+Dec 16 18:31:27 core-01 docker-compose[14821]: Removing tcpd (7.6.q-25) ...
+Dec 16 18:31:27 core-01 docker-compose[14821]: Processing triggers for libc-bin (2.19-18+deb8u1) ...
+Dec 16 18:31:29 core-01 docker-compose[14821]: find . -name \*.gcno -o -name \*.gcda | xargs rm -f
+Dec 16 18:31:31 core-01 docker-compose[14821]: find . -name \*.lo -o -name \*.o | xargs rm -f
+Dec 16 18:31:31 core-01 docker-compose[14821]: find . -name \*.la -o -name \*.a | xargs rm -f
+Dec 16 18:31:31 core-01 docker-compose[14821]: find . -name \*.so | xargs rm -f
+Dec 16 18:31:31 core-01 docker-compose[14821]: find . -name .libs -a -type d|xargs rm -rf
+Dec 16 18:31:31 core-01 docker-compose[14821]: rm -f libphp7.la sapi/cli/php    sapi/fpm/php-fpm  modules/* libs/*
