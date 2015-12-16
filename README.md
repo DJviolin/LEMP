@@ -67,7 +67,7 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
     $ nginx -V 2>&1 | grep nginx-cache-purge -o
     ```
 
-    All of this achieved by following [this](https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/).
+    All of this achieved by following [this](https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/) tutorial.
 
 ## Notes
 
