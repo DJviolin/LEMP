@@ -26,7 +26,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         ca-certificates \
         curl \
         librecode0 \
-        libsqlite3-0 \
+        #libsqlite3-0 \
         libxml2 --no-install-recommends \
         # phpize deps \
         autoconf \
@@ -59,7 +59,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libcurl4-openssl-dev --no-install-recommends \
         libreadline6-dev --no-install-recommends \
         librecode-dev --no-install-recommends \
-        libsqlite3-dev --no-install-recommends \
+        #libsqlite3-dev --no-install-recommends \
         libssl-dev --no-install-recommends \
         libxml2-dev --no-install-recommends \
         # Own dependencies \
@@ -74,6 +74,8 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libmysqlclient-dev --no-install-recommends \
         libmysqld-dev --no-install-recommends \
         libpspell-dev --no-install-recommends \
+        # Own dependencies - WP SSH2 \
+        libssh2-1-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 # Fixing "configure: error: Unable to locate gmp.h"
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h 
@@ -97,6 +99,7 @@ RUN cd /usr/src/php \
         --with-config-file-scan-dir=/usr/local/php7/etc/conf.d \
         # Extensions \
         --with-openssl \
+        --without-sqlite3 \
         --with-zlib=/usr \
         --with-zlib-dir=/usr \
         --enable-bcmath \
@@ -104,7 +107,7 @@ RUN cd /usr/src/php \
         --enable-calendar \
         --with-curl \
         --enable-exif \
-        --enable-ftp \
+        #--enable-ftp \
         --with-gd \
         --with-jpeg-dir=/usr \
         --with-png-dir=/usr \
@@ -120,7 +123,9 @@ RUN cd /usr/src/php \
         --with-mcrypt \
         --with-mysqli=/usr/bin/mysql_config \
         --enable-pcntl \
+        --disable-pdo \
         #--with-pdo-mysql=/usr \
+        --without-pdo-sqlite \
         --with-pspell \
         --with-readline \
         --with-recode=/usr \
@@ -130,7 +135,7 @@ RUN cd /usr/src/php \
         --enable-sysvshm \
         --enable-wddx \
         --enable-zip \
-        --enable-mysqlnd \
+        #--enable-mysqlnd \
         # PEAR \
         --without-pear \
         # Zend added \
