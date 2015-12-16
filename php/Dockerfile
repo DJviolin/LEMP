@@ -169,7 +169,7 @@ RUN cd ~ \
     && tar -xzf "pecl-networking-ssh2.tar.gz" -C /usr/src/ssh2 --strip-components=1 \
     && rm -rf pecl-networking-ssh2.tar.gz \
     && cd /usr/src/ssh2 \
-    && phpize \
+    && /usr/local/php7/bin/phpize \
     && ./configure \
         --with-ssh2 \
         --with-php-config=/usr/local/php7/bin/php-config \
