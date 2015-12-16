@@ -46,6 +46,18 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 3. At the Privileges tab, create a new user called `pma` with the password `pmapass` and grant all privileges!
 4. Please not remove the `/home/core/www/phpmyadmin` folder on the host, although it's empty! This is the folder of the PhpMyAdmin installation.
 
+## Wordpress post install
+
+1. You have to place this on the bottom of `wp-config.php`
+
+```
+define('FTP_PUBKEY','/root/wp_rsa.pub');
+define('FTP_PRIKEY','/root/wp_rsa');
+define('FTP_USER','root');
+define('FTP_PASS','');
+define('FTP_HOST','127.0.0.1:22');
+```
+
 ## Notes
 
 PHP7 zend vs Source differences:
@@ -60,6 +72,7 @@ PHP7 zend vs Source differences:
 
     PDO drivers:   mysql, sqlite -> sqlite
 
+[Wordpress SSH2 tutorial](https://www.digitalocean.com/community/tutorials/how-to-configure-secure-updates-and-installations-in-wordpress-on-ubuntu)
 
 cAdvisor + InfluxDB + Grafana monitoring stack compose script:
 
