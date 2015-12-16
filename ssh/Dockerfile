@@ -32,9 +32,11 @@ RUN echo "export VISIBLE=now" >> /etc/profile \
     && echo -e '\ncd /root' >> /root/.bashrc
 ### End of OpenSSH setup
 
-### Start of Nginx WEBSERVER FILES
-RUN mkdir -p /var/www
-### End of Nginx WEBSERVER FILES
+### Start of Nginx WEBSERVER setup
+RUN mkdir -p /var/www \
+    && usermod -aG 500 www-data \
+    && usermod -aG 1000 www-data
+### End of Nginx WEBSERVER setup
 
 ### Start of optimizations
 # https://easyengine.io/tutorials/linux/increase-open-files-limit/

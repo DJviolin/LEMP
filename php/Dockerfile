@@ -109,7 +109,7 @@ RUN cd /usr/src/php \
         --enable-calendar \
         --with-curl \
         --enable-exif \
-        --enable-ftp \
+        #--enable-ftp \
         --with-gd \
         --with-jpeg-dir=/usr \
         --with-png-dir=/usr \
