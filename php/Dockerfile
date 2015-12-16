@@ -75,6 +75,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libmysqld-dev --no-install-recommends \
         #libpspell-dev --no-install-recommends \
         # Own dependencies - WP SSH2 \
+        libssh2-1 \
         libssh2-1-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 # Fixing "configure: error: Unable to locate gmp.h"
@@ -90,7 +91,7 @@ RUN cd /usr/src/php \
         # Fine tuning of the installation directories \
         --with-libdir=/lib/x86_64-linux-gnu \
         # SAPI modules \
-        --disable-cli \
+        #--disable-cli \
         --enable-fpm \
         --with-fpm-user=www-data \
         --with-fpm-group=www-data \
@@ -135,7 +136,7 @@ RUN cd /usr/src/php \
         --enable-sysvmsg \
         --enable-sysvsem \
         --enable-sysvshm \
-        --enable-wddx \
+        #--enable-wddx \
         --enable-zip \
         #--enable-mysqlnd \
         # PEAR \
