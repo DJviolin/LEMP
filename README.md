@@ -26,18 +26,18 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 4. Create a folder in `/home/core/mysql`. This will be the shared folder for your MySQL database. The container will populate this folder at the first boot and locking down the sub-folders and files to superuser access (you have to `sudo su` on the host able to access these files).
 5. Create a folder in `/home/core/sqlbackup`. This will be the folder for your MySQL backups. The tar archives here created straight from the container by the systemd init script. So you will have a shared folder at `/home/core/mysql` which is the actual database and a `/home/core/sqlbackup` folder with tar archives in it, which is a backup when the service halted for some reason.
 
-7. Create a file in `mariadb/mariadb.env` with the following content:
+6. Create a file in `mariadb/mariadb.env` with the following content:
 
     ```
     # Set MySQL Root Password
     MYSQL_ROOT_PASSWORD=type-your-secret-password-here
     ```
 
-8. On CoreOS, you have to install docker-compose! Use the provided install script here `./docker-compose-1.5.2-coreos-installer.sh` or refresh this script with the latest version from the original repo (recommended). If the script fails to run as superuser, than type in the commands from the script manually!
-9. Run the `$ chmod +x service-start.sh service-stop.sh && ./service-start.sh` commands.
-10. If everything works, now you have a working LEMP stack on steroids.
-11. Visit the index page on your localhost IP with a port redirected to `:8080`.
-12. If you want to stop the environment, type `./service-stop.sh` (60 seconds wait time was introduced to have enough time to `fleetctl stop` making the sql backups from the container. If your sql database is huuuge, change this wait time accordingly).
+7. On CoreOS, you have to install docker-compose! Use the provided install script here `./docker-compose-1.5.2-coreos-installer.sh` or refresh this script with the latest version from the original repo (recommended). If the script fails to run as superuser, than type in the commands from the script manually!
+8. Run the `$ chmod +x service-start.sh service-stop.sh && ./service-start.sh` commands.
+9. If everything works, now you have a working LEMP stack on steroids.
+10. Visit the index page on your localhost IP with a port redirected to `:8080`.
+11. If you want to stop the environment, type `./service-stop.sh` (60 seconds wait time was introduced to have enough time to `fleetctl stop` making the sql backups from the container. If your sql database is huuuge, change this wait time accordingly).
 
 ## PhpMyAdmin further setup
 
@@ -50,13 +50,13 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 
 1. You have to place this on the bottom of `wp-config.php`
 
-```
-define('FTP_PUBKEY','/root/wp_rsa.pub');
-define('FTP_PRIKEY','/root/wp_rsa');
-define('FTP_USER','root');
-define('FTP_PASS','');
-define('FTP_HOST','127.0.0.1:22');
-```
+    ```
+    define('FTP_PUBKEY','/root/wp_rsa.pub');
+    define('FTP_PRIKEY','/root/wp_rsa');
+    define('FTP_USER','root');
+    define('FTP_PASS','');
+    define('FTP_HOST','127.0.0.1:22');
+    ```
 
 ## Notes
 
