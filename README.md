@@ -60,6 +60,15 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 
 2. Install [Nginx Helper](https://wordpress.org/plugins/nginx-helper/) plugin and turn on `Enable Purge` option.
 
+3. You can verify that nginx Cache Purge option is installed. It should return `nginx-cache-purge` to the console:
+
+    ```
+    $ docker exec -it lemp_nginx bash
+    $ nginx -V 2>&1 | grep nginx-cache-purge -o
+    ```
+
+    All of this achieved by following [this](https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/).
+
 ## Notes
 
 PHP7 zend vs Source differences:
