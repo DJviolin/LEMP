@@ -14,6 +14,7 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 2. In virtual machines use fixed size disks to avoid problems (preferably 20gb minimum).
 3. Keep the original folder structure on the host (or you have to inspect and manually adjust every host folder in `docker-compose.yml` and `lemp.service` files)!
 4. Use CoreOS! This environment works with other local folders / linux OS, but in this case read 3.).
+5. Generate SSH private/public key pairs on your Host VM for Wordpress [SSH SFTP Updater Support](https://wordpress.org/plugins/ssh-sftp-updater-support/) plugin. Command: `$ ssh-keygen -b 4096 -t rsa -N '' -C "your_email@example.com" -f ~/.ssh/wordpress_rsa`. This way you don't need SFTP support with libssh2 and you can dismiss ftp build configuration from PHP.
 
 ## Usage
 
