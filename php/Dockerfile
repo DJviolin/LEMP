@@ -157,9 +157,22 @@ RUN cd /usr/src/php \
 RUN cd /usr/src/php \
     && make -j"$(nproc)" \
     && make install \
+    && make test \
     && { find /usr/local/php7/bin /usr/local/php7/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
     && make clean
+
+### Start of PECL SSH2
+#RUN cd ~ \
+#    && curl -fSL "https://pecl.php.net/get/ssh2-0.12.tgz" -o "ssh2-0.12.tgz" \
+#    && tar -xf "ssh2-0.12.tgz" -C /usr/src/php --strip-components=1 \
+#    && rm -rf ssh2-0.12.tgz \
+#    cd ~/ssh2-0.12 \
+#    && phpize \
+#    && ./configure --with-ssh2 --with-php-config=/usr/local/php7/bin/php-config \
+#    && make \
+#    && make install
+### End of PECL SSH2
 
 ### Start of PHP 7 setup
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
