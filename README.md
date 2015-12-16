@@ -49,6 +49,7 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 ## Wordpress post install
 
 1. You have to place this on the bottom of `wp-config.php`
+2. Install [Nginx Helper](https://wordpress.org/plugins/nginx-helper/) plugin and turn on `Enable Purge` option.
 
     ```
     define('FTP_PUBKEY','/root/.ssh/wp_rsa.pub');
