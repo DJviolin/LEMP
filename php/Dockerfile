@@ -57,7 +57,7 @@ RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILEN
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y --force-yes install \
         libcurl4-openssl-dev --no-install-recommends \
-        libreadline6-dev --no-install-recommends \
+        #libreadline6-dev --no-install-recommends \
         librecode-dev --no-install-recommends \
         #libsqlite3-dev --no-install-recommends \
         libssl-dev --no-install-recommends \
@@ -73,7 +73,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libmcrypt-dev --no-install-recommends \
         libmysqlclient-dev --no-install-recommends \
         libmysqld-dev --no-install-recommends \
-        libpspell-dev --no-install-recommends \
+        #libpspell-dev --no-install-recommends \
         # Own dependencies - WP SSH2 \
         libssh2-1-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
@@ -90,6 +90,7 @@ RUN cd /usr/src/php \
         # Fine tuning of the installation directories \
         --with-libdir=/lib/x86_64-linux-gnu \
         # SAPI modules \
+        --disable-cli \
         --enable-fpm \
         --with-fpm-user=www-data \
         --with-fpm-group=www-data \
@@ -107,7 +108,7 @@ RUN cd /usr/src/php \
         --enable-calendar \
         --with-curl \
         --enable-exif \
-        #--enable-ftp \
+        --enable-ftp \
         --with-gd \
         --with-jpeg-dir=/usr \
         --with-png-dir=/usr \
@@ -122,14 +123,15 @@ RUN cd /usr/src/php \
         --enable-mbstring \
         --with-mcrypt \
         --with-mysqli=/usr/bin/mysql_config \
-        --enable-pcntl \
+        #--enable-pcntl \
         --disable-pdo \
         #--with-pdo-mysql=/usr \
         --without-pdo-sqlite \
-        --with-pspell \
-        --with-readline \
+        #--with-pspell \
+        #--with-readline \
         --with-recode=/usr \
-        --enable-soap \
+        #--enable-soap \
+        --enable-sockets \
         --enable-sysvmsg \
         --enable-sysvsem \
         --enable-sysvshm \
