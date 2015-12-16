@@ -15,7 +15,8 @@ ssh:
     - "2222:22"
   volumes:
     - /home/core/www/:/var/www/:rw
-    - /home/core/.ssh/authorized_keys/:/root/.ssh/authorized_keys:ro
+    #- /home/core/.ssh/authorized_keys/:/root/.ssh/authorized_keys:ro
+    - /home/core/.ssh/:/root/.ssh/:ro
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
