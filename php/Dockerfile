@@ -7,9 +7,9 @@ MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="PHP-FPM 7 through FastCGI built from source" Vendor="Istvan Lantos" Version="1.0"
 
 ENV PHP_VERSION 7.0.0
-ENV PHP_FILENAME php-7.0.0.tar.xz
+ENV PHP_FILENAME php-7.0.0.tar.gz
 # Checksum
-ENV PHP_SHA256 7dbdda74c502960febe0544b3e3a7c430389a7a4260e94c73fd8ca26c33b8540
+ENV PHP_SHA256 d6ae7b4a2e5c43a9945a97e83b6b3adfb7d0df0b91ef78b647a6dffefaa9c71b
 # Adding GPG key
 ENV GPG_KEYS 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
 RUN set -xe \
@@ -38,7 +38,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         pkg-config \
         re2c --no-install-recommends \
         # Need for tar.xz \
-        xz-utils --no-install-recommends \
+        #xz-utils --no-install-recommends \
     && rm -r /var/lib/apt/lists/*
 ### End of DEV environment deps
 
@@ -161,18 +161,21 @@ RUN cd /usr/src/php \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
     && make clean
 
-### Start of PECL SSH2
-#RUN cd ~ \
-#    && mkdir -p /usr/src/ssh2 \
-#    && curl -fSL "https://pecl.php.net/get/ssh2-0.12.tgz" -o "ssh2-0.12.tgz" \
-#    && tar -xzf "ssh2-0.12.tgz" -C /usr/src/ssh2 --strip-components=1 \
-#    && rm -rf ssh2-0.12.tgz \
-#    cd cd /usr/src/ssh2 \
-#    && phpize \
-#    && ./configure --with-ssh2 --with-php-config=/usr/local/php7/bin/php-config \
-#    && make \
-#    && make install
-### End of PECL SSH2
+### Start of PECL SSH2 install
+# https://github.com/php/pecl-networking-ssh2
+RUN cd ~ \
+    && mkdir -p /usr/src/ssh2 \
+    && curl -fSL "https://github.com/php/pecl-networking-ssh2/archive/master.tar.gz" -o "pecl-networking-ssh2.tar.gz" \
+    && tar -xzf "pecl-networking-ssh2.tar.gz" -C /usr/src/ssh2 --strip-components=1 \
+    && rm -rf pecl-networking-ssh2.tar.gz \
+    && cd /usr/src/ssh2 \
+    && phpize \
+    && ./configure \
+        --with-ssh2 \
+        --with-php-config=/usr/local/php7/bin/php-config \
+    && make \
+    && make install
+### End of PECL SSH2 install
 
 ### Start of PHP 7 setup
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
