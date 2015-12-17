@@ -14,8 +14,8 @@ ssh:
   ports:
     - "2222:22"
   volumes:
-    - /home/core/www/:/var/www/:rw
-    - /home/core/.ssh/:/root/.ssh/:ro
+    - /home/core/server/www/:/var/www/:rw
+    - /home/core/.ssh/:/root/.ssh/:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -32,7 +32,7 @@ mariadb:
     - ssh
   volumes:
     - /var/run/mysqld
-    - /home/core/mysql/:/var/lib/mysql/:rw
+    - /home/core/server/mysql/:/var/lib/mysql/:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
 php:
   build: ./php

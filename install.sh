@@ -12,18 +12,18 @@ echo -e "docker-compose installed, verifying:"
 docker-compose -v
 
 echo -e "Creating folder structure..."
-mkdir -p ~/mysql ~/sqlbackup ~/work/lemp ~/www
+mkdir -p ~/server/mysql ~/server/sqlbackup ~/server/lemp ~/server/www
 
 echo -e "Cloning git repo into \"~/work/lemp\"..."
-git clone https://github.com/DJviolin/LEMP.git ~/work/lemp
+git clone https://github.com/DJviolin/LEMP.git ~/server/lemp
 echo -e "Showing working directory..."
-ls -al ~/work/lemp
+ls -al ~/server/lemp
 
 echo -e "Starting docker images and containers generation..."
 echo -e "\
 # Set MySQL Root Password\n\
-MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > ~/work/lemp/mariadb/mariadb.env
-cat ~/work/lemp/mariadb/mariadb.env
+MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > ~/work/lemp/mariadb/mariadb.env > ~/work/mysqlpass.txt
+cat ~/server/mysqlpass.txt
 #docker-compose build ~/work/lemp
 
 echo -e "LEMP stack has built...\nRun the service with ./service-start.sh command." \
