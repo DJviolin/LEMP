@@ -132,5 +132,5 @@ cat ~/server/mysql-root-password.txt
 
 cd ~
 
-echo -e "\nLEMP stack has successfully built!\nRun docker-compose with \"docker-compose build ~/server/lemp\"\nRun the systemd service with \"./service-start.sh\" command."
+echo -e "\nLEMP stack has successfully built!\nRun docker-compose with \"$ docker-compose build ~/server/lemp\"\nRun the systemd service with \"$ ./service-start.sh\" command.\nStop the systemd service with \"$ ./service-stop.sh\" command."
 echo -e "\nAll done! Exiting..."
