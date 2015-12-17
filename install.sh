@@ -1,19 +1,14 @@
 #!/bin/bash
 
-# Modify this line for the wanted MySQL password
-MYSQL_PASS="password"
-# openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'
-
 # set -e making the commands if they were like &&
 set -e
 
 echo -e "Installing docker-compose from GitHub Latest release..."
-
 mkdir -p ~/bin
 curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > ~/bin/docker-compose
 chmod +x ~/bin/docker-compose
 export PATH="~/bin:$PATH"
-echo -e "docker-compose installed, verifying..."
+echo -e "docker-compose installed, verifying:"
 docker-compose -v
 
 echo -e "Creating folder structure..."
@@ -21,7 +16,6 @@ mkdir -p ~/mysql ~/sqlbackup ~/work/lemp ~/www
 
 echo -e "Cloning git repo into \"~/work/lemp\"..."
 git clone https://github.com/DJviolin/LEMP.git ~/work/lemp
-
 echo -e "Showing working directory..."
 ls -al ~/work/lemp
 
