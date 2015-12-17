@@ -128,10 +128,10 @@ echo -e "\n\
 MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > ~/server/lemp/mariadb/mariadb.env > ~/server/mysql-root-password.txt
 cat ~/server/mysql-root-password.txt
 
-echo -e "\nStarting docker-compose\nCreating images and containers:"
+#echo -e "\nStarting docker-compose\nCreating images and containers:"
 #docker-compose build ~/server/lemp
 
 cd ~
 
-echo -e "\nLEMP stack has successfully built!\nRun the service with \"./service-start.sh\" command."
+echo -e "\nLEMP stack has successfully built!\nRun docker-compose with \"docker-compose build ~/server/lemp\"\nRun the systemd service with \"./service-start.sh\" command."
 echo -e "\nAll done! Exiting..."
