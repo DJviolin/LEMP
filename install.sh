@@ -88,8 +88,9 @@ nginx:
   volumes_from:
     - php
 EOF
+cat ~/server/lemp/docker-compose-eof.yml
 
-cat <<'EOF' > ~/server/lemp/lemp.service
+cat <<'EOF' > ~/server/lemp/lemp-eof.service
 [Unit]
 Description=LEMP
 After=etcd.service
@@ -113,8 +114,9 @@ Restart=always
 #RestartSec=30s
 
 [X-Fleet]
-Conflicts=lemp-eof.service
+Conflicts=lemp.service
 EOF
+cat ~/server/lemp/lemp-eof.service
 
 echo -e "\
 # Set MySQL Root Password\n\
