@@ -132,5 +132,5 @@ echo -e "Starting docker-compose\nCreating images and containers:"
 
 cd ~
 
-echo -e "\nLEMP stack has successfully built!\nRun the service with \"./service-start.sh\" command." \
+echo -e "\nLEMP stack has successfully built!\nRun the service with \"./service-start.sh\" command."
 echo -e "\nAll done! Exiting..."
