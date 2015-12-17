@@ -3,7 +3,7 @@
 # set -e making the commands if they were like &&
 set -e
 
-echo -e "Installing docker-compose from GitHub Latest release..."
+echo -e "Installing docker-compose from GitHub Latest release:"
 mkdir -p ~/bin
 curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > ~/bin/docker-compose
 chmod +x ~/bin/docker-compose
@@ -11,15 +11,16 @@ export PATH="~/bin:$PATH"
 echo -e "\nDocker-compose installed, verifying:"
 docker-compose -v
 
-echo -e "\nCreating folder structure..."
+echo -e "\nCreating folder structure:"
 mkdir -p ~/server/mysql ~/server/sqlbackup ~/server/lemp ~/server/www
+echo -e "Done!"
 
-echo -e "\nCloning git repo into \"~/work/lemp\"..."
-git clone https://github.com/DJviolin/LEMP.git ~/server/lemp
+echo -e "\nCloning git repo into \"~/work/lemp\":"
+git pull https://github.com/DJviolin/LEMP.git ~/server/lemp
 echo -e "\nShowing working directory..."
 ls -al ~/server/lemp
 
-echo -e "\nCreating additional files for the stack..."
+echo -e "\nCreating additional files for the stack:"
 
 echo -e "\nCreating: ~/server/lemp/docker-compose-eof.yml\n"
 cat <<'EOF' > ~/server/lemp/docker-compose-eof.yml
@@ -125,7 +126,7 @@ echo -e "\n\
 MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > ~/server/lemp/mariadb/mariadb.env > ~/server/mysql-root-password.txt
 cat ~/server/mysql-root-password.txt
 
-echo -e "Starting docker-compose\nCreating images and containers..."
+echo -e "Starting docker-compose\nCreating images and containers:"
 #docker-compose build ~/server/lemp
 
 echo -e "\nLEMP stack has successfully built!\nRun the service with ./service-start.sh command." \
