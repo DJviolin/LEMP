@@ -99,7 +99,7 @@ EOF
 cat ~/server/lemp/docker-compose-eof.yml
 
 echo -e "\nCreating: ~/server/lemp/lemp-eof.service\n"
-cat <<'EOF' > ~/server/lemp/lemp-eof.service
+cat <<EOF > ~/server/lemp/lemp-eof.service
 [Unit]
 Description=LEMP
 After=etcd.service
