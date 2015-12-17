@@ -15,7 +15,8 @@ echo -e "\nCreating folder structure:"
 mkdir -p ~/server/mysql ~/server/sqlbackup ~/server/lemp ~/server/www
 echo -e "Done!"
 
-echo -e "\nCloning git repo into \"~/work/lemp\":"
+echo -e "\nCloning git repo into \"~/server/lemp\":"
+cd ~/server/lemp
 git pull https://github.com/DJviolin/LEMP.git ~/server/lemp
 echo -e "\nShowing working directory..."
 ls -al ~/server/lemp
@@ -129,5 +130,7 @@ cat ~/server/mysql-root-password.txt
 echo -e "Starting docker-compose\nCreating images and containers:"
 #docker-compose build ~/server/lemp
 
-echo -e "\nLEMP stack has successfully built!\nRun the service with ./service-start.sh command." \
+cd ~
+
+echo -e "\nLEMP stack has successfully built!\nRun the service with \"./service-start.sh\" command." \
 echo -e "\nAll done! Exiting..."
