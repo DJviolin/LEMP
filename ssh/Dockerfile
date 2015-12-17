@@ -32,6 +32,13 @@ RUN echo "export VISIBLE=now" >> /etc/profile \
     && echo -e '\ncd /root' >> /root/.bashrc
 ### End of OpenSSH setup
 
+RUN cd /etc/ssh && stat -c "%a %n" * \
+    && /etc/group \
+    && /etc/passwd
+#RUN chmod 0700 /etc/ssh/ && chmod 0700 /root/.ssh/ \
+#    && chmod 0640 /etc/ssh/ssh_host_* && chmod 0640 /root/.ssh/ssh_host_* \
+#    && chmod 0644 /root/.ssh/authorized_keys
+
 ### Start of Nginx WEBSERVER setup
 RUN mkdir -p /var/www
 ### End of Nginx WEBSERVER setup
@@ -53,6 +60,16 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 #    && su - www-data -c 'ulimit -aHS' -s '/bin/bash' \
 #    && ps aux | grep sshd
 ### End of optimizations
+
+#RUN cd /etc/ssh && stat -c "%a %n" *
+#RUN /etc/group
+#RUN /etc/passwd
+
+# Add the core's UID 500 to the container
+RUN groupadd core && \
+    useradd core -g core -u 500
+# Add permissions to shared volumes
+RUN usermod -aG 500 root
 
 RUN rm -rf /var/lib/apt/lists/*
 

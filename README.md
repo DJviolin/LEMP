@@ -127,10 +127,29 @@ http://serverfault.com/questions/584403/nginx-cache-shared-between-multiple-serv
 
 http://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#example
 
-Remove all docker containers
+Remove all docker containers:
 
     $ docker stop $(docker ps -a -q) && docker rm -f $(docker ps -a -q)
     $ docker rmi -f $(docker images -q)
+
+Make sure that exited containers are deleted:
+
+    $ docker rm -v $(docker ps -a -q -f status=exited)
+
+Remove unwanted ‘dangling’ images:
+
+    $ docker rmi $(docker images -f "dangling=true" -q)
+
+vfs dir final cleaning with a docker image:
+
+    $ docker run -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker --rm martin/docker-cleanup-volumes
+
+
+Together:
+
+    $ docker rm -v $(docker ps -a -q -f status=exited); docker rmi $(docker images -f "dangling=true" -q); docker run -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker --rm martin/docker-cleanup-volumes
+    $ rm -rf /var/lib/docker/overlay/*
+    $ rm -rf /var/lib/docker/linkgraph.db
 
 Build options info
 
