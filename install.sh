@@ -3,6 +3,7 @@
 # set -e making the commands if they were like &&
 set -e
 
+# TODO: check if docker-compose is installed with if else
 echo -e "Installing docker-compose from GitHub Latest release:"
 mkdir -p ~/bin
 curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > ~/bin/docker-compose
@@ -23,8 +24,12 @@ ls -al ~/server/lemp
 
 echo -e "\nCreating additional files for the stack:"
 
+# bash variables in Here-Doc, don't use 'EOF'
+# http://stackoverflow.com/questions/4937792/using-variables-inside-a-bash-heredoc
+# http://stackoverflow.com/questions/17578073/ssh-and-environment-variables-remote-and-local
+
 echo -e "\nCreating: ~/server/lemp/docker-compose-eof.yml\n"
-cat <<'EOF' > ~/server/lemp/docker-compose-eof.yml
+cat <<EOF > ~/server/lemp/docker-compose-eof.yml
 cadvisor:
   image: google/cadvisor:latest
   container_name: lemp_cadvisor
@@ -41,8 +46,8 @@ ssh:
   ports:
     - "2222:22"
   volumes:
-    - /home/core/server/www/:/var/www/:rw
-    - /home/core/.ssh/:/root/.ssh/:rw
+    - $HOME/server/www/:/var/www/:rw
+    - $HOME/.ssh/:/root/.ssh/:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -59,7 +64,7 @@ mariadb:
     - ssh
   volumes:
     - /var/run/mysqld
-    - /home/core/server/mysql/:/var/lib/mysql/:rw
+    - $HOME/server/mysql/:/var/lib/mysql/:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
 php:
   build: ./php
@@ -104,16 +109,16 @@ Requires=docker.service
 [Service]
 TimeoutStartSec=0
 #KillMode=none
-ExecStartPre=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql /home/core/server/sqlbackup
-ExecStartPre=-/bin/bash -c '/usr/bin/tar -zcvf /home/core/server/sqlbackup/sqlbackup_$$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStartPre.tar.gz /home/core/server/sqlbackup/mysql --remove-files'
-ExecStartPre=-/opt/bin/docker-compose --file /home/core/server/lemp/docker-compose.yml kill
-ExecStartPre=-/opt/bin/docker-compose --file /home/core/server/lemp/docker-compose.yml rm --force
-ExecStart=/opt/bin/docker-compose --file /home/core/server/lemp/docker-compose.yml up --force-recreate
+ExecStartPre=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql $HOME/server/sqlbackup
+ExecStartPre=-/bin/bash -c '/usr/bin/tar -zcvf $HOME/server/sqlbackup/sqlbackup_$$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStartPre.tar.gz $HOME/server/sqlbackup/mysql --remove-files'
+ExecStartPre=-/opt/bin/docker-compose --file $HOME/server/lemp/docker-compose.yml kill
+ExecStartPre=-/opt/bin/docker-compose --file $HOME/server/lemp/docker-compose.yml rm --force
+ExecStart=/opt/bin/docker-compose --file $HOME/server/lemp/docker-compose.yml up --force-recreate
 ExecStartPost=/usr/bin/etcdctl set /LEMP Running
-ExecStop=/opt/bin/docker-compose --file /home/core/server/lemp/docker-compose.yml stop
+ExecStop=/opt/bin/docker-compose --file $HOME/server/lemp/docker-compose.yml stop
 ExecStopPost=/usr/bin/etcdctl rm /LEMP
-ExecStopPost=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql /home/core/server/sqlbackup
-ExecStopPost=-/bin/bash -c 'tar -zcvf /home/core/server/sqlbackup/sqlbackup_$$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStopPost.tar.gz /home/core/server/sqlbackup/mysql --remove-files'
+ExecStopPost=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql $HOME/server/sqlbackup
+ExecStopPost=-/bin/bash -c 'tar -zcvf $HOME/server/sqlbackup/sqlbackup_$$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStopPost.tar.gz $HOME/server/sqlbackup/mysql --remove-files'
 Restart=always
 #RestartSec=30s
 
