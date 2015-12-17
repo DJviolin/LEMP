@@ -8,19 +8,20 @@ mkdir -p ~/bin
 curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > ~/bin/docker-compose
 chmod +x ~/bin/docker-compose
 export PATH="~/bin:$PATH"
-echo -e "docker-compose installed, verifying:"
+echo -e "\nDocker-compose installed, verifying:"
 docker-compose -v
 
-echo -e "Creating folder structure..."
+echo -e "\nCreating folder structure..."
 mkdir -p ~/server/mysql ~/server/sqlbackup ~/server/lemp ~/server/www
 
-echo -e "Cloning git repo into \"~/work/lemp\"..."
+echo -e "\nCloning git repo into \"~/work/lemp\"..."
 git clone https://github.com/DJviolin/LEMP.git ~/server/lemp
-echo -e "Showing working directory..."
+echo -e "\nShowing working directory..."
 ls -al ~/server/lemp
 
-echo -e "Creating additional files for the stack..."
+echo -e "\nCreating additional files for the stack..."
 
+echo -e "\nCreating: ~/server/lemp/docker-compose-eof.yml\n"
 cat <<'EOF' > ~/server/lemp/docker-compose-eof.yml
 cadvisor:
   image: google/cadvisor:latest
@@ -90,6 +91,7 @@ nginx:
 EOF
 cat ~/server/lemp/docker-compose-eof.yml
 
+echo -e "\nCreating: ~/server/lemp/lemp-eof.service\n"
 cat <<'EOF' > ~/server/lemp/lemp-eof.service
 [Unit]
 Description=LEMP
@@ -118,7 +120,7 @@ Conflicts=lemp.service
 EOF
 cat ~/server/lemp/lemp-eof.service
 
-echo -e "\
+echo -e "\n\
 # Set MySQL Root Password\n\
 MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > ~/server/lemp/mariadb/mariadb.env > ~/server/mysql-root-password.txt
 cat ~/server/mysql-root-password.txt
@@ -126,5 +128,5 @@ cat ~/server/mysql-root-password.txt
 echo -e "Starting docker-compose\nCreating images and containers..."
 #docker-compose build ~/server/lemp
 
-echo -e "LEMP stack has built...\nRun the service with ./service-start.sh command." \
-echo -e "All done! Exiting..."
+echo -e "\nLEMP stack has successfully built!\nRun the service with ./service-start.sh command." \
+echo -e "\nAll done! Exiting..."
