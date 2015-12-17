@@ -120,8 +120,8 @@ cat ~/server/lemp/lemp-eof.service
 
 echo -e "\
 # Set MySQL Root Password\n\
-MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > ~/server/lemp/mariadb/mariadb.env > ~/server/mysqlpass.txt
-cat ~/server/mysqlpass.txt
+MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > ~/server/lemp/mariadb/mariadb.env > ~/server/mysql-root-password.txt
+cat ~/server/mysql-root-password.txt
 
 echo -e "Starting docker-compose\nCreating images and containers..."
 #docker-compose build ~/server/lemp
