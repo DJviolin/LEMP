@@ -18,6 +18,7 @@ echo -e "Done!"
 echo -e "\nCloning git repo into \"~/server/lemp\":"
 cd ~/server/lemp
 git clone https://github.com/DJviolin/LEMP.git ~/server/lemp
+pwd
 echo -e "\nShowing working directory..."
 ls -al ~/server/lemp
 
