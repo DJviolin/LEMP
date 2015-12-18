@@ -58,7 +58,7 @@ Stop the systemd service with: `$ cd $HOME/server/lemp && ./service-stop.sh`
 
     All of this achieved by following [this](https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/) tutorial.
 
-4. You have to add the following user/group for your Wordpress install dirs on the host: `chown -R www-data:www-data ~/www/your-wordpress-install-dir`
+4. You have to add the following user/group for your Wordpress install dirs on the host: `chown -R www-data:www-data $HOME/server/www/your-wordpress-install-dir`
 
 ## Usage (Outdated)
 
