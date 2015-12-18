@@ -22,6 +22,8 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 
 Basic install script provided. Run only `./install.sh` and it will take the rest! You doesn't even need to clone this repo, just only download this script to your host and run it if you wish!
 
+The script will create the `docker-compose.yml` and `lemp.service` files inside the cloned repo.
+
 ## Usage (Old)
 
 1. Clone this repo into your `/home/core/work/lemp` folder on your CoreOS host.
