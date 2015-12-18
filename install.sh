@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#TODO: regex - https://github.com/docker/compose/issues/2555
-# sed -r 's/.*compose\/releases\/tag\/(([0-9]\.){2}[0-9])/\1/'
-#LATEST_TAG="https://github.com/docker/compose/releases/latest"
-
 # set -e making the commands if they were like &&
 set -e
 
@@ -15,9 +11,6 @@ if hash docker-compose 2>/dev/null; then
   echo -e "\nDocker-compose already installed on your system, skipping step & verifying version:"
   docker-compose -v
 else
-  #curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > ~/bin/docker-compose
-  #curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-Linux-x86_64 > ~/bin/docker-compose
-  #curl -L https://github.com/docker/compose/releases/download/$LATEST_TAG/docker-compose-Linux-x86_64 > ~/bin/docker-compose
   curl -L https://dl.bintray.com/docker-compose/master/docker-compose-`uname -s`-`uname -m` > $HOME/bin/docker-compose
   chmod +x $HOME/bin/docker-compose
   echo -e "\nDocker-compose installed, verifying version:"
