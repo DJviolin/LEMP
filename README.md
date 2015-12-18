@@ -23,7 +23,9 @@ Basic install script provided. Run only `./install.sh` and it will take the rest
 The script will create the `docker-compose.yml` and `lemp.service` files inside the cloned repo.
 
 Run docker-compose with: `$ docker-compose build $HOME/server/lemp`
+
 Run the systemd service with: `$ cd $HOME/server/lemp && ./service-start.sh`
+
 Stop the systemd service with: `$ cd $HOME/server/lemp && ./service-stop.sh`
 
 ## PhpMyAdmin further setup
