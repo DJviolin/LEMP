@@ -50,8 +50,8 @@ echo -e "\nCreating additional files for the stack:"
 # http://stackoverflow.com/questions/4937792/using-variables-inside-a-bash-heredoc
 # http://stackoverflow.com/questions/17578073/ssh-and-environment-variables-remote-and-local
 
-echo -e "\nCreating: $HOME/server/lemp/docker-compose-eof.yml\n"
-cat <<EOF > $HOME/server/lemp/docker-compose-eof.yml
+echo -e "\nCreating: $HOME/server/lemp/docker-compose.yml\n"
+cat <<EOF > $HOME/server/lemp/docker-compose.yml
 cadvisor:
   image: google/cadvisor:latest
   container_name: lemp_cadvisor
@@ -118,10 +118,10 @@ nginx:
   volumes_from:
     - php
 EOF
-cat $HOME/server/lemp/docker-compose-eof.yml
+cat $HOME/server/lemp/docker-compose.yml
 
-echo -e "\nCreating: $HOME/server/lemp/lemp-eof.service\n"
-cat <<EOF > $HOME/server/lemp/lemp-eof.service
+echo -e "\nCreating: $HOME/server/lemp/lemp.service\n"
+cat <<EOF > $HOME/server/lemp/lemp.service
 [Unit]
 Description=LEMP
 After=etcd.service
@@ -147,7 +147,7 @@ Restart=always
 [X-Fleet]
 Conflicts=lemp.service
 EOF
-cat $HOME/server/lemp/lemp-eof.service
+cat $HOME/server/lemp/lemp.service
 
 echo -e "\n\
 # Set MySQL Root Password\n\
