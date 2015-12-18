@@ -18,7 +18,11 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 6. Also, generate a new SSH private/public key pairs on your Host VM for Wordpress' [SSH SFTP Updater Support](https://wordpress.org/plugins/ssh-sftp-updater-support/) plugin. Command: `$ ssh-keygen -b 4096 -t rsa -N '' -C "your_email@example.com" -f ~/.ssh/wordpress_rsa`. This way you don't need SFTP support with libssh2 and you can dismiss ftp build configuration from PHP.
 7. Add this public key pair for the `authorized_keys` file too: `$ cat ~/.ssh/wordpress_rsa.pub >> ~/.ssh/authorized_keys`
 
-## Usage
+## Usage (New)
+
+Basic install script provided. Run only `./install.sh` and it will take the rest! You doesn't even need to clone this repo, just only download this script to your host if you wish!
+
+## Usage (Old)
 
 1. Clone this repo into your `/home/core/work/lemp` folder on your CoreOS host.
 2. Navigate to this folder on your Linux Host OS with Docker installed (preferably CoreOS).
