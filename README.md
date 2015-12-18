@@ -40,8 +40,8 @@ Stop the systemd service with: `$ cd $HOME/server/lemp && ./service-stop.sh`
 1. You have to place this on the bottom of `wp-config.php`
 
     ```
-    define('FTP_PUBKEY','/root/.ssh/wp_rsa.pub');
-    define('FTP_PRIKEY','/root/.ssh/wp_rsa');
+    define('FTP_PUBKEY','/etc/ssh/ssh_host_rsa_key.pub');
+    define('FTP_PRIKEY','/etc/ssh/ssh_host_rsa_key');
     define('FTP_USER','root');
     define('FTP_PASS','');
     define('FTP_HOST','127.0.0.1:22');
