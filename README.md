@@ -56,7 +56,8 @@ The script will create the `docker-compose.yml` and `lemp.service` files inside 
 
 ## Usage (Outdated)
 
-~~1. Clone this repo into your `/home/core/work/lemp` folder on your CoreOS host.
+~~
+1. Clone this repo into your `/home/core/work/lemp` folder on your CoreOS host.
 2. Navigate to this folder on your Linux Host OS with Docker installed (preferably CoreOS).
 3. Create a folder in `/home/core/www`. This will be the shared folder for your webserver files.
 4. Create a folder in `/home/core/mysql`. This will be the shared folder for your MySQL database. The container will populate this folder at the first boot and locking down the sub-folders and files to superuser access (you have to `sudo su` on the host able to access these files).
@@ -70,7 +71,8 @@ The script will create the `docker-compose.yml` and `lemp.service` files inside 
 8. Run the `$ chmod +x service-start.sh service-stop.sh && ./service-start.sh` commands.
 9. If everything works, now you have a working LEMP stack on steroids.
 10. Visit the index page on your localhost IP with a port redirected to `:8080`.
-11. If you want to stop the environment, type `./service-stop.sh` (60 seconds wait time was introduced to have enough time to `fleetctl stop` making the sql backups from the container. If your sql database is huuuge, change this wait time accordingly).~~
+11. If you want to stop the environment, type `./service-stop.sh` (60 seconds wait time was introduced to have enough time to `fleetctl stop` making the sql backups from the container. If your sql database is huuuge, change this wait time accordingly).
+~~
 
 ## Notes
 
