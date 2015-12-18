@@ -61,7 +61,7 @@ ssh:
     - "2222:22"
   volumes:
     - $HOME/server/www/:/var/www/:rw
-    - $HOME/.ssh/:/root/.ssh/:rw
+    - $HOME/.ssh/:/root/.ssh/:ro
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
