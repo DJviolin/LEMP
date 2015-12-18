@@ -3,7 +3,6 @@
 # set -e making the commands if they were like &&
 set -e
 
-# TODO: check if docker-compose is installed with if else
 echo -e "Installing docker-compose from GitHub Master release channel:\n(For non-Nightly, Stable releases please visit their official GitHub page)"
 mkdir -p $HOME/bin
 export PATH="$HOME/bin:$PATH"
