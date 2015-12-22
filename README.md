@@ -30,7 +30,7 @@ $ ./install.sh
 $ rm -rf $HOME/install.sh
 ```
 
-The script will create the `docker-compose.yml` and `lemp.service` files inside the cloned repo.
+The script will create the `docker-compose.yml` and `lemp.service` files inside the cloned repo, which are needed for docker-compose and systemd.
 
 ## Usage
 
