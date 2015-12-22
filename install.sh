@@ -6,7 +6,7 @@ set -e
 read -e -p "Enter the path to the install dir (or hit enter for default path): " -i "$HOME/server" INSTALL_DIR
 echo $INSTALL_DIR
 
-echo -n "\nAre you sure you want to continue the installation of the DJviolin/LEMP stack (y/n)? "
+echo -e "\nAre you sure you want to continue the installation of the DJviolin/LEMP stack (y/n)? "
 read answer
 if echo "$answer" | grep -iq "^y" ;then
     echo "Continue installation...";
@@ -19,12 +19,14 @@ mkdir -p $HOME/bin
 export PATH="$HOME/bin:$PATH"
 if hash docker-compose 2>/dev/null; then
   echo -e "\nDocker-compose already installed on your system, skipping step & verifying version:"
-  docker-compose -v
+  echo -e "  "; docker-compose -v;
+  echo -e "  Install path: "; which docker-compose;
 else
   curl -L https://dl.bintray.com/docker-compose/master/docker-compose-`uname -s`-`uname -m` > $HOME/bin/docker-compose
   chmod +x $HOME/bin/docker-compose
   echo -e "\nDocker-compose installed, verifying version:"
-  docker-compose -v
+  echo -e "  "; docker-compose -v;
+  echo -e "  Install path: "; which docker-compose;
 fi
 
 echo -e "\nCreating folder structure:"
