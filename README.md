@@ -185,3 +185,14 @@ Change Virtualbox Disk Size:
 
     $ python make gcc g++
     $ software-properties-common
+
+Superuser tester script:
+
+```
+# Place su tester script in $HOME
+RUN echo -e '\
+#!/bin/bash\n\
+echo "uid is ${UID}"\n\
+echo "user is ${USER}"\n\
+echo "username is ${USERNAME}"' >> /home/root/sutest.sh
+```

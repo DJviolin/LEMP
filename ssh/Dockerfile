@@ -61,13 +61,6 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 #    && ps aux | grep sshd
 ### End of optimizations
 
-# Place su tester script in $HOME
-RUN echo -e '\
-#!/bin/bash\n\
-echo "uid is ${UID}"\n\
-echo "user is ${USER}"\n\
-echo "username is ${USERNAME}"' >> /home/root/sutest.sh
-
 #RUN cd /etc/ssh && stat -c "%a %n" *
 #RUN /etc/group
 #RUN /etc/passwd
