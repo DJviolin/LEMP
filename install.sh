@@ -3,14 +3,10 @@
 # set -e making the commands if they were like &&
 set -e
 
-#echo "Please define the install directory (default: ~/server): "
-#read install_dir
-#echo "You entered: $install_dir"
-
-read -e -p "Enter the path to the install dir (or hit enter for the default path): " -i "$HOME/server" INSTALL_DIR
+read -e -p "Enter the path to the install dir (or hit enter for default path): " -i "$HOME/server" INSTALL_DIR
 echo $INSTALL_DIR
 
-echo -n "Are you sure you want to continue the installation of the DJviolin/LEMP stack (y/n)? "
+echo -n "\nAre you sure you want to continue the installation of the DJviolin/LEMP stack (y/n)? "
 read answer
 if echo "$answer" | grep -iq "^y" ;then
     echo "Continue installation...";
@@ -18,7 +14,7 @@ else
     echo "Exiting..."; exit 1;
 fi
 
-echo -e "Installing docker-compose from GitHub Master release channel:\n(For non-Nightly, Stable releases please visit their official GitHub page)"
+echo -e "\nInstalling docker-compose from GitHub Master release channel:\n(For non-Nightly, Stable releases please visit their official GitHub page)"
 mkdir -p $HOME/bin
 export PATH="$HOME/bin:$PATH"
 if hash docker-compose 2>/dev/null; then
