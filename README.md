@@ -6,7 +6,7 @@ Work in progress! NOT FOR PRODUCTION!
 
 Wordpress still needs some configuration, like WP specific settings in Nginx .conf files and SFTP access.
 
-Nginx will be rebuilt from source soon.
+Nginx will be rebuilt from [source](https://www.nginx.com/resources/wiki/start/topics/tutorials/installoptions/) soon (list all the configured modules: `$ sudo nginx -V`).
 
 ## Prerequisites
 
