@@ -16,11 +16,20 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 6. Also, generate a new SSH private/public key pairs on your Host VM for Wordpress' [SSH SFTP Updater Support](https://wordpress.org/plugins/ssh-sftp-updater-support/) plugin. Command: `$ ssh-keygen -b 4096 -t rsa -N '' -C "your_email@example.com" -f ~/.ssh/wordpress_rsa`. This way you don't need SFTP support with libssh2 and you can dismiss ftp build configuration from PHP.
 7. Add this public key pair for the `authorized_keys` file too: `$ cat ~/.ssh/wordpress_rsa.pub >> ~/.ssh/authorized_keys`
 
-## Usage (New)
+## Installation
 
 Basic install script provided. Run only `./install.sh` and it will take the rest! You doesn't even need to clone this repo, just only download this script to your host and run it if you wish!
 
+```
+$ curl -L https://raw.github.com/DJviolin/Lemp/master/install.sh > $HOME/install.sh
+$ chmod +x $HOME/install.sh
+$ cd $HOME
+$ ./install.sh
+```
+
 The script will create the `docker-compose.yml` and `lemp.service` files inside the cloned repo.
+
+## Usage
 
 Run docker-compose with: `$ docker-compose build $HOME/server/lemp`
 
@@ -59,24 +68,6 @@ Stop the systemd service with: `$ cd $HOME/server/lemp && ./service-stop.sh`
     All of this achieved by following [this](https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/) tutorial.
 
 4. You have to add the following user/group for your Wordpress install dirs on the host: `chown -R www-data:www-data $HOME/server/www/your-wordpress-install-dir`
-
-## Usage (Outdated)
-
-~~1. Clone this repo into your `/home/core/work/lemp` folder on your CoreOS host.
-2. Navigate to this folder on your Linux Host OS with Docker installed (preferably CoreOS).
-3. Create a folder in `/home/core/www`. This will be the shared folder for your webserver files.
-4. Create a folder in `/home/core/mysql`. This will be the shared folder for your MySQL database. The container will populate this folder at the first boot and locking down the sub-folders and files to superuser access (you have to `sudo su` on the host able to access these files).
-5. Create a folder in `/home/core/sqlbackup`. This will be the folder for your MySQL backups. The tar archives here created straight from the container by the systemd init script. So you will have a shared folder at `/home/core/mysql` which is the actual database and a `/home/core/sqlbackup` folder with tar archives in it, which is a backup when the service halted for some reason.
-6. Create a file in `mariadb/mariadb.env` with the following content:
-    ```
-    # Set MySQL Root Password
-    MYSQL_ROOT_PASSWORD=type-your-secret-password-here
-    ```
-7. On CoreOS, you have to install docker-compose! Use the provided install script here `./docker-compose-1.5.2-coreos-installer.sh` or refresh this script with the latest version from the original repo (recommended). If the script fails to run as superuser, than type in the commands from the script manually!
-8. Run the `$ chmod +x service-start.sh service-stop.sh && ./service-start.sh` commands.
-9. If everything works, now you have a working LEMP stack on steroids.
-10. Visit the index page on your localhost IP with a port redirected to `:8080`.
-11. If you want to stop the environment, type `./service-stop.sh` (60 seconds wait time was introduced to have enough time to `fleetctl stop` making the sql backups from the container. If your sql database is huuuge, change this wait time accordingly).~~
 
 ## Notes
 
