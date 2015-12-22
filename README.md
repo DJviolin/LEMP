@@ -25,6 +25,7 @@ $ curl -L https://raw.github.com/DJviolin/Lemp/master/install.sh > $HOME/install
 $ chmod +x $HOME/install.sh
 $ cd $HOME
 $ ./install.sh
+$ rm -rf $HOME/install.sh
 ```
 
 The script will create the `docker-compose.yml` and `lemp.service` files inside the cloned repo.
