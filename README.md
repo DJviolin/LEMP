@@ -18,7 +18,7 @@ Wordpress still needs some configuration, like WP specific settings in Nginx .co
 
 ## Installation
 
-Basic install script provided. Run only `./install.sh` and it will take the rest! You doesn't even need to clone this repo, just only download this script to your host and run it if you wish!
+Basic install script provided. Run only `./install.sh` and follow the instructions in the script! You doesn't even need to clone this repo, just only download this script to your host and run it if you wish!
 
 ```
 $ curl -L https://raw.github.com/DJviolin/Lemp/master/install.sh > $HOME/install.sh
