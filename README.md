@@ -6,19 +6,20 @@ Work in progress! NOT FOR PRODUCTION!
 
 Wordpress still needs some configuration, like WP specific settings in Nginx .conf files and SFTP access.
 
+nginx will be rebuilt from source soon.
+
 ## Prerequisites
 
-1. Your VM needs at least 1GB of Ram, otherwise MariaDB install will throw an error.
-2. In virtual machines use fixed size disks to avoid problems (preferably 20gb minimum).
-3. Keep the original folder structure on the host (or you have to inspect and manually adjust every host folder in `docker-compose.yml` and `lemp.service` files)!
-4. Use CoreOS! This environment works with other local folders / linux OS, but in this case read 3.).
-5. Place your personal SSH public key in `~/.ssh/authorized_keys` file on your HOST (usually this is already done by the cloud-config file on CoreOS first boot)! This is the key that you use for login into your host VM, for example on your DigitalOcean VPS.
-6. Also, generate a new SSH private/public key pairs on your Host VM for Wordpress' [SSH SFTP Updater Support](https://wordpress.org/plugins/ssh-sftp-updater-support/) plugin. Command: `$ ssh-keygen -b 4096 -t rsa -N '' -C "your_email@example.com" -f ~/.ssh/wordpress_rsa`. This way you don't need SFTP support with libssh2 and you can dismiss ftp build configuration from PHP.
-7. Add this public key pair for the `authorized_keys` file too: `$ cat ~/.ssh/wordpress_rsa.pub >> ~/.ssh/authorized_keys`
+1. 1GB Ram
+2. 20GB disk size (preferably fixed size in virtual machines)
+3. Docker Client
+4. Systemd
+5. Docker-compose (the script tries to install it if it's not found)
+6. Place your personal SSH public key in `~/.ssh/authorized_keys` file on your HOST
 
 ## Installation
 
-Basic install script provided. Run only `./install.sh` and follow the instructions in the script! You doesn't even need to clone this repo, just only download this script to your host and run it if you wish!
+Basic install script provided. Run only `./install.sh` and follow the instructions in the script! You doesn't even need to clone this repo (the script will do it anyway), just only download this file to your host and run it if you wish!
 
 ```
 $ curl -L https://raw.github.com/DJviolin/Lemp/master/install.sh > $HOME/install.sh
