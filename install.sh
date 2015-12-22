@@ -19,14 +19,14 @@ mkdir -p $HOME/bin
 export PATH="$HOME/bin:$PATH"
 if hash docker-compose 2>/dev/null; then
   echo -e "\nDocker-compose already installed on your system, skipping step & verifying version:"
-  echo -e "  "; docker-compose -v;
-  echo -e "  Install path: "; which docker-compose;
+  echo -e "  `docker-compose -v`"
+  echo -e "Install path:\n  `which docker-compose`"
 else
   curl -L https://dl.bintray.com/docker-compose/master/docker-compose-`uname -s`-`uname -m` > $HOME/bin/docker-compose
   chmod +x $HOME/bin/docker-compose
   echo -e "\nDocker-compose installed, verifying version:"
-  echo -e "  "; docker-compose -v;
-  echo -e "  Install path: "; which docker-compose;
+  echo -e "  `docker-compose -v`"
+  echo -e "Install path:\n  `which docker-compose`"
 fi
 
 echo -e "\nCreating folder structure:"
