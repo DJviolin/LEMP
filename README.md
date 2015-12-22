@@ -13,10 +13,11 @@ Nginx will be rebuilt from source soon.
 1. Linux
 2. 1GB Ram
 3. 20GB disk size (preferably fixed size in virtual machines)
-4. Docker Client
-5. Systemd
-6. Docker-compose (the script tries to install it if it's not found)
-7. Place your personal SSH public key in `~/.ssh/authorized_keys` file on your HOST
+4. Git
+5. Docker Client
+6. Systemd
+7. Docker-compose (the script tries to install it if it's not found)
+8. Place your personal SSH public key in `~/.ssh/authorized_keys` file on your HOST
 
 ## Installation
 
