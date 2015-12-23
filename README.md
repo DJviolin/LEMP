@@ -19,7 +19,17 @@ Nginx will be rebuilt from [source](https://www.nginx.com/resources/wiki/start/t
 7. Docker-compose
 8. Place your personal SSH public key in `~/.ssh/authorized_keys` file on your HOST
 
-If you happens to be a `CoreOS` user and you want to install `docker-compose`, you can install it without any superuser access by the following way. The following method will install from the Nightly release channel:
+If you happens to be a `CoreOS` user and you want to install `docker-compose`, you can install it with superuser access. This will install it from the stable channel:
+
+```
+$ sudo su
+$ mkdir -p /opt/bin
+$ curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /opt/bin/docker-compose
+$ chmod +x /opt/bin/docker-compose
+$ exit
+```
+
+Or without any superuser access. this will install it from the Nightly channel:
 
 ```
 # Removing symlink from /usr/share/skel/.bashrc in cave man style
@@ -33,16 +43,6 @@ $ curl -L https://dl.bintray.com/docker-compose/master/docker-compose-`uname -s`
 $ chmod +x $HOME/bin/docker-compose
 # Reloading .bashrc without opening a new bash instance
 $ source $HOME/.bashrc
-```
-
-Or with a simple method with superuser access. This will install it from the stable channel:
-
-```
-$ sudo su
-$ mkdir -p /opt/bin
-$ curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /opt/bin/docker-compose
-$ chmod +x /opt/bin/docker-compose
-$ exit
 ```
 
 ## Installation
