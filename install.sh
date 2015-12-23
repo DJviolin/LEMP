@@ -86,7 +86,6 @@ php:
   volumes_from:
     - ssh
     - mariadb
-    - phpmyadmin
 nginx:
   build: ./nginx
   container_name: lemp_nginx
