@@ -38,10 +38,10 @@ $ source $HOME/.bashrc
 Or with a simple method with superuser access. This will install it from the stable channel:
 
 ```
-sudo su
-curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /opt/bin/docker-compose
-chmod +x /opt/bin/docker-compose
-exit
+$ sudo su
+$ curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /opt/bin/docker-compose
+$ chmod +x /opt/bin/docker-compose
+$ exit
 ```
 
 ## Installation
