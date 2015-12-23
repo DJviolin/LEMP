@@ -24,6 +24,11 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 RUN usermod -aG www-data nginx
 ### End of Nginx setup
 
+### Start of Nginx WEBSERVER setup
+RUN mkdir -p /var/www \
+    && chown -R www-data:www-data /var/www
+### End of Nginx WEBSERVER setup
+
 RUN rm -rf /var/lib/apt/lists/*
 
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

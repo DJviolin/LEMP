@@ -59,8 +59,8 @@ cadvisor:
 ssh:
   build: ./ssh
   container_name: lemp_ssh
-  ports:
-    - "2222:22"
+  #ports:
+  #  - "2222:22"
   volumes:
     - $INSTALL_DIR/www/:/var/www/:rw
     - $HOME/.ssh/authorized_keys:/root/.ssh/authorized_keys:ro
@@ -71,7 +71,7 @@ phpmyadmin:
     - ssh
   volumes:
     - /var/www/phpmyadmin
-    - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:ro
+    - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
 mariadb:
   build: ./mariadb
   container_name: lemp_mariadb
@@ -104,6 +104,7 @@ nginx:
   ports:
     - "8080:80"
     - "8081:443"
+    - "8082:22"
   volumes:
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
