@@ -51,7 +51,7 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 RUN groupadd core && \
     useradd core -g core -u 500
 # Add permissions to shared volumes
-RUN usermod -aG 500 root
+RUN usermod -aG core root
 
 RUN rm -rf /var/lib/apt/lists/*
 
