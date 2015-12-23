@@ -75,7 +75,7 @@ Stop the systemd service with: `$ cd $HOME/server/lemp && ./service-stop.sh`
 
 ## Docker-compose installation on CoreOS
 
-If you happens to be a `CoreOS` user and you want to install `docker-compose`, you can install it with superuser access. This will install it from the stable channel:
+If you happens to be a `CoreOS` user and you want to install `docker-compose`, you can install it with superuser access:
 
 ```
 $ sudo su
@@ -85,7 +85,7 @@ $ chmod +x /opt/bin/docker-compose
 $ exit
 ```
 
-Or without any superuser access. This will install it from the Nightly channel:
+Or without any superuser access, from the nightly release channel:
 
 ```
 # Removing symlink from /usr/share/skel/.bashrc in cave man style
