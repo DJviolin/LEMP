@@ -1,4 +1,4 @@
-# LEMP stack built on Docker for CoreOS hosts
+# LEMP stack built on Docker
 
 Nginx + PHP-FPM 7 webserver through FastCGI with microcaching + MariaDB + included PhpMyAdmin, cAdvisor, SSH!
 
