@@ -6,14 +6,6 @@ set -e
 read -e -p "Enter the path to the install dir (or hit enter for default path): " -i "$HOME/server" INSTALL_DIR
 echo $INSTALL_DIR
 
-#echo -e "\nAre you sure you want to continue the installation of the DJviolin/LEMP stack (y/n)? "
-#read answer
-#if echo "$answer" | grep -iq "^y" ;then
-#  echo "Continue installation...";
-#else
-#  echo "Exiting..."; exit 1;
-#fi
-
 echo -e "\nCreating folder structure:"
 mkdir -p $INSTALL_DIR/mysql $INSTALL_DIR/sqlbackup $INSTALL_DIR/lemp $INSTALL_DIR/www
 echo -e "\
@@ -24,7 +16,6 @@ echo -e "\
 Done!"
 
 if test "$(ls -A "$INSTALL_DIR/lemp")"; then
-  #echo -e "\n$INSTALL_DIR/lemp directory is not empty!\n\nYou have to remove everything from here with\n\"$ rm -rf $INSTALL_DIR/lemp/\" command and try again to run this script!\n\nScript failed to run. Exiting..."
   echo -e "\n\"$INSTALL_DIR/lemp\" directory is not empty!\nYou have to remove everything from here to continue!\nRemove \"$INSTALL_DIR/lemp\" directory (y/n)?"
   read answer
   if echo "$answer" | grep -iq "^y" ;then
