@@ -14,31 +14,6 @@ else
     echo "Exiting..."; exit 1;
 fi
 
-echo -e "\nInstalling docker-compose from GitHub Master release channel:\n(For non-Nightly, Stable releases please visit their official GitHub page)"
-if hash docker-compose 2>/dev/null; then
-  echo -e "\nDocker-compose already installed on your system, skipping step & verifying version:"
-  echo -n "  "; docker-compose -v
-  echo -e "Install path:\n  `which docker-compose`"
-else
-  mkdir -p $HOME/bin
-    # Removing symlink from /usr/share/skel/.bashrc in cave man style
-    cp $HOME/.bashrc $HOME/.bashrc.new
-    rm $HOME/.bashrc
-    mv $HOME/.bashrc.new $HOME/.bashrc
-    chmod a+x $HOME/.bashrc
-    # Echoing docker-compose PATH variable
-    echo -n 'export PATH="$PATH:$HOME/bin"' >> $HOME/.bashrc
-    # Refreshing env variables, without replacing the current bash process
-    # Because a shell script is run in its own shell instance, verifying will not work here
-    source $HOME/.bashrc
-  curl -L https://dl.bintray.com/docker-compose/master/docker-compose-`uname -s`-`uname -m` > $HOME/bin/docker-compose
-  chmod +x $HOME/bin/docker-compose
-  echo -e "\nDocker-compose installed!"
-  #echo -e "\nDocker-compose installed, verifying version:"
-  #echo -n "  "; docker-compose -v
-  #echo -e "Install path:\n  `which docker-compose`"
-fi
-
 echo -e "\nCreating folder structure:"
 mkdir -p $INSTALL_DIR/mysql $INSTALL_DIR/sqlbackup $INSTALL_DIR/lemp $INSTALL_DIR/www
 echo -e "\
