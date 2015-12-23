@@ -49,9 +49,17 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 
 # Add the core's UID 500 to the container
 RUN groupadd core -g 500 \
-#    && useradd core -g core -u 500 \
-    && useradd -M -u 500 -g 500 core \
+    && useradd -u 500 -g 500 core \
     && usermod -a -G core core
+RUN mkdir -p /home/core \
+    && chown -R core:core /home/core \
+    && chmod go-w /home/core \
+    && echo -e '\ncd /home/core' >> /home/core/.bashrc \
+    && mkdir -p /home/core/.ssh \
+    && ssh-keygen -b 4096 -t rsa -N '' -f /home/core/.ssh/wp_rsa \
+    && cat /home/core/.ssh/wp_rsa.pub >> /home/core/.ssh/authorized_keys \
+    && chmod 700 /home/core/.ssh \
+    && chmod 600 /home/core/.ssh/authorized_keys
 # Add permissions to shared volumes
 RUN usermod -aG core root
 
