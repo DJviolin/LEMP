@@ -144,7 +144,7 @@ Conflicts=lemp.service
 EOF
 cat $INSTALL_DIR/lemp/lemp.service
 
-echo -e "\n\
+echo -e "\
 # Set MySQL Root Password\n\
 MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $INSTALL_DIR/lemp/mariadb/mariadb.env
 cat $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
