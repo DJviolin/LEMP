@@ -62,8 +62,8 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 ### End of optimizations
 
 #RUN cd /etc/ssh && stat -c "%a %n" *
-#RUN /etc/group
-#RUN /etc/passwd
+#RUN cat /etc/group
+#RUN cat /etc/passwd
 
 # Add the core's UID 500 to the container
 RUN groupadd core && \
