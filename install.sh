@@ -34,7 +34,7 @@ else
   echo -e "\nCloning git repo into \"$INSTALL_DIR/lemp\":"
   cd $INSTALL_DIR/lemp
   git clone https://github.com/DJviolin/LEMP.git $INSTALL_DIR/lemp
-  echo -e "\nShowing working directory..."
+  echo -e "Showing working directory..."
   ls -al $INSTALL_DIR/lemp
 fi
 
