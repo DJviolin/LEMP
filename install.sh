@@ -27,7 +27,7 @@ else
     echo -n 'export PATH="$PATH:$HOME/bin"' >> $HOME/.bashrc
     # Refreshing env variables, without replacing the current bash process, but this script stays in it's own process, so verify will not work here
     source $HOME/.bashrc
-    # Fixes this script also got the env refresh
+    # Fixes that this script will also get the env refresh
     #
   curl -L https://dl.bintray.com/docker-compose/master/docker-compose-`uname -s`-`uname -m` > $HOME/bin/docker-compose
   chmod +x $HOME/bin/docker-compose
