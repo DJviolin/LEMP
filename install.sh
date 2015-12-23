@@ -21,7 +21,7 @@ if hash docker-compose 2>/dev/null; then
   echo -e "Install path:\n  `which docker-compose`"
 else
   mkdir -p $HOME/bin
-    # Removing symlink to /usr/share/skel/.bashrc from .bashrc
+    # Removing symlink from /usr/share/skel/.bashrc
     cp $HOME/.bashrc $HOME/.bashrc.new
     rm $HOME/.bashrc
     mv $HOME/.bashrc.new $HOME/.bashrc
