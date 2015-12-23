@@ -146,5 +146,5 @@ cat $INSTALL_DIR/mysql-root-password.txt
 
 cd $HOME
 
-echo -e "\nLEMP stack has successfully built!\n\nRun docker-compose with:\n  $ docker-compose build $INSTALL_DIR/lemp\nRun the systemd service with:\n  $ cd $INSTALL_DIR/lemp && ./service-start.sh\nStop the systemd service with:\n  $ cd $INSTALL_DIR/lemp && ./service-stop.sh"
+echo -e "\nLEMP stack has successfully built!\n\nRun docker-compose with:\n  $ docker-compose --file $INSTALL_DIR/lemp/docker-compose.yml build\nRun the systemd service with:\n  $ cd $INSTALL_DIR/lemp && ./service-start.sh\nStop the systemd service with:\n  $ cd $INSTALL_DIR/lemp && ./service-stop.sh"
 echo -e "\nAll done! Exiting..."
