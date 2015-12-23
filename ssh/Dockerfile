@@ -32,13 +32,6 @@ RUN echo "export VISIBLE=now" >> /etc/profile \
     && echo -e '\ncd /root' >> /root/.bashrc
 ### End of OpenSSH setup
 
-RUN cd /etc/ssh && stat -c "%a %n" * \
-    && /etc/group \
-    && /etc/passwd
-#RUN chmod 0700 /etc/ssh/ && chmod 0700 /root/.ssh/ \
-#    && chmod 0640 /etc/ssh/ssh_host_* && chmod 0640 /root/.ssh/ssh_host_* \
-#    && chmod 0644 /root/.ssh/authorized_keys
-
 ### Start of Nginx WEBSERVER setup
 RUN mkdir -p /var/www
 ### End of Nginx WEBSERVER setup
