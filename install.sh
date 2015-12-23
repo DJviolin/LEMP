@@ -63,7 +63,7 @@ ssh:
     - "2222:22"
   volumes:
     - $INSTALL_DIR/www/:/var/www/:rw
-    - $HOME/.ssh/:/root/.ssh/:ro
+    #- $HOME/.ssh/:/root/.ssh/:ro
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -131,6 +131,7 @@ ExecStartPre=-/bin/bash -c '/usr/bin/tar -zcvf $INSTALL_DIR/sqlbackup/sqlbackup_
 ExecStartPre=-/opt/bin/docker-compose --file $INSTALL_DIR/lemp/docker-compose.yml kill
 ExecStartPre=-/opt/bin/docker-compose --file $INSTALL_DIR/lemp/docker-compose.yml rm --force
 ExecStart=/opt/bin/docker-compose --file $INSTALL_DIR/lemp/docker-compose.yml up -d --force-recreate
+ExecStartPost=/usr/bin/docker cp \$HOME/.ssh/authorized_keys lemp_ssh:\$HOME/.ssh/authorized_keys
 ExecStartPost=/usr/bin/etcdctl set /LEMP Running
 ExecStop=/opt/bin/docker-compose --file $INSTALL_DIR/lemp/docker-compose.yml stop
 ExecStopPost=/usr/bin/etcdctl rm /LEMP
