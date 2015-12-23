@@ -22,16 +22,16 @@ Nginx will be rebuilt from [source](https://www.nginx.com/resources/wiki/start/t
 If you happens to be a `CoreOS` user and you want to install `docker-compose`, you can install it without any superuser access by the following way. The following method will install from the Nightly release channel:
 
 ```
-\# Removing symlink from /usr/share/skel/.bashrc in cave man style
+# Removing symlink from /usr/share/skel/.bashrc in cave man style
 $ cp $HOME/.bashrc $HOME/.bashrc.new
 $ rm $HOME/.bashrc
 $ mv $HOME/.bashrc.new $HOME/.bashrc
 $ chmod a+x $HOME/.bashrc
-\# Echoing docker-compose PATH variable
+# Echoing docker-compose PATH variable
 $ echo -e 'export PATH="$PATH:$HOME/bin"' >> $HOME/.bashrc
 $ curl -L https://dl.bintray.com/docker-compose/master/docker-compose-`uname -s`-`uname -m` > $HOME/bin/docker-compose
 $ chmod +x $HOME/bin/docker-compose
-\# Reloading .bashrc without opening a new bash instance
+# Reloading .bashrc without opening a new bash instance
 $ source $HOME/.bashrc
 ```
 
