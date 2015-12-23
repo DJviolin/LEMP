@@ -146,7 +146,8 @@ cat $INSTALL_DIR/lemp/lemp.service
 
 echo -e "\n\
 # Set MySQL Root Password\n\
-MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
+MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $INSTALL_DIR/lemp/mariadb/mariadb.env
+cat $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
 cat $INSTALL_DIR/mysql-root-password.txt
 
 cd $HOME
