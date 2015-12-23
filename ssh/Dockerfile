@@ -48,8 +48,10 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 ### End of optimizations
 
 # Add the core's UID 500 to the container
-RUN groupadd core && \
-    useradd core -g core -u 500
+RUN groupadd core -g 500 \
+#    && useradd core -g core -u 500 \
+    && useradd -M -u 500 -g 500 core \
+    && usermod -a -G core core
 # Add permissions to shared volumes
 RUN usermod -aG core root
 
