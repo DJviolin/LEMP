@@ -93,8 +93,10 @@ RUN cd /usr/src/php \
         # SAPI modules \
         #--disable-cli \
         --enable-fpm \
-        --with-fpm-user=www-data \
-        --with-fpm-group=www-data \
+        #--with-fpm-user=www-data \
+        #--with-fpm-group=www-data \
+        --with-fpm-user=core \
+        --with-fpm-group=core \
         --disable-cgi \
         # General settings \
         --with-config-file-path=/usr/local/php7/etc \

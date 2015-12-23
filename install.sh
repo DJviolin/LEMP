@@ -63,14 +63,6 @@ ssh:
   #  - "2222:22"
   #volumes:
   #  - $HOME/.ssh/authorized_keys:/root/.ssh/authorized_keys:ro
-phpmyadmin:
-  build: ./phpmyadmin
-  container_name: lemp_phpmyadmin
-  links:
-    - ssh
-  volumes:
-    - /var/www/phpmyadmin
-    - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
 mariadb:
   build: ./mariadb
   container_name: lemp_mariadb
@@ -113,6 +105,14 @@ nginx:
     - $INSTALL_DIR/www/:/var/www/:rw
   volumes_from:
     - php
+phpmyadmin:
+  build: ./phpmyadmin
+  container_name: lemp_phpmyadmin
+  links:
+    - nginx
+  volumes:
+    - /var/www/phpmyadmin
+    - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
 EOF
 cat $INSTALL_DIR/lemp/docker-compose.yml
 
