@@ -61,9 +61,8 @@ ssh:
   container_name: lemp_ssh
   #ports:
   #  - "2222:22"
-  volumes:
-    - $INSTALL_DIR/www/:/var/www/:rw
-    - $HOME/.ssh/authorized_keys:/root/.ssh/authorized_keys:ro
+  #volumes:
+  #  - $HOME/.ssh/authorized_keys:/root/.ssh/authorized_keys:ro
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -111,6 +110,7 @@ nginx:
     - ./nginx/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
     - ./nginx/etc/nginx/conf.d/php.conf:/etc/nginx/conf.d/php.conf:ro
     - ./nginx/etc/nginx/conf.d/cert/:/etc/nginx/conf.d/cert/:ro
+    - $INSTALL_DIR/www/:/var/www/:rw
   volumes_from:
     - php
 EOF
