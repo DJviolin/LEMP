@@ -15,17 +15,24 @@ else
 fi
 
 echo -e "\nInstalling docker-compose from GitHub Master release channel:\n(For non-Nightly, Stable releases please visit their official GitHub page)"
-mkdir -p $HOME/bin
-export PATH="$HOME/bin:$PATH"
 if hash docker-compose 2>/dev/null; then
   echo -e "\nDocker-compose already installed on your system, skipping step & verifying version:"
-  echo -e "  `docker-compose -v`"
+  echo -n "  "; docker-compose -v
   echo -e "Install path:\n  `which docker-compose`"
 else
+  mkdir -p $HOME/bin
+    cp $HOME/.bashrc $HOME/.bashrc.new
+    rm $HOME/.bashrc
+    mv $HOME/.bashrc.new $HOME/.bashrc
+    echo -n 'export PATH="$PATH:$HOME/bin"' >> $HOME/.bashrc
+    # Refreshing env variables, without replacing the current bash process, but this script stays in it's own process, so verify will not work here
+    source $HOME/.bashrc
+    # Fixes this script also got the env refresh
+    #
   curl -L https://dl.bintray.com/docker-compose/master/docker-compose-`uname -s`-`uname -m` > $HOME/bin/docker-compose
   chmod +x $HOME/bin/docker-compose
   echo -e "\nDocker-compose installed, verifying version:"
-  echo -e "  `docker-compose -v`"
+  echo -n "  "; docker-compose -v
   echo -e "Install path:\n  `which docker-compose`"
 fi
 
