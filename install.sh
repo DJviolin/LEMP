@@ -25,13 +25,19 @@ Done!"
 
 if test "$(ls -A "$INSTALL_DIR/lemp")"; then
   #echo -e "\n$INSTALL_DIR/lemp directory is not empty!\n\nYou have to remove everything from here with\n\"$ rm -rf $INSTALL_DIR/lemp/\" command and try again to run this script!\n\nScript failed to run. Exiting..."
-  echo -e "\n$INSTALL_DIR/lemp directory is not empty!\nYou have to remove everything from here to continue!\nRemoving $INSTALL_DIR/lemp directory (y/n)?"
+  echo -e "\n\"$INSTALL_DIR/lemp\" directory is not empty!\nYou have to remove everything from here to continue!\nRemove \"$INSTALL_DIR/lemp\" directory (y/n)?"
   read answer
   if echo "$answer" | grep -iq "^y" ;then
     rm -rf $INSTALL_DIR/lemp/
-    echo "$INSTALL_DIR/lemp is removed, continue installation...";
+    echo -e "\"$INSTALL_DIR/lemp\" is removed, continue installation...";
+    mkdir -p $INSTALL_DIR/lemp
+    echo -e "\nCloning git repo into \"$INSTALL_DIR/lemp\":"
+    cd $INSTALL_DIR/lemp
+    git clone https://github.com/DJviolin/LEMP.git $INSTALL_DIR/lemp
+    echo -e "\nShowing working directory..."
+    ls -al $INSTALL_DIR/lemp
   else
-    echo "Script aborted to run.\nExiting..."; exit 1;
+    echo -e "\nScript aborted to run\nExiting..."; exit 1;
   fi
 else
   echo -e "\nCloning git repo into \"$INSTALL_DIR/lemp\":"
