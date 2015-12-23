@@ -15,7 +15,8 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y --force-yes install \
         curl
 
-RUN curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz -o /var/www/phpMyAdmin-latest-all-languages.tar.gz \
+RUN mkdir -p /var/www \
+    && curl --location https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz -o /var/www/phpMyAdmin-latest-all-languages.tar.gz \
     && tar -xzf /var/www/phpMyAdmin-latest-all-languages.tar.gz -C /var/www \
     && rm -rf /var/www/phpMyAdmin-latest-all-languages.tar.gz \
     && mv /var/www/phpMyAdmin* /var/www/phpmyadmin \
