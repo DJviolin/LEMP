@@ -35,7 +35,7 @@ The script will create the `docker-compose.yml` and `lemp.service` files inside 
 
 ## Usage
 
-Run docker-compose with: `$ docker-compose build $HOME/server/lemp`
+Run docker-compose with: `$ docker-compose --file $HOME/server/lemp/docker-compose.yml build`
 
 Run the systemd service with: `$ cd $HOME/server/lemp && ./service-start.sh`
 
