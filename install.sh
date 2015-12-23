@@ -112,6 +112,8 @@ phpmyadmin:
   volumes:
     - /var/www/phpmyadmin
     - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
+  volumes_from:
+    - nginx
 EOF
 cat $INSTALL_DIR/lemp/docker-compose.yml
 
