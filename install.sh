@@ -9,9 +9,9 @@ echo $INSTALL_DIR
 echo -e "\nAre you sure you want to continue the installation of the DJviolin/LEMP stack (y/n)? "
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-    echo "Continue installation...";
+  echo "Continue installation...";
 else
-    echo "Exiting..."; exit 1;
+  echo "Exiting..."; exit 1;
 fi
 
 echo -e "\nCreating folder structure:"

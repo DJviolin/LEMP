@@ -29,7 +29,7 @@ $ chmod +x /opt/bin/docker-compose
 $ exit
 ```
 
-Or without any superuser access. this will install it from the Nightly channel:
+Or without any superuser access. This will install it from the Nightly channel:
 
 ```
 # Removing symlink from /usr/share/skel/.bashrc in cave man style
