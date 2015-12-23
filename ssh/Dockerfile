@@ -52,18 +52,7 @@ root            hard    nofile            500000\n\
 root            soft    nofile            500000" >> /etc/security/limits.conf \
     && echo -e "session required pam_limits.so" >> /etc/pam.d/common-session \
     && echo -e "fs.file-max = 2097152" >> /etc/sysctl.conf
-#RUN sysctl -p
-# Verifying new limits: max limit of file descriptors && Hard Limit && Soft Limit && Check limit for other user && Check limits of a running process
-#RUN cat /proc/sys/fs/file-max \
-#    && ulimit -Hn \
-#    && ulimit -Sn \
-#    && su - www-data -c 'ulimit -aHS' -s '/bin/bash' \
-#    && ps aux | grep sshd
 ### End of optimizations
-
-#RUN cd /etc/ssh && stat -c "%a %n" *
-#RUN cat /etc/group
-#RUN cat /etc/passwd
 
 # Add the core's UID 500 to the container
 RUN groupadd core && \

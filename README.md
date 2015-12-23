@@ -224,3 +224,19 @@ echo "uid is ${UID}"\n\
 echo "user is ${USER}"\n\
 echo "username is ${USERNAME}"' >> /home/root/sutest.sh
 ```
+
+```
+#RUN cd /etc/ssh && stat -c "%a %n" *
+#RUN cat /etc/group
+#RUN cat /etc/passwd
+```
+
+```
+#RUN sysctl -p
+# Verifying new limits: max limit of file descriptors && Hard Limit && Soft Limit && Check limit for other user && Check limits of a running process
+#RUN cat /proc/sys/fs/file-max \
+#    && ulimit -Hn \
+#    && ulimit -Sn \
+#    && su - www-data -c 'ulimit -aHS' -s '/bin/bash' \
+#    && ps aux | grep sshd
+```
