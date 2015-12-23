@@ -21,9 +21,11 @@ if hash docker-compose 2>/dev/null; then
   echo -e "Install path:\n  `which docker-compose`"
 else
   mkdir -p $HOME/bin
+    # Removing symlink to /usr/share/skel/.bashrc from .bashrc
     cp $HOME/.bashrc $HOME/.bashrc.new
     rm $HOME/.bashrc
     mv $HOME/.bashrc.new $HOME/.bashrc
+    # Echoing docker-compose PATH variable
     echo -n 'export PATH="$PATH:$HOME/bin"' >> $HOME/.bashrc
     # Refreshing env variables, without replacing the current bash process, but this script stays in it's own process, so verify will not work here
     source $HOME/.bashrc
