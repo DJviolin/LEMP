@@ -17,24 +17,20 @@ deb http://security.debian.org stable/updates main contrib non-free\n\
 deb-src http://security.debian.org stable/updates main contrib non-free\n\
 deb http://httpredir.debian.org/debian stable-updates main contrib non-free\n\
 deb-src http://httpredir.debian.org/debian stable-updates main contrib non-free" > /etc/apt/sources.list
-RUN apt-get -y update && apt-get -y dist-upgrade \
-    && apt-get -y --force-yes install \
-        dialog \
-        apt-utils \
-        openssh-server
+RUN apt-get -y update && apt-get -y dist-upgrade
+    #&& apt-get -y --force-yes install \
+        #openssh-server \
+        #dialog \
+        #apt-utils \
 
 ### Start of OpenSSH setup
-RUN mkdir -p /var/run/sshd \
-    && mkdir -p /root/.ssh \
-    && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-ENV NOTVISIBLE "in users profile"
-RUN echo "export VISIBLE=now" >> /etc/profile \
-    && echo -e '\ncd /root' >> /root/.bashrc
+#RUN mkdir -p /var/run/sshd \
+#    && mkdir -p /root/.ssh \
+#    && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+#ENV NOTVISIBLE "in users profile"
+#RUN echo "export VISIBLE=now" >> /etc/profile \
+#    && echo -e '\ncd /root' >> /root/.bashrc
 ### End of OpenSSH setup
-
-### Start of Nginx WEBSERVER setup
-#RUN mkdir -p /var/www
-### End of Nginx WEBSERVER setup
 
 ### Start of optimizations
 # https://easyengine.io/tutorials/linux/increase-open-files-limit/
@@ -61,10 +57,16 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 #    && chmod 644 /home/core/.ssh/authorized_keys \
 #    && chmod 600 /home/core/.ssh/wp_rsa \
 #    && chown -R core:core /home/core
-    #&& chown www-data:www-data /home/core/.ssh/wp_rsa*
 # Add permissions to shared volumes
 #RUN usermod -aG core root
 
+### Start of Nginx WEBSERVER setup
+RUN mkdir -p /var/www \
+    && chown -R www-data:www-data /var/www \
+    && chmod g+s /var/www
+### End of Nginx WEBSERVER setup
+
 RUN rm -rf /var/lib/apt/lists/*
 
-CMD ["/usr/sbin/sshd", "-D"]
+#CMD ["/usr/sbin/sshd", "-D"]
+CMD ["tail", "-f", "/dev/null"]

@@ -155,6 +155,7 @@ RUN cd /usr/src/php \
         #--with-recode \
         #--with-zlib \
     && echo -e "Configuration done!"
+    #http://php.net/manual/en/intro.phar.php - Turn off PHAR
 
 RUN cd /usr/src/php \
     && make -j"$(nproc)" \

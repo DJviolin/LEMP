@@ -50,25 +50,31 @@ cadvisor:
   image: google/cadvisor:latest
   container_name: lemp_cadvisor
   ports:
-    - "8083:8080"
+    - "8082:8080"
   volumes:
     - "/:/rootfs:ro"
     - "/var/run:/var/run:rw"
     - "/sys:/sys:ro"
     - "/var/lib/docker/:/var/lib/docker:ro"
-ssh:
-  build: ./ssh
-  container_name: lemp_ssh
-  #ports:
-  #  - "2222:22"
-  #volumes:
-  #  - $HOME/.ssh/authorized_keys:/root/.ssh/authorized_keys:ro
+base:
+  build: ./base
+  container_name: lemp_base
+  volumes:
+  - $INSTALL_DIR/www/:/var/www/:rw
+phpmyadmin:
+  build: ./phpmyadmin
+  container_name: lemp_phpmyadmin
+  links:
+    - base
+  volumes:
+    - /var/www/phpmyadmin
+    - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
 mariadb:
   build: ./mariadb
   container_name: lemp_mariadb
   env_file: ./mariadb/mariadb.env
   links:
-    - ssh
+    - base
   volumes:
     - /var/run/mysqld
     - $INSTALL_DIR/mysql/:/var/lib/mysql/:rw
@@ -77,43 +83,32 @@ php:
   build: ./php
   container_name: lemp_php
   links:
-    - ssh
+    - base
   volumes:
     - /var/run/php-fpm
     - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
     - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
     - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
   volumes_from:
-    - ssh
+    - base
+    - phpmyadmin
     - mariadb
 nginx:
   build: ./nginx
   container_name: lemp_nginx
   links:
-    - ssh
+    - base
   ports:
     - "8080:80"
     - "8081:443"
-    - "8082:22"
   volumes:
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     - ./nginx/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
     - ./nginx/etc/nginx/conf.d/php.conf:/etc/nginx/conf.d/php.conf:ro
     - ./nginx/etc/nginx/conf.d/cert/:/etc/nginx/conf.d/cert/:ro
-    - $INSTALL_DIR/www/:/var/www/:rw
   volumes_from:
     - php
-phpmyadmin:
-  build: ./phpmyadmin
-  container_name: lemp_phpmyadmin
-  links:
-    - nginx
-  volumes:
-    - /var/www/phpmyadmin
-    - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
-  volumes_from:
-    - nginx
 EOF
 cat $INSTALL_DIR/lemp/docker-compose.yml
 
