@@ -6,8 +6,8 @@ FROM lemp_ssh:latest
 MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="Nginx" Vendor="Istvan Lantos" Version="1.0"
 
-RUN echo -e \
-"deb http://nginx.org/packages/mainline/debian/ jessie nginx\n\
+RUN echo -e "\
+deb http://nginx.org/packages/mainline/debian/ jessie nginx\n\
 deb-src http://nginx.org/packages/mainline/debian/ jessie nginx" > /etc/apt/sources.list.d/nginx.list
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
 RUN apt-get -y update && apt-get -y dist-upgrade \
