@@ -21,13 +21,13 @@ RUN mkdir -p /usr/share/nginx/cache
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # Allow Nginx to access /var/run/php-fpm/php-fpm.sock
-#RUN usermod -aG www-data nginx
-RUN usermod -aG core nginx
+RUN usermod -aG www-data nginx
 ### End of Nginx setup
 
 ### Start of Nginx WEBSERVER setup
 RUN mkdir -p /var/www \
-    && chown -R core:core /var/www
+    && chown -R www-data:www-data /var/www \
+    && chmod g+s /var/www
 ### End of Nginx WEBSERVER setup
 
 RUN rm -rf /var/lib/apt/lists/*

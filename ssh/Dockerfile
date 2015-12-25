@@ -10,8 +10,8 @@ ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
 RUN ln -sf /bin/bash /bin/sh && ln -sf /bin/bash /bin/sh.distrib
 
-RUN echo -e \
-"deb http://httpredir.debian.org/debian stable main contrib non-free\n\
+RUN echo -e "\
+deb http://httpredir.debian.org/debian stable main contrib non-free\n\
 deb-src http://httpredir.debian.org/debian stable main contrib non-free\n\
 deb http://security.debian.org stable/updates main contrib non-free\n\
 deb-src http://security.debian.org stable/updates main contrib non-free\n\
@@ -48,22 +48,22 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 ### End of optimizations
 
 # Add the core's UID 500 to the container
-RUN groupadd core -g 500 \
-    && useradd -u 500 -g 500 core \
-    && usermod -a -G core core
-RUN mkdir -p /home/core \
-    && chmod go-w /home/core \
-    && echo -e '\ncd /home/core' >> /home/core/.bashrc \
-    && mkdir -p /home/core/.ssh \
-    && ssh-keygen -b 4096 -t rsa -N '' -f /home/core/.ssh/wp_rsa \
-    && cat /home/core/.ssh/wp_rsa.pub >> /home/core/.ssh/authorized_keys \
-    && chmod 700 /home/core/.ssh \
-    && chmod 644 /home/core/.ssh/authorized_keys \
-    && chmod 600 /home/core/.ssh/wp_rsa \
-    && chown -R core:core /home/core
+#RUN groupadd core -g 500 \
+#    && useradd -u 500 -g 500 core \
+#    && usermod -a -G core core
+#RUN mkdir -p /home/core \
+#    && chmod go-w /home/core \
+#    && echo -e '\ncd /home/core' >> /home/core/.bashrc \
+#    && mkdir -p /home/core/.ssh \
+#    && ssh-keygen -b 4096 -t rsa -N '' -f /home/core/.ssh/wp_rsa \
+#    && cat /home/core/.ssh/wp_rsa.pub >> /home/core/.ssh/authorized_keys \
+#    && chmod 700 /home/core/.ssh \
+#    && chmod 644 /home/core/.ssh/authorized_keys \
+#    && chmod 600 /home/core/.ssh/wp_rsa \
+#    && chown -R core:core /home/core
     #&& chown www-data:www-data /home/core/.ssh/wp_rsa*
 # Add permissions to shared volumes
-RUN usermod -aG core root
+#RUN usermod -aG core root
 
 RUN rm -rf /var/lib/apt/lists/*
 
