@@ -7,7 +7,6 @@ MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="MariaDB" Vendor="Istvan Lantos" Version="1.0"
 
 ENV MARIADB_MAJOR 10.1
-#ENV MARIADB_VERSION 10.1.9+maria-1~jessie
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
@@ -33,7 +32,6 @@ RUN { \
     } | debconf-set-selections \
     && apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y install \
-        #mariadb-server=$MARIADB_VERSION \
         mariadb-server
 
 ### Start of MariaDB setup
