@@ -13,6 +13,7 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y --force-yes install \
         nginx
+        # https://www.nginx.com/blog/deploying-nginx-nginx-plus-docker/
 
 ### Start of Nginx setup
 COPY usr/share/nginx/html/404.html /usr/share/nginx/html/
