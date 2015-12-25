@@ -7,7 +7,7 @@ MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="MariaDB" Vendor="Istvan Lantos" Version="1.0"
 
 ENV MARIADB_MAJOR 10.1
-ENV MARIADB_VERSION 10.1.9+maria-1~jessie
+#ENV MARIADB_VERSION 10.1.9+maria-1~jessie
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
@@ -32,8 +32,9 @@ RUN { \
     echo mariadb-server-$MARIADB_MAJOR mysql-server/root_password_again password 'unused'; \
     } | debconf-set-selections \
     && apt-get -y update && apt-get -y dist-upgrade \
-    && apt-get -y --force-yes install \
-        mariadb-server=$MARIADB_VERSION
+    && apt-get -y install \
+        #mariadb-server=$MARIADB_VERSION \
+        mariadb-server
 
 ### Start of MariaDB setup
 # the "/var/lib/mysql" stuff here is because the mysql-server postinst doesn't have an explicit way to disable the mysql_install_db codepath besides having a database already "configured" (ie, stuff in /var/lib/mysql/mysql)
