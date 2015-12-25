@@ -2,7 +2,7 @@
 #
 # VERSION               1.0.0
 
-FROM lemp_ssh:latest
+FROM lemp_base:latest
 MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="PHP-FPM 7 through FastCGI built from source" Vendor="Istvan Lantos" Version="1.0"
 

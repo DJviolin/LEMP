@@ -7,7 +7,7 @@
 
 # Further config: http://stackoverflow.com/a/21389060/1442219
 
-FROM lemp_ssh:latest
+FROM lemp_base:latest
 MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="PHPMyAdmin" Vendor="Istvan Lantos" Version="1.0"
 
