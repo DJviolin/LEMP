@@ -1,4 +1,4 @@
-# Lanti/DebianSSH
+# Lanti/DebianBase
 #
 # VERSION               1.0.0
 

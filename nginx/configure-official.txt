@@ -3,6 +3,7 @@ built by gcc 4.9.2 (Debian 4.9.2-10)
 built with OpenSSL 1.0.1k 8 Jan 2015
 TLS SNI support enabled
 configure arguments:
+http://nginx.org/en/docs/configure.html
 
 --prefix=/etc/nginx
 --sbin-path=/usr/sbin/nginx
