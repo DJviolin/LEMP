@@ -99,14 +99,15 @@ COPY usr/share/nginx/html/404.html /usr/share/nginx/html/
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
-# Allow Nginx to access /var/run/php-fpm/php-fpm.sock
-RUN usermod -aG www-data nginx
 # This will create the user and set their shell to /bin/false so no one can start an interactive login as this user
-RUN useradd -s /bin/false nginx
+#RUN useradd -s /bin/false nginx
+RUN useradd --system --no-create-home --disabled-login --disabled-password --group nginx 
 #RUN groupadd nginx -g 501 \
 #    && useradd nginx -g nginx -u 501
 #RUN chown -R www-data:www-data /var/www \
 #    && chmod g+s /var/www
+# Allow Nginx to access /var/run/php-fpm/php-fpm.sock
+RUN usermod -aG www-data nginx
 ### End of Nginx setup
 
 ### Start of Nginx WEBSERVER setup
