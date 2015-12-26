@@ -146,14 +146,14 @@ read answer
 if echo "$answer" | grep -iq "^y" ;then
   echo -e "\
 # Set MySQL Root Password\n\
-#MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $INSTALL_DIR/lemp/mariadb/mariadb.env
+MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $INSTALL_DIR/lemp/mariadb/mariadb.env
   cat $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
   cat $INSTALL_DIR/mysql-root-password.txt
 else
   read -e -p "Enter the MySQL root password: " MYSQL_PASS
   echo -e "\
 # Set MySQL Root Password\n\
-#MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > $INSTALL_DIR/lemp/mariadb/mariadb.env
+MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > $INSTALL_DIR/lemp/mariadb/mariadb.env
   cat $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
   cat $INSTALL_DIR/mysql-root-password.txt
 fi
