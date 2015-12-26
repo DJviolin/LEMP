@@ -4,7 +4,7 @@
 
 FROM lemp_base:latest
 MAINTAINER Istvan Lantos <info@lantosistvan.com>
-LABEL Description="Nginx" Vendor="Istvan Lantos" Version="1.0"
+LABEL Description="Nginx built from source" Vendor="Istvan Lantos" Version="1.0"
 
 ENV NGINX_VERSION 1.9.9
 
