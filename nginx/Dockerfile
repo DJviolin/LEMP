@@ -43,6 +43,10 @@ RUN cd /usr/src/nginx \
     && ./configure --help
     && echo -e "Configuration done!"
 
+RUN cd /usr/src/nginx \
+    && make \
+    && make install
+
 ### Start of Nginx setup
 #COPY usr/share/nginx/html/404.html /usr/share/nginx/html/
 #RUN mkdir -p /usr/share/nginx/cache

@@ -161,8 +161,7 @@ RUN cd /usr/src/php \
 RUN cd /usr/src/php \
     && make -j"$(nproc)" \
     && make install \
-    && { find /usr/local/php7/bin /usr/local/php7/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
+    && { find /usr/local/php7/bin /usr/local/php7/sbin -type f -executable -exec strip --strip-all '{}' + || true; }
     && make clean
 
 ### Start of PECL SSH2 install
