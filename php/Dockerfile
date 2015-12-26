@@ -130,6 +130,7 @@ RUN cd /usr/src/php \
         --disable-pdo \
         #--with-pdo-mysql=/usr \
         --without-pdo-sqlite \
+        --disable-phar \
         #--with-pspell \
         #--with-readline \
         --with-recode=/usr \

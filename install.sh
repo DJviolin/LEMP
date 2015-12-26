@@ -141,11 +141,28 @@ Conflicts=lemp.service
 EOF
 cat $INSTALL_DIR/lemp/lemp.service
 
-echo -e "\
+echo -e "\nGenerating MySQL root password!\nBe advised that auto-generating password NOT THE FIRST TIME + already having a MySQL database can CAUSE MISCONFIGURATION errors with already created databases! So the recommended method is to CHOOSE THE NO OPTION and use one password and just STICK WITH IT!\n\nChoose Yes to auto-generate or No to type it manually (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  echo -e "\
+  # Set MySQL Root Password\n\
+  #MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $INSTALL_DIR/lemp/mariadb/mariadb.env
+  cat $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
+  cat $INSTALL_DIR/mysql-root-password.txt
+else
+  read -e -p "Enter the MySQL root password: " MYSQL_PASS
+  echo -e "\
+  # Set MySQL Root Password\n\
+  #MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > $INSTALL_DIR/lemp/mariadb/mariadb.env
+  cat $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
+  cat $INSTALL_DIR/mysql-root-password.txt
+fi
+
+#echo -e "\
 # Set MySQL Root Password\n\
-MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $INSTALL_DIR/lemp/mariadb/mariadb.env
-cat $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
-cat $INSTALL_DIR/mysql-root-password.txt
+#MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $INSTALL_DIR/lemp/mariadb/mariadb.env
+#cat $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
+#cat $INSTALL_DIR/mysql-root-password.txt
 
 cd $HOME
 
