@@ -111,4 +111,5 @@ COPY nginx-entrypoint.sh /
 RUN chmod +x /nginx-entrypoint.sh
 ENTRYPOINT ["/nginx-entrypoint.sh"]
 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+#CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+CMD ["/etc/init.d/nginx", "start"]
