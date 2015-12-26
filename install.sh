@@ -103,7 +103,7 @@ nginx:
     - "8081:443"
   volumes:
     - /var/cache/nginx
-    - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     #- ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     #- ./nginx/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
     #- ./nginx/etc/nginx/conf.d/server.conf:/etc/nginx/conf.d/server.conf:ro
