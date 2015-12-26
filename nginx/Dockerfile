@@ -107,9 +107,5 @@ RUN usermod -aG www-data nginx
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
-#COPY nginx-entrypoint.sh /
-#RUN chmod +x /nginx-entrypoint.sh
-#ENTRYPOINT ["/nginx-entrypoint.sh"]
-
 #CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 CMD ["/usr/sbin/nginx"]
