@@ -15,7 +15,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         make \
         gcc \
         g++ \
-        # Enable "rewrite" option in our Nginx (allows us to do redirect) \
+        # Nginx packages
         openssl \
         libc6-dev \
         libexpat1-dev \
@@ -30,12 +30,18 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
 ### End of DEV environment deps
 
 ### Start of Downloading source files
+# Nginx
 RUN curl -fSL "http://nginx.org/download/$NGINX_VERSION" -o "$NGINX_VERSION" \
     && curl -fSL "http://nginx.org/download/$NGINX_VERSION.asc" -o "$NGINX_VERSION.asc" \
     #&& gpg --verify "$NGINX_VERSION.asc" \
     && mkdir -p /usr/src/nginx \
     && tar -xf "$NGINX_VERSION" -C /usr/src/nginx --strip-components=1 \
     && rm "$NGINX_VERSION"*
+# Nginx 3rd party modules
+RUN curl -fSL "https://github.com/FRiCKLE/ngx_cache_purge/archive/master.tar.gz" -o "ngx_cache_purge.tar.gz" \
+    && mkdir -p /usr/src/nginx-modules \
+    && tar -xf "ngx_cache_purge.tar.gz" -C /usr/src/nginx-modules --strip-components=1 \
+    && rm "ngx_cache_purge.tar.gz"*
 ### End of Downloading source files
 
 # Configuring the build
@@ -79,11 +85,13 @@ RUN cd /usr/src/nginx \
         --with-cc-opt='-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2' \
         --with-ld-opt='-Wl,-z,relro -Wl,--as-needed' \
         --with-ipv6 \
+        # Added 3rd party modules \
+        --add-module=/usr/src/nginx-modules \
     && echo -e "Configuration done!"
 
-#RUN cd /usr/src/nginx \
-#    && make \
-#    && make install
+RUN cd /usr/src/nginx \
+    && make \
+    && make install
 
 ### Start of Nginx setup
 #COPY usr/share/nginx/html/404.html /usr/share/nginx/html/
@@ -100,7 +108,7 @@ RUN cd /usr/src/nginx \
 #    && chmod g+s /var/www
 ### End of Nginx WEBSERVER setup
 
-RUN rm -rf /var/lib/apt/lists/*
+RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
 #CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 CMD ["tail", "-f", "/dev/null"]

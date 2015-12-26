@@ -249,4 +249,174 @@ Step 7 : RUN cd /usr/src/nginx     && ./configure --help
   --with-openssl-opt=OPTIONS         set additional build options for OpenSSL
 
   --with-debug                       enable debug logging
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---> Running in 6d5880e8d3f9
+checking for OS
+ + Linux 4.3.3-coreos x86_64
+checking for C compiler ... found
+ + using GNU C compiler
+ + gcc version: 4.9.2 (Debian 4.9.2-10)
+checking for gcc -pipe switch ... found
+checking for --with-ld-opt="-Wl,-z,relro -Wl,--as-needed" ... found
+checking for gcc builtin atomic operations ... found
+checking for C99 variadic macros ... found
+checking for gcc variadic macros ... found
+checking for unistd.h ... found
+checking for inttypes.h ... found
+checking for limits.h ... found
+checking for sys/filio.h ... not found
+checking for sys/param.h ... found
+checking for sys/mount.h ... found
+checking for sys/statvfs.h ... found
+checking for crypt.h ... found
+checking for Linux specific features
+checking for epoll ... found
+checking for EPOLLRDHUP ... found
+checking for O_PATH ... found
+checking for sendfile() ... found
+checking for sendfile64() ... found
+checking for sys/prctl.h ... found
+checking for prctl(PR_SET_DUMPABLE) ... found
+checking for sched_setaffinity() ... found
+checking for crypt_r() ... found
+checking for sys/vfs.h ... found
+checking for poll() ... found
+checking for /dev/poll ... not found
+checking for kqueue ... not found
+checking for crypt() ... not found
+checking for crypt() in libcrypt ... found
+checking for F_READAHEAD ... not found
+checking for posix_fadvise() ... found
+checking for O_DIRECT ... found
+checking for F_NOCACHE ... not found
+checking for directio() ... not found
+checking for statfs() ... found
+checking for statvfs() ... found
+checking for dlopen() ... not found
+checking for dlopen() in libdl ... found
+checking for sched_yield() ... found
+checking for SO_SETFIB ... not found
+checking for SO_REUSEPORT ... found
+checking for SO_ACCEPTFILTER ... not found
+checking for TCP_DEFER_ACCEPT ... found
+checking for TCP_KEEPIDLE ... found
+checking for TCP_FASTOPEN ... found
+checking for TCP_INFO ... found
+checking for accept4() ... found
+checking for kqueue AIO support ... not found
+checking for Linux AIO support ... found
+checking for int size ... 4 bytes
+checking for long size ... 8 bytes
+checking for long long size ... 8 bytes
+checking for void * size ... 8 bytes
+checking for uint64_t ... found
+checking for sig_atomic_t ... found
+checking for sig_atomic_t size ... 4 bytes
+checking for socklen_t ... found
+checking for in_addr_t ... found
+checking for in_port_t ... found
+checking for rlim_t ... found
+checking for uintptr_t ... uintptr_t found
+checking for system byte ordering ... little endian
+checking for size_t size ... 8 bytes
+checking for off_t size ... 8 bytes
+checking for time_t size ... 8 bytes
+checking for AF_INET6 ... found
+checking for setproctitle() ... not found
+checking for pread() ... found
+checking for pwrite() ... found
+checking for pwritev() ... found
+checking for sys_nerr ... found
+checking for localtime_r() ... found
+checking for posix_memalign() ... found
+checking for memalign() ... found
+checking for mmap(MAP_ANON|MAP_SHARED) ... found
+checking for mmap("/dev/zero", MAP_SHARED) ... found
+checking for System V shared memory ... found
+checking for POSIX semaphores ... not found
+checking for POSIX semaphores in libpthread ... found
+checking for struct msghdr.msg_control ... found
+checking for ioctl(FIONBIO) ... found
+checking for struct tm.tm_gmtoff ... found
+checking for struct dirent.d_namlen ... not found
+checking for struct dirent.d_type ... found
+checking for sysconf(_SC_NPROCESSORS_ONLN) ... found
+checking for openat(), fstatat() ... found
+checking for getaddrinfo() ... found
+checking for PCRE library ... found
+checking for PCRE JIT support ... found
+checking for OpenSSL library ... found
+checking for zlib library ... found
+creating objs/Makefile
+
+Configuration summary
+  + using threads
+  + using system PCRE library
+  + using system OpenSSL library
+  + md5: using OpenSSL library
+  + sha1: using OpenSSL library
+  + using system zlib library
+
+  nginx path prefix: "/etc/nginx"
+  nginx binary file: "/usr/sbin/nginx"
+  nginx configuration prefix: "/etc/nginx"
+  nginx configuration file: "/etc/nginx/nginx.conf"
+  nginx pid file: "/var/run/nginx.pid"
+  nginx error log file: "/var/log/nginx/error.log"
+  nginx http access log file: "/var/log/nginx/access.log"
+  nginx http client request body temporary files: "/var/cache/nginx/client_temp"
+  nginx http proxy temporary files: "/var/cache/nginx/proxy_temp"
+  nginx http fastcgi temporary files: "/var/cache/nginx/fastcgi_temp"
+  nginx http uwsgi temporary files: "/var/cache/nginx/uwsgi_temp"
+  nginx http scgi temporary files: "/var/cache/nginx/scgi_temp"
+
+Configuration done!
