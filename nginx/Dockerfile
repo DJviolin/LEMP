@@ -25,7 +25,11 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         #libc-dev \
         make \
         #pkg-config \
-        #re2c --no-install-recommends
+        #re2c --no-install-recommends \
+        # Enable "rewrite" option in our Nginx (allows us to do redirect) \
+        openssl \
+        libpcre3-dev \
+        libpcre++-dev
 ### End of DEV environment deps
 
 ### Start of Downloading source files
