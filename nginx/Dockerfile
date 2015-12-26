@@ -101,7 +101,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # This will create the user and set their shell to /bin/false so no one can start an interactive login as this user
 #RUN useradd -s /bin/false nginx
-RUN useradd --system --no-create-home -s /bin/false --group nginx 
+RUN groupadd nginx \
+    && useradd --system --no-create-home -s /bin/false --group nginx 
 #RUN groupadd nginx -g 501 \
 #    && useradd nginx -g nginx -u 501
 #RUN chown -R www-data:www-data /var/www \
