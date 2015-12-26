@@ -22,7 +22,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         #file \
         g++ \
         gcc \
-        libc-dev \
+        #libc-dev \
         make \
         #pkg-config \
         #re2c --no-install-recommends
