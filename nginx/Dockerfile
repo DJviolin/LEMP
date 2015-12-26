@@ -101,8 +101,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # This will create the user and set their shell to /bin/false so no one can start an interactive login as this user
 #RUN useradd -s /bin/false nginx
-RUN groupadd nginx -g 500 \
-    && useradd nginx -g nginx -u 500 --system --no-create-home -s /bin/false 
+RUN groupadd nginx -g 501 \
+    && useradd nginx -g nginx -u 501 --system --no-create-home -s /bin/false 
 #RUN chown -R www-data:www-data /var/www \
 #    && chmod g+s /var/www
 # Allow Nginx to access /var/run/php-fpm/php-fpm.sock
