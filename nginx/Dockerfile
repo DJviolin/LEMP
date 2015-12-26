@@ -100,11 +100,11 @@ RUN mkdir -p /usr/share/nginx/cache
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # Allow Nginx to access /var/run/php-fpm/php-fpm.sock
-RUN groupadd nginx -g 500 \
-    && useradd nginx -g nginx -u 500
+RUN groupadd nginx -g 501 \
+    && useradd nginx -g nginx -u 501
 RUN usermod -aG www-data nginx
-RUN chown -R www-data:www-data /var/www \
-    && chmod g+s /var/www
+#RUN chown -R www-data:www-data /var/www \
+#    && chmod g+s /var/www
 ### End of Nginx setup
 
 ### Start of Nginx WEBSERVER setup
