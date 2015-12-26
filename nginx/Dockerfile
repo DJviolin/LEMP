@@ -35,12 +35,12 @@ RUN curl -fSL "http://nginx.org/download/$NGINX_VERSION" -o "$NGINX_VERSION" \
     && curl -fSL "http://nginx.org/download/$NGINX_VERSION.asc" -o "$NGINX_VERSION.asc" \
     #&& gpg --verify "$NGINX_VERSION.asc" \
     && mkdir -p /usr/src/nginx \
-    && tar -xf "$NGINX_VERSION" -C /usr/src/nginx \
+    && tar -xf "$NGINX_VERSION" -C /usr/src/nginx --strip-components=1 \
     && rm "$NGINX_VERSION"*
 # Nginx 3rd party modules
 RUN curl -fSL "https://github.com/FRiCKLE/ngx_cache_purge/archive/master.tar.gz" -o "ngx_cache_purge.tar.gz" \
     && mkdir -p /usr/src/nginx-modules/ngx_cache_purge \
-    && tar -xf "ngx_cache_purge.tar.gz" -C /usr/src/nginx-modules/ngx_cache_purge \
+    && tar -xf "ngx_cache_purge.tar.gz" -C /usr/src/nginx-modules/ngx_cache_purge --strip-components=1 \
     && rm "ngx_cache_purge.tar.gz"*
 ### End of Downloading source files
 
