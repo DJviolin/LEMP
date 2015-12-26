@@ -6,39 +6,36 @@ FROM lemp_base:latest
 MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="Nginx built from source" Vendor="Istvan Lantos" Version="1.0"
 
-ENV NGINX_VERSION 1.9.9
+ENV NGINX_VERSION nginx-1.9.9.tar.gz
 
 ### Start of DEV environment deps
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y install \
-        # persistent / runtime deps \
-        #ca-certificates \
         curl \
-        #librecode0 \
-        #libsqlite3-0 \
-        #libxml2 --no-install-recommends \
-        # phpize deps \
-        #autoconf \
-        #file \
         g++ \
         gcc \
-        #libc-dev \
         make \
-        #pkg-config \
-        #re2c --no-install-recommends \
         # Enable "rewrite" option in our Nginx (allows us to do redirect) \
         openssl \
+        libc6-dev \
+        libexpat1-dev \
+        libgd3 \
+        libgeoip-dev \
+        libpam0g-dev \
         libpcre3-dev \
-        libpcre++-dev
+        libssl-dev \
+        libxml2-dev \
+        libxslt1-dev \
+        zlib1g-dev
 ### End of DEV environment deps
 
 ### Start of Downloading source files
-RUN curl -fSL "http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz" -o "nginx-$NGINX_VERSION.tar.gz" \
-    && curl -fSL "http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc" -o "nginx-$NGINX_VERSION.tar.gz.asc" \
-    && gpg --verify "nginx-$NGINX_VERSION.tar.gz.asc" \
+RUN curl -fSL "http://nginx.org/download/$NGINX_VERSION" -o "$NGINX_VERSION" \
+    && curl -fSL "http://nginx.org/download/$NGINX_VERSION.asc" -o "$NGINX_VERSION.asc" \
+    && gpg --verify "$NGINX_VERSION.asc" \
     && mkdir -p /usr/src/nginx \
-    && tar -xf "nginx-$NGINX_VERSION.tar.gz" -C /usr/src/nginx --strip-components=1 \
-    && rm "nginx-$NGINX_VERSION.tar.gz"*
+    && tar -xf "$NGINX_VERSION" -C /usr/src/nginx --strip-components=1 \
+    && rm "$NGINX_VERSION"*
 ### End of Downloading source files
 
 # Configuring the build
@@ -47,9 +44,9 @@ RUN cd /usr/src/nginx \
     && ./configure --help
     && echo -e "Configuration done!"
 
-RUN cd /usr/src/nginx \
-    && make \
-    && make install
+#RUN cd /usr/src/nginx \
+#    && make \
+#    && make install
 
 ### Start of Nginx setup
 #COPY usr/share/nginx/html/404.html /usr/share/nginx/html/

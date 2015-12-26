@@ -5,6 +5,32 @@ TLS SNI support enabled
 configure arguments:
 http://nginx.org/en/docs/configure.html
 
+Versions of packages nginx-full depends on:
+#libc6         2.19-15
+#libexpat1     2.1.0-6+b3
+#libgd3        2.1.0-5
+#libgeoip1     1.6.2-4
+#libpam0g      1.1.8-3.1
+#libpcre3      2:8.35-3.3
+#libssl1.0.0   1.0.1k-1
+#libxml2       2.9.1+dfsg1-5
+#libxslt1.1    1.1.28-2+b2
+nginx-common  1.6.2-5
+#zlib1g        1:1.2.8.dfsg-2+b1
+
+nginx-common (= 1.2.1-2.2)
+#libc6 (>= 2.13-28)
+#libexpat1 (>= 2.0.1)
+libgcc1 (>= 1:4.4.0)
+libgd2-noxpm (>=2.0.36~rc1~dfsg) | libgd2-xpm (>= 2.0.36~rc1~dfsg)
+#libgeoip1 (>= 1.4.8+dfsg)
+#libpam0g (>= 0.99.7.1)
+#libpcre3 (>= 8.10)
+#libssl1.0.0 (>= 1.0.0)
+#libxml2 (>= 2.7.4)
+#libxslt1.1 (>= 1.1.25)
+#zlib1g (>= 1:1.1.4)
+
 --prefix=/etc/nginx
 --sbin-path=/usr/sbin/nginx
 --conf-path=/etc/nginx/nginx.conf
