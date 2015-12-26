@@ -1,15 +1,12 @@
 
 #user  nobody;
 worker_processes  1;
-daemon off;
 
 #error_log  logs/error.log;
 #error_log  logs/error.log  notice;
 #error_log  logs/error.log  info;
-error_log  /var/log/nginx/error.log warn;
 
 #pid        logs/nginx.pid;
-pid        /var/run/nginx.pid;
 
 
 events {
@@ -18,20 +15,14 @@ events {
 
 
 http {
-    fastcgi_cache_path /var/run/fcgi levels=1:2 keys_zone=microcache:10m max_size=1024m inactive=1h;
-
     include       mime.types;
     default_type  application/octet-stream;
 
     #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
     #                  '$status $body_bytes_sent "$http_referer" '
     #                  '"$http_user_agent" "$http_x_forwarded_for"';
-    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                      '$status $body_bytes_sent "$http_referer" '
-                      '"$http_user_agent" "$http_x_forwarded_for"';
 
     #access_log  logs/access.log  main;
-    access_log  /var/log/nginx/access.log  main;
 
     sendfile        on;
     #tcp_nopush     on;
@@ -42,10 +33,7 @@ http {
     #gzip  on;
 
     server {
-    # server is one/domain!
-
         listen       80;
-        listen       [::]:80 ipv6only=on;
         server_name  localhost;
 
         #charset koi8-r;
@@ -53,22 +41,17 @@ http {
         #access_log  logs/host.access.log  main;
 
         location / {
-            root   /var/www;
-            index  index.php index.html index.htm;
+            root   html;
+            index  index.html index.htm;
         }
 
         #error_page  404              /404.html;
-        error_page  404              /404.html;
-        location = /404.html {
-            root   /etc/nginx/html;
-            allow  all;
-        }
 
         # redirect server error pages to the static page /50x.html
         #
         error_page   500 502 503 504  /50x.html;
         location = /50x.html {
-            root   /etc/nginx/html;
+            root   html;
         }
 
         # proxy the PHP scripts to Apache listening on 127.0.0.1:80
@@ -86,48 +69,6 @@ http {
         #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
         #    include        fastcgi_params;
         #}
-
-        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-        #
-        location ~ \.php$ {
-            root           /var/www;
-
-            try_files      $uri =404;
-
-            fastcgi_connect_timeout 75;
-            fastcgi_send_timeout 180;
-            fastcgi_read_timeout 240;
-            fastcgi_split_path_info ^(.+\.php)(/.+)$;
-
-            fastcgi_cache  microcache;
-            fastcgi_cache_key $scheme$host$request_uri$request_method;
-            fastcgi_cache_valid 200 301 302 30s;
-            fastcgi_cache_use_stale updating error timeout invalid_header http_500;
-            fastcgi_pass_header Set-Cookie;
-            fastcgi_pass_header Cookie;
-            fastcgi_ignore_headers Cache-Control Expires Set-Cookie;
-
-            fastcgi_pass    unix:/var/run/php-fpm/php-fpm.sock;
-            fastcgi_index   index.php;
-            fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            fastcgi_intercept_errors on;
-            include fastcgi_params;
-        }
-
-        # Enable PHP-FPM Status Page
-        # https://easyengine.io/tutorials/php/fpm-status-page/
-        # http://example.com/status?html or http://example.com/status?html&full
-        #
-        location ~ ^/(status|ping)$ {
-            access_log off;
-            #allow 127.0.0.1;
-            #allow 1.2.3.4#your-ip;
-            allow 10.0.2.2;
-            deny all;
-            include fastcgi_params;
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
-        }
 
         # deny access to .htaccess files, if Apache's document root
         # concurs with nginx's one
