@@ -101,8 +101,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # Allow Nginx to access /var/run/php-fpm/php-fpm.sock
 RUN groupadd nginx -g 500 \
-    && useradd nginx -g nginx -u 500 \
-    && useradd -u 500 -g 500 nginx
+    && useradd nginx -g nginx -u 500
 RUN usermod -aG www-data nginx
 ### End of Nginx setup
 
