@@ -31,12 +31,8 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
 
 ### Start of Downloading source files
 RUN curl -fSL "http://nginx.org/download/$NGINX_VERSION" -o "$NGINX_VERSION" \
-    && apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys A1C052F8 \
-    #&& gpg --keyserver pgpkeys.mit.edu --recv-key A1C052F8 \
-    && curl -fSL "http://nginx.org/keys/nginx_signing.key" -o "nginx_signing.key" \
-    && apt-key add nginx_signing.key \
     && curl -fSL "http://nginx.org/download/$NGINX_VERSION.asc" -o "$NGINX_VERSION.asc" \
-    && gpg --verify "$NGINX_VERSION.asc" \
+    #&& gpg --verify "$NGINX_VERSION.asc" \
     && mkdir -p /usr/src/nginx \
     && tar -xf "$NGINX_VERSION" -C /usr/src/nginx --strip-components=1 \
     && rm "$NGINX_VERSION"*
