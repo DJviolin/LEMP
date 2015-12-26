@@ -66,7 +66,7 @@ Stop the systemd service with: `$ cd $HOME/server/lemp && chmod +x service-stop.
 
     ```
     $ docker exec -it lemp_nginx bash
-    $ nginx -V 2>&1 | grep nginx-cache-purge -o
+    $ nginx -V 2>&1 | grep ngx_cache_purge -o
     ```
 
     All of this achieved by following [this](https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/) tutorial.

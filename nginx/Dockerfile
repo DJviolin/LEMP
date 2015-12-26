@@ -103,6 +103,7 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 RUN groupadd nginx -g 500 \
     && useradd nginx -g nginx -u 500
 RUN usermod -aG www-data nginx
+RUN chown -R www-data:www-data /var/www
 ### End of Nginx setup
 
 ### Start of Nginx WEBSERVER setup
