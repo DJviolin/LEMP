@@ -35,12 +35,12 @@ RUN curl -fSL "http://nginx.org/download/$NGINX_VERSION" -o "$NGINX_VERSION" \
     && curl -fSL "http://nginx.org/download/$NGINX_VERSION.asc" -o "$NGINX_VERSION.asc" \
     #&& gpg --verify "$NGINX_VERSION.asc" \
     && mkdir -p /usr/src/nginx \
-    && tar -xf "$NGINX_VERSION" -C /usr/src/nginx --strip-components=1 \
+    && tar -xf "$NGINX_VERSION" -C /usr/src/nginx \
     && rm "$NGINX_VERSION"*
 # Nginx 3rd party modules
 RUN curl -fSL "https://github.com/FRiCKLE/ngx_cache_purge/archive/master.tar.gz" -o "ngx_cache_purge.tar.gz" \
     && mkdir -p /usr/src/nginx-modules/ngx_cache_purge \
-    && tar -xf "ngx_cache_purge.tar.gz" -C /usr/src/nginx-modules/ngx_cache_purge --strip-components=1 \
+    && tar -xf "ngx_cache_purge.tar.gz" -C /usr/src/nginx-modules/ngx_cache_purge \
     && rm "ngx_cache_purge.tar.gz"*
 ### End of Downloading source files
 
@@ -94,13 +94,13 @@ RUN cd /usr/src/nginx \
     && make install
 
 ### Start of Nginx setup
-#COPY usr/share/nginx/html/404.html /usr/share/nginx/html/
-#RUN mkdir -p /usr/share/nginx/cache
+COPY usr/share/nginx/html/404.html /usr/share/nginx/html/
+RUN mkdir -p /usr/share/nginx/cache
 # forward request and error logs to docker log collector
-#RUN ln -sf /dev/stdout /var/log/nginx/access.log
-#RUN ln -sf /dev/stderr /var/log/nginx/error.log
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # Allow Nginx to access /var/run/php-fpm/php-fpm.sock
-#RUN usermod -aG www-data nginx
+RUN usermod -aG www-data nginx
 ### End of Nginx setup
 
 ### Start of Nginx WEBSERVER setup
@@ -110,5 +110,4 @@ RUN cd /usr/src/nginx \
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
-#CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
-CMD ["tail", "-f", "/dev/null"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
