@@ -12,9 +12,9 @@ ENV NGINX_VERSION nginx-1.9.9.tar.gz
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y install \
         curl \
-        g++ \
-        gcc \
         make \
+        gcc \
+        g++ \
         # Enable "rewrite" option in our Nginx (allows us to do redirect) \
         openssl \
         libc6-dev \

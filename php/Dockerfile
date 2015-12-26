@@ -21,7 +21,7 @@ RUN echo 'export PATH="$PATH:/usr/local/php7/bin:/usr/local/php7/sbin"' >> /etc/
 
 ### Start of DEV environment deps
 RUN apt-get -y update && apt-get -y dist-upgrade \
-    && apt-get -y --force-yes install \
+    && apt-get -y install \
         # persistent / runtime deps \
         ca-certificates \
         curl \
@@ -36,10 +36,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libc-dev \
         make \
         pkg-config \
-        re2c --no-install-recommends \
-        # Need for tar.xz \
-        #xz-utils --no-install-recommends \
-    && rm -r /var/lib/apt/lists/*
+        re2c --no-install-recommends
 ### End of DEV environment deps
 
 ### Start of Downloading source files
@@ -54,8 +51,7 @@ RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILEN
 
 # PHP extra build dependencies
 # --enable-mysqlnd is included below because it's harder to compile after the fact the extensions are (since it's a plugin for several extensions, not an extension in itself)
-RUN apt-get -y update && apt-get -y dist-upgrade \
-    && apt-get -y --force-yes install \
+RUN apt-get -y install \
         libcurl4-openssl-dev --no-install-recommends \
         #libreadline6-dev --no-install-recommends \
         librecode-dev --no-install-recommends \
@@ -76,14 +72,12 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         #libpspell-dev --no-install-recommends \
         # Own dependencies - WP SSH2 \
         libssh2-1 \
-        libssh2-1-dev --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+        libssh2-1-dev --no-install-recommends
 # Fixing "configure: error: Unable to locate gmp.h"
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h 
 # Configuring the build
 # http://wordpress.stackexchange.com/questions/42098/what-are-php-extensions-and-libraries-wp-needs-and-or-uses
 # https://wordpress.org/support/topic/wowdpress-php-dependencies
-#RUN set -x
 RUN cd /usr/src/php \
     && ./configure \
         # Installation directories \
@@ -156,12 +150,11 @@ RUN cd /usr/src/php \
         #--with-recode \
         #--with-zlib \
     && echo -e "Configuration done!"
-    #http://php.net/manual/en/intro.phar.php - Turn off PHAR
 
 RUN cd /usr/src/php \
     && make -j"$(nproc)" \
     && make install \
-    && { find /usr/local/php7/bin /usr/local/php7/sbin -type f -executable -exec strip --strip-all '{}' + || true; }
+    && { find /usr/local/php7/bin /usr/local/php7/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
     && make clean
 
 ### Start of PECL SSH2 install
