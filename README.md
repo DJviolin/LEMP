@@ -83,8 +83,6 @@ $ chmod +x service-stop.sh$
 
     All of this achieved by following [this](https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/) tutorial.
 
-4. You have to add the following user/group for your Wordpress install dirs on the host: `chown -R www-data:www-data $HOME/server/www/your-wordpress-install-dir`
-
 ## Docker-compose installation on CoreOS
 
 If you happens to be a `CoreOS` user and you want to install `docker-compose`, you can install it with superuser access:
