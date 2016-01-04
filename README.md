@@ -24,11 +24,11 @@ Nginx will be rebuilt from [source](https://www.nginx.com/resources/wiki/start/t
 Basic install script provided. Run only `./install.sh` and follow the instructions in the script! You doesn't even need to clone this repo (the script will do it anyway), just only download this file to your host and run it if you wish!
 
 ```
-$ curl -L https://raw.github.com/DJviolin/Lemp/master/install.sh > $HOME/install.sh
-$ chmod +x $HOME/install.sh
+$ curl -L https://raw.github.com/DJviolin/Lemp/master/install-lemp.sh > $HOME/install-lemp.sh
+$ chmod +x $HOME/install-lemp.sh
 $ cd $HOME
-$ ./install.sh
-$ rm -rf $HOME/install.sh
+$ ./install-lemp.sh
+$ rm -rf $HOME/install-lemp.sh
 ```
 
 The script will create the `docker-compose.yml` and `lemp.service` files inside the cloned repo, which are needed for docker-compose and systemd.
