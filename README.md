@@ -101,7 +101,7 @@ $ chmod +x $HOME/bin/docker-compose
 $ source $HOME/.bashrc
 ```
 
-## Notes
+## Personal notes, only for development
 
 Docker ENTRYPOINT vs CMD explanation: http://stackoverflow.com/a/21564990/1442219
 
@@ -176,35 +176,11 @@ vfs dir final cleaning with a docker image:
 
     $ docker run -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker --rm martin/docker-cleanup-volumes
 
-
 Together:
 
     $ docker rm -v $(docker ps -a -q -f status=exited); docker rmi $(docker images -f "dangling=true" -q); docker run -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker --rm martin/docker-cleanup-volumes
     $ rm -rf /var/lib/docker/overlay/*
     $ rm -rf /var/lib/docker/linkgraph.db
-
-Build options info
-
-    $ ./configure --help
-
-    ^.*(?=(\[1563\]:))
-
-Managing persistent data backups with Docker (ie. databases)
-
-    http://stackoverflow.com/questions/18496940/how-to-deal-with-persistent-storage-e-g-databases-in-docker
-
-    http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/
-
-    http://container42.com/2014/11/18/data-only-container-madness/
-
-    https://docs.docker.com/engine/reference/commandline/volume_create/
-
-    http://stackoverflow.com/questions/23544282/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes/27021154#27021154
-
-Change Virtualbox Disk Size:
-
-    $ VBoxManage clonehd D:\VM\coreos-01\coreos_production_884.0.0.vdi D:\VM\coreos-01\coreos_production_884.0.0-fixed.vdi --variant Fixed
-    $ VBoxManage modifyhd D:\VM\coreos-01\coreos_production_884.0.0-fixed.vdi --resize 20480
 
 ### Not installed for production, only in development
 
