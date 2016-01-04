@@ -103,6 +103,8 @@ $ source $HOME/.bashrc
 
 ## Notes
 
+Docker ENTRYPOINT vs CMD explanation: http://stackoverflow.com/a/21564990/1442219
+
 PHP7 zend vs Source differences:
 
     Not installed in Zend PHP build: mysqlnd readline
