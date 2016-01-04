@@ -31,11 +31,27 @@ The script will create the `docker-compose.yml` and `lemp.service` files inside 
 
 ## Usage
 
-Run docker-compose with: `$ docker-compose --file $HOME/server/lemp/docker-compose.yml build`
+Run docker-compose with:
 
-Run the systemd service with: `$ cd $HOME/server/lemp && chmod +x service-start.sh && ./service-start.sh`
+```
+$ docker-compose --file $HOME/server/lemp/docker-compose.yml build
+```
 
-Stop the systemd service with: `$ cd $HOME/server/lemp && chmod +x service-stop.sh && ./service-stop.sh`
+Start the Systemd service:
+
+```
+$ cd $HOME/server/lemp
+$ chmod +x service-start.sh
+$ ./service-start.sh
+```
+
+Stop the systemd service:
+
+```
+$ cd $HOME/server/lemp
+$ chmod +x service-stop.sh$
+./service-stop.sh
+```
 
 ## PhpMyAdmin further setup
 
