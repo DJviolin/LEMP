@@ -4,10 +4,6 @@ Nginx + PHP-FPM 7 webserver through FastCGI with microcaching + MariaDB + includ
 
 Work in progress! NOT FOR PRODUCTION!
 
-TODO for Wordpress: WP specific settings in Nginx .conf files and SFTP access.
-
-Nginx will be rebuilt from [source](https://www.nginx.com/resources/wiki/start/topics/tutorials/installoptions/) soon (list all the configured modules: `$ sudo nginx -V`).
-
 ## Prerequisites
 
 1. Linux
@@ -101,7 +97,13 @@ $ chmod +x $HOME/bin/docker-compose
 $ source $HOME/.bashrc
 ```
 
+## TODO
+
+WP specific settings in Nginx .conf files and SFTP access.
+
 ## Personal notes, only for development
+
+Nginx was rebuilt from [source](https://www.nginx.com/resources/wiki/start/topics/tutorials/installoptions/) soon (list all the configured modules: `$ sudo nginx -V`).
 
 Docker ENTRYPOINT vs CMD explanation: http://stackoverflow.com/a/21564990/1442219
 
