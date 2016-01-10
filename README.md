@@ -49,8 +49,8 @@ Stop the systemd service:
 
 ```
 $ cd $HOME/server/lemp
-$ chmod +x service-stop.sh$
-./service-stop.sh
+$ chmod +x service-stop.sh
+$ ./service-stop.sh
 ```
 
 ## PhpMyAdmin further setup
