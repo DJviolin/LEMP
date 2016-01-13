@@ -47,7 +47,8 @@ echo -e "\nCreating additional files for the stack:"
 echo -e "\nGenerating MySQL root password!\nBe advised that auto-generating password NOT THE FIRST TIME + already having a MySQL database can CAUSE MISCONFIGURATION errors with already created databases!\nSo the recommended method is to CHOOSE THE NO OPTION and use one password and just STICK WITH IT!\nChoose Yes to auto-generate or No to type it manually (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-  echo -e "MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > "${MYSQL_GENPASS}"
+  MYSQL_GENPASS=($echo -e MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`)
+  #echo -e "MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > "${MYSQL_GENPASS}"
   #cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
   #cat $DB_DIR-root-password.txt
 else
@@ -58,7 +59,7 @@ else
   #cat $DB_DIR-root-password.txt
 fi
 
-echo -e "Your MySQL password ENV vriable is: " $MYSQL_GENPASS
+echo -e "\nYour MySQL password ENV variable is: " $MYSQL_GENPASS
 
 # bash variables in Here-Doc, don't use 'EOF'
 # http://stackoverflow.com/questions/4937792/using-variables-inside-a-bash-heredoc
