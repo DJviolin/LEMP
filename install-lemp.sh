@@ -52,7 +52,7 @@ if echo "$answer" | grep -iq "^y" ;then
   #cat $DB_DIR-root-password.txt
 else
   read -e -p "Enter the MySQL root password: " MYSQL_PASS
-  MYSQL_GENPASS=$(echo -e "MYSQL_ROOT_PASSWORD=$MYSQL_PASS")
+  MYSQL_GENPASS=$(echo -e MYSQL_ROOT_PASSWORD=$MYSQL_PASS)
   #echo -e "MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > "${MYSQL_GENPASS}"
   #cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
   #cat $DB_DIR-root-password.txt
