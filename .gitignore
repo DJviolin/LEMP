@@ -1,4 +1,3 @@
-ssh/root/.ssh/authorized_keys
 nginx/etc/nginx/conf.d/cert/
 mariadb/mariadb.env
 lemp.service
