@@ -3,39 +3,43 @@
 # set -e making the commands if they were like &&
 set -e
 
-read -e -p "Enter the path to the install dir (or hit enter for default path): " -i "$HOME/server" INSTALL_DIR
+read -e -p "Enter the path to the install dir (or hit enter for default path): " -i "$HOME/server-lemp" INSTALL_DIR
 echo $INSTALL_DIR
+DB_DIR=$INSTALL_DIR/mariadb
+DBBAK_DIR=$INSTALL_DIR/dbbackup
+REPO_DIR=$INSTALL_DIR/lemp
+WWW_DIR=$INSTALL_DIR/www
 
 echo -e "\nCreating folder structure:"
-mkdir -p $INSTALL_DIR/mysql $INSTALL_DIR/sqlbackup $INSTALL_DIR/lemp $INSTALL_DIR/www
+mkdir -p $DB_DIR $DBBAK_DIR $REPO_DIR $WWW_DIR
 echo -e "\
-  $INSTALL_DIR/mysql\n\
-  $INSTALL_DIR/sqlbackup\n\
-  $INSTALL_DIR/lemp\n\
-  $INSTALL_DIR/www\n\
+  $DB_DIR\n\
+  $DBBAK_DIR\n\
+  $REPO_DIR\n\
+  $WWW_DIR\n\
 Done!"
 
-if test "$(ls -A "$INSTALL_DIR/lemp")"; then
-  echo -e "\n\"$INSTALL_DIR/lemp\" directory is not empty!\nYou have to remove everything from here to continue!\nRemove \"$INSTALL_DIR/lemp\" directory (y/n)?"
+if test "$(ls -A "$REPO_DIR")"; then
+  echo -e "\n\"$REPO_DIR\" directory is not empty!\nYou have to remove everything from here to continue!\nRemove \"$REPO_DIR\" directory (y/n)?"
   read answer
   if echo "$answer" | grep -iq "^y" ;then
-    rm -rf $INSTALL_DIR/lemp/
-    echo -e "\"$INSTALL_DIR/lemp\" is removed, continue installation...";
-    mkdir -p $INSTALL_DIR/lemp
-    echo -e "\nCloning git repo into \"$INSTALL_DIR/lemp\":"
-    cd $INSTALL_DIR/lemp
-    git clone https://github.com/DJviolin/LEMP.git $INSTALL_DIR/lemp
+    rm -rf $REPO_DIR/
+    echo -e "\"$REPO_DIR\" is removed, continue installation...";
+    mkdir -p $REPO_DIR
+    echo -e "\nCloning git repo into \"$REPO_DIR\":"
+    cd $REPO_DIR
+    git clone https://github.com/DJviolin/LEMP.git $REPO_DIR
     echo -e "\nShowing working directory..."
-    ls -al $INSTALL_DIR/lemp
+    ls -al $REPO_DIR
   else
     echo -e "\nScript aborted to run\nExiting..."; exit 1;
   fi
 else
-  echo -e "\nCloning git repo into \"$INSTALL_DIR/lemp\":"
-  cd $INSTALL_DIR/lemp
-  git clone https://github.com/DJviolin/LEMP.git $INSTALL_DIR/lemp
+  echo -e "\nCloning git repo into \"$REPO_DIR\":"
+  cd $REPO_DIR
+  git clone https://github.com/DJviolin/LEMP.git $REPO_DIR
   echo -e "Showing working directory..."
-  ls -al $INSTALL_DIR/lemp
+  ls -al $REPO_DIR
 fi
 
 echo -e "\nCreating additional files for the stack:"
@@ -44,8 +48,8 @@ echo -e "\nCreating additional files for the stack:"
 # http://stackoverflow.com/questions/4937792/using-variables-inside-a-bash-heredoc
 # http://stackoverflow.com/questions/17578073/ssh-and-environment-variables-remote-and-local
 
-echo -e "\nCreating: $INSTALL_DIR/lemp/docker-compose.yml\n"
-cat <<EOF > $INSTALL_DIR/lemp/docker-compose.yml
+echo -e "\nCreating: $REPO_DIR/docker-compose.yml\n"
+cat <<EOF > $REPO_DIR/docker-compose.yml
 cadvisor:
   image: google/cadvisor:latest
   container_name: lemp_cadvisor
@@ -60,7 +64,7 @@ base:
   build: ./base
   container_name: lemp_base
   volumes:
-  - $INSTALL_DIR/www/:/var/www/:rw
+  - $WWW_DIR/:/var/www/:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -77,7 +81,7 @@ mariadb:
     - base
   volumes:
     - /var/run/mysqld
-    - $INSTALL_DIR/mysql/:/var/lib/mysql/:rw
+    - $DB_DIR/:/var/lib/mysql/:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
 php:
   build: ./php
@@ -111,10 +115,10 @@ nginx:
   volumes_from:
     - php
 EOF
-cat $INSTALL_DIR/lemp/docker-compose.yml
+cat $REPO_DIR/docker-compose.yml
 
-echo -e "\nCreating: $INSTALL_DIR/lemp/lemp.service\n"
-cat <<EOF > $INSTALL_DIR/lemp/lemp.service
+echo -e "\nCreating: $REPO_DIR/lemp.service\n"
+cat <<EOF > $REPO_DIR/lemp.service
 [Unit]
 Description=LEMP
 After=etcd.service
@@ -124,39 +128,39 @@ Requires=docker.service
 [Service]
 TimeoutStartSec=0
 #KillMode=none
-ExecStartPre=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql $INSTALL_DIR/sqlbackup
-ExecStartPre=-/bin/bash -c '/usr/bin/tar -zcvf $INSTALL_DIR/sqlbackup/sqlbackup_\$\$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStartPre.tar.gz $INSTALL_DIR/sqlbackup/mysql --remove-files'
-ExecStartPre=-/opt/bin/docker-compose --file $INSTALL_DIR/lemp/docker-compose.yml kill
-ExecStartPre=-/opt/bin/docker-compose --file $INSTALL_DIR/lemp/docker-compose.yml rm --force
-ExecStart=/opt/bin/docker-compose --file $INSTALL_DIR/lemp/docker-compose.yml up --force-recreate
+ExecStartPre=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql $DBBAK_DIR
+ExecStartPre=-/bin/bash -c '/usr/bin/tar -zcvf $DBBAK_DIR/sqlbackup_\$\$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStartPre.tar.gz $DBBAK_DIR/mysql --remove-files'
+ExecStartPre=-/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml kill
+ExecStartPre=-/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml rm --force
+ExecStart=/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml up --force-recreate
 ExecStartPost=/usr/bin/etcdctl set /LEMP Running
-ExecStop=/opt/bin/docker-compose --file $INSTALL_DIR/lemp/docker-compose.yml stop
+ExecStop=/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml stop
 ExecStopPost=/usr/bin/etcdctl rm /LEMP
-ExecStopPost=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql $INSTALL_DIR/sqlbackup
-ExecStopPost=-/bin/bash -c 'tar -zcvf $INSTALL_DIR/sqlbackup/sqlbackup_\$\$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStopPost.tar.gz $INSTALL_DIR/sqlbackup/mysql --remove-files'
+ExecStopPost=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql $DBBAK_DIR
+ExecStopPost=-/bin/bash -c 'tar -zcvf $DBBAK_DIR/sqlbackup_\$\$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStopPost.tar.gz $DBBAK_DIR/mysql --remove-files'
 Restart=always
 #RestartSec=30s
 
 [X-Fleet]
 Conflicts=lemp.service
 EOF
-cat $INSTALL_DIR/lemp/lemp.service
+cat $REPO_DIR/lemp.service
 
 echo -e "\nGenerating MySQL root password!\nBe advised that auto-generating password NOT THE FIRST TIME + already having a MySQL database can CAUSE MISCONFIGURATION errors with already created databases!\nSo the recommended method is to CHOOSE THE NO OPTION and use one password and just STICK WITH IT!\nChoose Yes to auto-generate or No to type it manually (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   echo -e "\
 # Set MySQL Root Password\n\
-MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $INSTALL_DIR/lemp/mariadb/mariadb.env
-  cat $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
-  cat $INSTALL_DIR/mysql-root-password.txt
+MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $REPO_DIR/mariadb/mariadb.env
+  cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
+  cat $DB_DIR-root-password.txt
 else
   read -e -p "Enter the MySQL root password: " MYSQL_PASS
   echo -e "\
 # Set MySQL Root Password\n\
-MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > $INSTALL_DIR/lemp/mariadb/mariadb.env
-  cat $INSTALL_DIR/lemp/mariadb/mariadb.env > $INSTALL_DIR/mysql-root-password.txt
-  cat $INSTALL_DIR/mysql-root-password.txt
+MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > $REPO_DIR/mariadb/mariadb.env
+  cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
+  cat $DB_DIR-root-password.txt
 fi
 
 cd $HOME
@@ -164,9 +168,9 @@ cd $HOME
 echo -e "\n
 LEMP stack has successfully built!\n\n\
 Run docker-compose with:\n\
-  $ docker-compose --file $INSTALL_DIR/lemp/docker-compose.yml build\n\
+  $ docker-compose --file $REPO_DIR/docker-compose.yml build\n\
 Run the systemd service with:\n\
-  $ cd $INSTALL_DIR/lemp && chmod +x service-start.sh && ./service-start.sh\n\
+  $ cd $REPO_DIR && chmod +x service-start.sh && ./service-start.sh\n\
 Stop the systemd service with:\n\
-  $ cd $INSTALL_DIR/lemp && chmod +x service-stop.sh && ./service-stop.sh"
+  $ cd $REPO_DIR && chmod +x service-stop.sh && ./service-stop.sh"
 echo -e "\nAll done! Exiting..."
