@@ -48,7 +48,7 @@ echo -e "\nGenerating MySQL root password!\nBe advised that auto-generating pass
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   #MYSQL_GENPASS=($echo -e MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`)
-  printf -v mysql_genpass 'MY_SQL_ROOT_PASSWORD=%q' "$(openssl rand -base64 37 | head -c 37)"
+  #printf -v mysql_genpass 'MY_SQL_ROOT_PASSWORD=%q' "$(openssl rand -base64 37 | head -c 37)"
   #echo -e "MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > "${MYSQL_GENPASS}"
   #cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
   #cat $DB_DIR-root-password.txt
