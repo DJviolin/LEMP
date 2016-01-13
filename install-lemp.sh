@@ -108,10 +108,6 @@ nginx:
   volumes:
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    #- ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    #- ./nginx/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
-    #- ./nginx/etc/nginx/conf.d/server.conf:/etc/nginx/conf.d/server.conf:ro
-    #- ./nginx/etc/nginx/conf.d/cert/:/etc/nginx/conf.d/cert/:ro
   volumes_from:
     - php
 EOF
