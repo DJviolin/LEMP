@@ -94,7 +94,8 @@ mariadb:
   build: ./mariadb
   container_name: lemp_mariadb
   #env_file: ./mariadb/mariadb.env
-  environment: $DB_PASS
+  environment:
+    - $DB_PASS
   links:
     - base
   volumes:
