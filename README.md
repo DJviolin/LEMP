@@ -13,7 +13,6 @@ Work in progress! NOT FOR PRODUCTION!
 5. Docker Client
 6. Systemd
 7. Docker-compose
-8. Place your personal SSH public key in `~/.ssh/authorized_keys` file on your HOST
 
 ## Installation
 
