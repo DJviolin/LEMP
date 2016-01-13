@@ -6,8 +6,8 @@ FROM lemp_base:latest
 MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="PHP-FPM 7 through FastCGI built from source" Vendor="Istvan Lantos" Version="1.0"
 
-ENV PHP_VERSION 7.0.0
-ENV PHP_FILENAME php-7.0.0.tar.gz
+ENV PHP_VERSION 7.0.2
+ENV PHP_FILENAME php-7.0.2.tar.gz
 # Checksum
 ENV PHP_SHA256 d6ae7b4a2e5c43a9945a97e83b6b3adfb7d0df0b91ef78b647a6dffefaa9c71b
 # Adding GPG key
