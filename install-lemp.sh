@@ -3,7 +3,9 @@
 # set -e making the commands if they were like &&
 set -e
 
-read -e -p "\nEnter the path to the install dir (or hit enter for default path): " -i "$HOME/server-lemp" INSTALL_DIR
+echo -e "\n"
+
+read -e -p "Enter the path to the install dir (or hit enter for default path): " -i "$HOME/server-lemp" INSTALL_DIR
 echo $INSTALL_DIR
 DB_DIR=$INSTALL_DIR/mariadb
 DBBAK_DIR=$INSTALL_DIR/dbbackup
