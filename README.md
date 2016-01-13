@@ -24,6 +24,8 @@ $ chmod +x $HOME/install-lemp.sh
 $ cd $HOME
 $ ./install-lemp.sh
 $ rm -rf $HOME/install-lemp.sh
+&
+& curl -L https://raw.github.com/DJviolin/Lemp/master/install-lemp.sh > $HOME/install-lemp.sh && chmod +x $HOME/install-lemp.sh && cd $HOME && ./install-lemp.sh && rm -rf $HOME/install-lemp.sh
 ```
 
 The script will create the `docker-compose.yml` and `lemp.service` files inside the cloned repo, which are needed for docker-compose and systemd.

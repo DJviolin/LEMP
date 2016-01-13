@@ -52,6 +52,7 @@ if echo "$answer" | grep -iq "^y" ;then
   #echo -e "MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > "${MYSQL_GENPASS}"
   #cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
   #cat $DB_DIR-root-password.txt
+  echo hello
 else
   read -e -p "Enter the MySQL root password: " MYSQL_PASS
   #MYSQL_GENPASS=$(echo -e MYSQL_ROOT_PASSWORD=$MYSQL_PASS)
