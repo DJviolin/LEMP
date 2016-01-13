@@ -47,14 +47,13 @@ echo -e "\nCreating additional files for the stack:"
 echo -e "\nGenerating MySQL root password!\nBe advised that auto-generating password NOT THE FIRST TIME + already having a MySQL database can CAUSE MISCONFIGURATION errors with already created databases!\nSo the recommended method is to CHOOSE THE NO OPTION and use one password and just STICK WITH IT!\nChoose Yes to auto-generate or No to type it manually (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-  echo -e "\
-MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > "${MYSQL_GENPASS}"
+  echo -e "MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > "${MYSQL_GENPASS}"
   #cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
   #cat $DB_DIR-root-password.txt
 else
   read -e -p "Enter the MySQL root password: " MYSQL_PASS
-  echo -e "\
-MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > "${MYSQL_GENPASS}"
+  MYSQL_GENPASS=$(echo -e "MYSQL_ROOT_PASSWORD=$MYSQL_PASS")
+  #echo -e "MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > "${MYSQL_GENPASS}"
   #cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
   #cat $DB_DIR-root-password.txt
 fi
