@@ -59,7 +59,7 @@ MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > $DB_PASS
   #cat $DB_DIR-root-password.txt
 fi
 
-echo $DB_PASS
+echo -e "Your MySQL password ENV vriable is : " $DB_PASS
 
 # bash variables in Here-Doc, don't use 'EOF'
 # http://stackoverflow.com/questions/4937792/using-variables-inside-a-bash-heredoc
