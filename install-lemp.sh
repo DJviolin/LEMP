@@ -48,18 +48,18 @@ echo -e "\nGenerating MySQL root password!\nBe advised that auto-generating pass
 read answer
 if echo "$answer" | grep -iq "^y" ;then
   echo -e "\
-MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > DB_PASS
+MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > MYSQL_GENPASS
   #cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
   #cat $DB_DIR-root-password.txt
 else
   read -e -p "Enter the MySQL root password: " MYSQL_PASS
   echo -e "\
-MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > $DB_PASS
+MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > MYSQL_GENPASS
   #cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
   #cat $DB_DIR-root-password.txt
 fi
 
-echo -e "Your MySQL password ENV vriable is : " $DB_PASS
+echo -e "Your MySQL password ENV vriable is : " $MYSQL_GENPASS
 
 # bash variables in Here-Doc, don't use 'EOF'
 # http://stackoverflow.com/questions/4937792/using-variables-inside-a-bash-heredoc
