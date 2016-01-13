@@ -1,4 +1,4 @@
-# Lanti/DebianMariaDB
+# Lanti/lempMariaDB
 #
 # VERSION               1.0.0
 

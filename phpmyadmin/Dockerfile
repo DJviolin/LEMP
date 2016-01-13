@@ -1,4 +1,4 @@
-# Lanti/DebianPHPMyAdmin
+# Lanti/lempPHPMyAdmin
 #
 # VERSION               1.0.0
 

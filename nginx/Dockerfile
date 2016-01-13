@@ -1,4 +1,4 @@
-# Lanti/DebianNginx
+# Lanti/lempNginx
 #
 # VERSION               1.0.0
 

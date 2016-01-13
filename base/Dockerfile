@@ -1,4 +1,4 @@
-# Lanti/DebianBase
+# Lanti/lempBase
 #
 # VERSION               1.0.0
 
@@ -36,4 +36,5 @@ RUN mkdir -p /var/www
 
 RUN rm -rf /var/lib/apt/lists/*
 
+ENTRYPOINT ["/bin/bash", "-c"]
 CMD ["tail", "-f", "/dev/null"]

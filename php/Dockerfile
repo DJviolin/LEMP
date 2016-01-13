@@ -1,4 +1,4 @@
-# Lanti/DebianPHP
+# Lanti/lempPHP
 #
 # VERSION               1.0.0
 

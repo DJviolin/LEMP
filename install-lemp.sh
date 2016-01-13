@@ -44,6 +44,23 @@ fi
 
 echo -e "\nCreating additional files for the stack:"
 
+echo -e "\nGenerating MySQL root password!\nBe advised that auto-generating password NOT THE FIRST TIME + already having a MySQL database can CAUSE MISCONFIGURATION errors with already created databases!\nSo the recommended method is to CHOOSE THE NO OPTION and use one password and just STICK WITH IT!\nChoose Yes to auto-generate or No to type it manually (y/n)?"
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+  echo -e "\
+MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $REPO_DIR/mariadb/mariadb.env
+  cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
+  cat $DB_DIR-root-password.txt
+else
+  read -e -p "Enter the MySQL root password: " MYSQL_PASS
+  echo -e "\
+MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > $REPO_DIR/mariadb/mariadb.env
+  cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
+  cat $DB_DIR-root-password.txt
+fi
+
+echo $DB_PASS
+
 # bash variables in Here-Doc, don't use 'EOF'
 # http://stackoverflow.com/questions/4937792/using-variables-inside-a-bash-heredoc
 # http://stackoverflow.com/questions/17578073/ssh-and-environment-variables-remote-and-local
@@ -77,6 +94,7 @@ mariadb:
   build: ./mariadb
   container_name: lemp_mariadb
   env_file: ./mariadb/mariadb.env
+  environment: $DB_PASS
   links:
     - base
   volumes:
@@ -141,23 +159,6 @@ Restart=always
 Conflicts=lemp.service
 EOF
 cat $REPO_DIR/lemp.service
-
-echo -e "\nGenerating MySQL root password!\nBe advised that auto-generating password NOT THE FIRST TIME + already having a MySQL database can CAUSE MISCONFIGURATION errors with already created databases!\nSo the recommended method is to CHOOSE THE NO OPTION and use one password and just STICK WITH IT!\nChoose Yes to auto-generate or No to type it manually (y/n)?"
-read answer
-if echo "$answer" | grep -iq "^y" ;then
-  echo -e "\
-# Set MySQL Root Password\n\
-MYSQL_ROOT_PASSWORD=`openssl rand -base64 37 | sed -e 's/^\(.\{37\}\).*/\1/g'`" > $REPO_DIR/mariadb/mariadb.env
-  cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
-  cat $DB_DIR-root-password.txt
-else
-  read -e -p "Enter the MySQL root password: " MYSQL_PASS
-  echo -e "\
-# Set MySQL Root Password\n\
-MYSQL_ROOT_PASSWORD=$MYSQL_PASS" > $REPO_DIR/mariadb/mariadb.env
-  cat $REPO_DIR/mariadb/mariadb.env > $DB_DIR-root-password.txt
-  cat $DB_DIR-root-password.txt
-fi
 
 cd $HOME
 
