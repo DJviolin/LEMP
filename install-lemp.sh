@@ -3,8 +3,6 @@
 # set -e making the commands if they were like &&
 set -e
 
-echo -e "\n"
-
 read -e -p "Enter the path to the install dir (or hit enter for default path): " -i "$HOME/server-lemp" INSTALL_DIR
 echo $INSTALL_DIR
 DB_DIR=$INSTALL_DIR/mariadb
@@ -66,10 +64,10 @@ echo -e "\nCreating additional files for the stack:"
 #fi
 
 echo -e "\nGenerating MySQL root password:"
-read -e -p "Enter the MySQL root password: " MYSQL_PASS
-echo -e "MYSQL_ROOT_PASSWORD=$MYSQL_PASS"
+read -e -p "Type here: " MYSQL_PASS
+MYSQL_GENERATED_PASS=$(echo -e MYSQL_ROOT_PASSWORD=$MYSQL_PASS)
 
-echo -e "\nYour MySQL password ENV variable is: " $MYSQL_PASS
+echo -e "\nYour MySQL password ENV variable is: " $MYSQL_GENERATED_PASS
 
 # bash variables in Here-Doc, don't use 'EOF'
 # http://stackoverflow.com/questions/4937792/using-variables-inside-a-bash-heredoc
@@ -103,9 +101,8 @@ phpmyadmin:
 mariadb:
   build: ./mariadb
   container_name: lemp_mariadb
-  #env_file: ./mariadb/mariadb.env
   environment:
-    - $MYSQL_PASS
+    - $MYSQL_GENERATED_PASS
   links:
     - base
   volumes:
