@@ -19,7 +19,7 @@ Work in progress! NOT FOR PRODUCTION!
 Basic install script provided. Run only `./install-lemp.sh` and follow the instructions in the script! You doesn't even need to clone this repo (the script will do it anyway), just only download this file to your host and run it if you wish!
 
 ```
-& curl -L https://raw.github.com/DJviolin/Lemp/master/install-lemp.sh > $HOME/install-lemp.sh && chmod +x $HOME/install-lemp.sh && cd $HOME && ./install-lemp.sh && rm -rf $HOME/install-lemp.sh
+& curl -L https://raw.github.com/DJviolin/LEMP/master/install-lemp.sh > $HOME/install-lemp.sh && chmod +x $HOME/install-lemp.sh && cd $HOME && ./install-lemp.sh && rm -rf $HOME/install-lemp.sh
 ```
 
 The script will create the `docker-compose.yml` and `lemp.service` files inside the cloned repo, which are needed for docker-compose and systemd.
