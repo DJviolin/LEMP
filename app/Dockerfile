@@ -17,4 +17,7 @@ ONBUILD RUN chown -R www-data:www-data /var/www \
     && chmod g+s /var/www \
     #&& chmod -R 777 /var/www
 
-CMD ["tail", "-f", "/dev/null"]
+WORKDIR /var/www
+
+#CMD ["tail", "-f", "/dev/null"]
+CMD ["/usr/sbin/nginx"]
