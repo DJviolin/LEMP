@@ -109,7 +109,7 @@ nginx:
     - base
 app:
   build: ./app
-  container_name: lemp_nginx_app
+  container_name: lemp_app
   links:
     - nginx
   ports:
