@@ -42,6 +42,10 @@ RUN curl -fSL "https://github.com/FRiCKLE/ngx_cache_purge/archive/master.tar.gz"
     && mkdir -p /usr/src/nginx-modules/ngx_cache_purge \
     && tar -xf "ngx_cache_purge.tar.gz" -C /usr/src/nginx-modules/ngx_cache_purge --strip-components=1 \
     && rm "ngx_cache_purge.tar.gz"*
+RUN curl -fSL "https://github.com/openresty/srcache-nginx-module/archive/master.tar.gz" -o "ngx_srcache.tar.gz" \
+    && mkdir -p /usr/src/nginx-modules/ngx_srcache \
+    && tar -xf "ngx_srcache.tar.gz" -C /usr/src/nginx-modules/ngx_srcache --strip-components=1 \
+    && rm "ngx_srcache.tar.gz"*
 ### End of Downloading source files
 
 # Configuring the build
@@ -87,6 +91,7 @@ RUN cd /usr/src/nginx \
         --with-ipv6 \
         # Added 3rd party modules \
         --add-module=/usr/src/nginx-modules/ngx_cache_purge \
+        --add-module=/usr/src/nginx-modules/ngx_srcache \
     && echo -e "Configuration done!"
 
 RUN cd /usr/src/nginx \
