@@ -104,8 +104,6 @@ COPY etc/nginx/html/404.html /etc/nginx/html/
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # This will create the user and set their shell to /bin/false so no one can start an interactive login as this user
-#RUN groupadd nginx -g 501 \
-#    && useradd nginx -g nginx -u 501 --system --no-create-home -s /bin/false
 RUN groupadd nginx \
     && useradd nginx -g nginx --system --no-create-home -s /bin/false
 # Allow Nginx to access /var/run/php-fpm/php-fpm.sock
@@ -120,4 +118,3 @@ ONBUILD RUN chown -R www-data:www-data /var/www \
 WORKDIR /var/www
 
 CMD ["/usr/sbin/nginx"]
-#CMD ["tail", "-f", "/dev/null"]
