@@ -115,7 +115,7 @@ app:
   ports:
     - "8080:80"
     - "8081:443"
-  working_dir: /var/www
+  #working_dir: /var/www
   volumes:
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
