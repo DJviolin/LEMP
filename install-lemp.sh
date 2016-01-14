@@ -68,9 +68,7 @@ cadvisor:
     - "/var/lib/docker/:/var/lib/docker:ro"
 base:
   build: ./base
-  container_name: lemp_base
-  #volumes:
-  #- $WWW_DIR/:/var/www/:rw
+  container_name: lemp_base_exited
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -106,9 +104,14 @@ php:
     - mariadb
 nginx:
   build: ./nginx
-  container_name: lemp_nginx
+  container_name: lemp_nginx_exited
   links:
     - base
+app:
+  build: ./app
+  container_name: lemp_nginx_app
+  links:
+    - nginx
   ports:
     - "8080:80"
     - "8081:443"

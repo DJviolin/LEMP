@@ -36,4 +36,4 @@ RUN mkdir -p /var/www
 
 RUN rm -rf /var/lib/apt/lists/*
 
-CMD ["tail", "-f", "/dev/null"]
+#CMD ["tail", "-f", "/dev/null"]
