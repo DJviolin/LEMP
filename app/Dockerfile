@@ -15,6 +15,7 @@ LABEL Description="App" Vendor="Istvan Lantos" Version="1.0"
 #    && rm "latest.tar.gz"*
 
 #ONBUILD COPY . /var/www
-RUN chmod -R 777 /var/www
+ONBUILD RUN chmod -R 777 /var/www \
+    && chown -R www-data:www-data /var/www
 
 #CMD ["/usr/sbin/nginx"]
