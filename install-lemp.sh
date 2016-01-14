@@ -69,8 +69,8 @@ cadvisor:
 base:
   build: ./base
   container_name: lemp_base
-  volumes:
-  - $WWW_DIR/:/var/www/:rw
+  #volumes:
+  #- $WWW_DIR/:/var/www/:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -112,9 +112,11 @@ nginx:
   ports:
     - "8080:80"
     - "8081:443"
+  working_dir: /var/www
   volumes:
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    - $WWW_DIR/:/var/www/:rw
   volumes_from:
     - php
 EOF
