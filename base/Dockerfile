@@ -31,7 +31,7 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 ### End of optimizations
 
 ### Start of Nginx WEBSERVER setup
-RUN mkdir -p /var/www
+#RUN mkdir -p /var/www
 ### End of Nginx WEBSERVER setup
 
 RUN rm -rf /var/lib/apt/lists/*
