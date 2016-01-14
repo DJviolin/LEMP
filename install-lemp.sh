@@ -104,24 +104,24 @@ php:
     - mariadb
 nginx:
   build: ./nginx
-  container_name: lemp_nginx_exited
+  container_name: lemp_nginx
   links:
     - base
-app:
-  build: ./app
-  container_name: lemp_app
-  links:
-    - nginx
   ports:
     - "8080:80"
     - "8081:443"
-  #working_dir: /var/www
   volumes:
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     - $WWW_DIR/:/var/www/:rw
   volumes_from:
     - php
+app:
+  build: ./app
+  container_name: lemp_app_exited
+  links:
+    - nginx
+  #working_dir: /var/www
 EOF
 cat $REPO_DIR/docker-compose.yml
 

@@ -111,6 +111,8 @@ RUN groupadd nginx \
 # Allow Nginx to access /var/run/php-fpm/php-fpm.sock
 RUN usermod -aG www-data nginx
 #Further user setup
+RUN mkdir -p /var/www
+WORKDIR /var/www
 #RUN mkdir -p /var/www /var/run/fcgi \
 #    && chown -R nginx:nginx /var/run/fcgi \
 #    && chmod -R 777 /var/run/fcgi
@@ -118,4 +120,4 @@ RUN usermod -aG www-data nginx
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
-#CMD ["/usr/sbin/nginx"]
+CMD ["/usr/sbin/nginx"]
