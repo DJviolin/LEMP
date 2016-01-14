@@ -68,7 +68,7 @@ cadvisor:
     - "/var/lib/docker/:/var/lib/docker:ro"
 base:
   build: ./base
-  container_name: lemp_base_exited
+  container_name: lemp_base
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -118,7 +118,7 @@ nginx:
     - php
 app:
   build: ./app
-  container_name: lemp_app_exited
+  container_name: lemp_app
   links:
     - nginx
   #working_dir: /var/www

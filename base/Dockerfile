@@ -36,4 +36,4 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-#CMD ["tail", "-f", "/dev/null"]
+CMD ["tail", "-f", "/dev/null"]
