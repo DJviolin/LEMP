@@ -17,4 +17,6 @@ WORKDIR /var/www
 
 ONBUILD COPY . /var/www
 
+#RUN chmod -R 777 /var/www/*
+
 CMD ["/usr/sbin/nginx"]
