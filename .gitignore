@@ -2,4 +2,5 @@ nginx/etc/nginx/conf.d/cert/
 mariadb/mariadb.env
 lemp.service
 docker-compose.yml
+app/
 !app/Dockerfile
