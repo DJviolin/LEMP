@@ -56,9 +56,9 @@ $ ./service-stop.sh
 
 ## Wordpress post install
 
-1. Give 777 access for `$HOME/server/www/your-wordpress-site.com` folder and all of it's sub-files and folders on the host with:
+1. Give 777 access for `$HOME/server-lemp/www/your-wordpress-site.com` folder and all of it's sub-files and folders on the host with:
 
-    $ sudo chmod -R 777 $HOME/server/www/your-wordpress-site.com
+    $ sudo chmod -R 777 $HOME/server-lemp/www/your-wordpress-site.com
 
 2. You have to place this on the bottom of `wp-config.php`
 
