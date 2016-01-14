@@ -110,11 +110,14 @@ RUN groupadd nginx \
     && useradd nginx -g nginx --system --no-create-home -s /bin/false
 # Allow Nginx to access /var/run/php-fpm/php-fpm.sock
 RUN usermod -aG www-data nginx
-#Further user setup
-RUN mkdir -p /var/www
-WORKDIR /var/www
 ### End of Nginx setup
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
+
+ONBUILD RUN \
+    && chown -R www-data:www-data /var/www \
+    && chmod g+s /var/www
+
+WORKDIR /var/www
 
 CMD ["/usr/sbin/nginx"]

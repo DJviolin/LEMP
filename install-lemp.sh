@@ -117,11 +117,11 @@ nginx:
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
   volumes_from:
     - php
-app:
-  build: ./app
-  container_name: lemp_app
-  links:
-    - nginx
+#app:
+#  build: ./app
+#  container_name: lemp_app
+#  links:
+#    - nginx
 EOF
 cat $REPO_DIR/docker-compose.yml
 
