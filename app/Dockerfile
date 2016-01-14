@@ -7,7 +7,7 @@ MAINTAINER Istvan Lantos <info@lantosistvan.com>
 LABEL Description="App" Vendor="Istvan Lantos" Version="1.0"
 
 RUN mkdir -p /var/www \
-    chmod -R 777 /var/www
+    chmod -R 777 /var/www/*
 WORKDIR /var/www
 
 #RUN curl -fSL "https://wordpress.org/latest.tar.gz" -o "latest.tar.gz" \
