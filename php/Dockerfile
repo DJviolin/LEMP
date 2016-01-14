@@ -39,6 +39,10 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         re2c --no-install-recommends
 ### End of DEV environment deps
 
+# Add www-data user and add UID, GID set to 500
+RUN groupadd www-data -g 500 \
+    && useradd www-data -g www-data -u 500 --system --no-create-home -s /bin/false
+
 ### Start of Downloading source files
 RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILENAME" \
     && echo "$PHP_SHA256 *$PHP_FILENAME" | sha256sum -c - \

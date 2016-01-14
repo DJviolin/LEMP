@@ -112,8 +112,10 @@ RUN usermod -aG www-data nginx
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
-ONBUILD RUN chown -R www-data:www-data /var/www \
-    && chmod g+s /var/www
+#RUN groupadd -g 500 www-data
+
+#ONBUILD RUN chown -R www-data:www-data /var/www \
+#    && chmod g+s /var/www
 
 WORKDIR /var/www
 
