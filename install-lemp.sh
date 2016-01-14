@@ -99,7 +99,7 @@ php:
     - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
     - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
   volumes_from:
-    - base
+    #- base
     - phpmyadmin
     - mariadb
 nginx:
