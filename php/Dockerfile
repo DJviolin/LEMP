@@ -39,7 +39,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         re2c --no-install-recommends
 ### End of DEV environment deps
 
-# Add www-data user and UID, GID set to 500
+# Add www-data user and set UID, GID to 500
 RUN groupadd www-data -g 500 \
     && useradd www-data -g www-data -u 500 --system --no-create-home -s /bin/false
 
