@@ -13,9 +13,8 @@ LABEL Description="App" Vendor="Istvan Lantos" Version="1.0"
 
 #ONBUILD COPY . /var/www
 
-ONBUILD RUN \
-    #&& chmod -R 777 /var/www \
-    && chown -R www-data:www-data /var/www \
-    && chmod g+s /var/www
+ONBUILD RUN chown -R www-data:www-data /var/www \
+    && chmod g+s /var/www \
+    #&& chmod -R 777 /var/www
 
 CMD ["tail", "-f", "/dev/null"]
