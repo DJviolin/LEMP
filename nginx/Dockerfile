@@ -113,9 +113,6 @@ RUN usermod -aG www-data nginx
 #Further user setup
 RUN mkdir -p /var/www
 WORKDIR /var/www
-#RUN mkdir -p /var/www /var/run/fcgi \
-#    && chown -R nginx:nginx /var/run/fcgi \
-#    && chmod -R 777 /var/run/fcgi
 ### End of Nginx setup
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*

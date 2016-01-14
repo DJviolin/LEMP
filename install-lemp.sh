@@ -69,6 +69,8 @@ cadvisor:
 base:
   build: ./base
   container_name: lemp_base
+  volumes:
+    - $WWW_DIR/:/var/www/:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -99,7 +101,7 @@ php:
     - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
     - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
   volumes_from:
-    #- base
+    - base
     - phpmyadmin
     - mariadb
 nginx:
@@ -113,7 +115,6 @@ nginx:
   volumes:
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    - $WWW_DIR/:/var/www/:rw
   volumes_from:
     - php
 app:
@@ -121,7 +122,6 @@ app:
   container_name: lemp_app
   links:
     - nginx
-  #working_dir: /var/www
 EOF
 cat $REPO_DIR/docker-compose.yml
 
