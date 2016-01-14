@@ -56,7 +56,9 @@ $ ./service-stop.sh
 
 ## Wordpress post install
 
-1. You have to place this on the bottom of `wp-config.php`
+1. Give 777 access for `$HOME/server/www/your-wordpress-site.com` folder. Give 777 access for `$HOME/server/www/your-wordpress-site.com/wp-contant` and all of it's subfolders. 
+
+2. You have to place this on the bottom of `wp-config.php`
 
     ```
     define('FTP_PUBKEY','/etc/ssh/ssh_host_rsa_key.pub');
@@ -66,9 +68,9 @@ $ ./service-stop.sh
     define('FTP_HOST','127.0.0.1:22');
     ```
 
-2. Install [Nginx Helper](https://wordpress.org/plugins/nginx-helper/) plugin and turn on `Enable Purge` option.
+3. Install [Nginx Helper](https://wordpress.org/plugins/nginx-helper/) plugin and turn on `Enable Purge` option.
 
-3. You can verify that nginx Cache Purge option is installed. It should return `nginx-cache-purge` to the console:
+4. You can verify that nginx Cache Purge option is installed. It should return `nginx-cache-purge` to the console:
 
     ```
     $ docker exec -it lemp_nginx bash
