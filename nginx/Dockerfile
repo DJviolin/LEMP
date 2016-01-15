@@ -15,7 +15,6 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         # https://www.nginx.com/blog/benefits-of-microcaching-nginx/
         apache2-utils \
         siege \
-        wrk \
         # DEV ENV \
         curl \
         make \
@@ -34,6 +33,15 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libxslt1-dev \
         zlib1g-dev
 ### End of DEV environment deps
+
+# Install wrk
+RUN curl -fSL "https://github.com/wg/wrk/archive/master.tar.gz" -o "wrk.tar.gz" \
+    && mkdir -p /usr/local/wrk \
+    && tar -xf "wrk.tar.gz" -C /usr/local/wrk --strip-components=1 \
+    && rm "wrk.tar.gz"* \
+    && cd /usr/local/wrk \
+    && make \
+    && chmod +x /usr/local/wrk/wrk
 
 ### Start of Downloading source files
 # Nginx
