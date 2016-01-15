@@ -36,8 +36,8 @@ RUN mkdir -p /var/www
 # https://muffinresearch.co.uk/linux-changing-uids-and-gids-for-user/
 RUN groupmod -g 500 www-data \
     && usermod -u 500 www-data \
-    && `find / -user 33 -exec chown -h 500 {} \;` \
-    && `find / -group 33 -exec chgrp -h 500 {} \;` \
+    #&& `find / -user 33 -exec chown -h 500 {} \;` \
+    #&& `find / -group 33 -exec chgrp -h 500 {} \;` \
     && usermod -g 500 www-data \
     && chown -R www-data:www-data /var/www \
     && chmod g+s /var/www
