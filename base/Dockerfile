@@ -33,7 +33,8 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 ### Start of Nginx WEBSERVER setup
 RUN mkdir -p /var/www
 # Add www-data user and set UID, GID to 500
-RUN groupadd www-data -g 500 \
+RUN groupmod -g 500 www-data \
+    #&& groupadd www-data -g 500 \
     && useradd www-data -g www-data -u 500 --system --no-create-home -s /bin/false \
     && chown -R www-data:www-data /var/www \
     && chmod g+s /var/www
