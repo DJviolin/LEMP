@@ -11,11 +11,6 @@ ENV NGINX_VERSION nginx-1.9.9.tar.gz
 ### Start of DEV environment deps
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y install \
-        # Benchmarking tools
-        # https://www.nginx.com/blog/benefits-of-microcaching-nginx/
-        apache2-utils \
-        siege \
-        # DEV ENV \
         curl \
         make \
         gcc \
@@ -34,7 +29,11 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         zlib1g-dev
 ### End of DEV environment deps
 
-# Install wrk
+# Benchmarking tools
+# https://www.nginx.com/blog/benefits-of-microcaching-nginx
+RUN apt-get -y install \
+    apache2-utils \
+    siege
 RUN curl -fSL "https://github.com/wg/wrk/archive/master.tar.gz" -o "wrk.tar.gz" \
     && mkdir -p /usr/local/wrk \
     && tar -xf "wrk.tar.gz" -C /usr/local/wrk --strip-components=1 \
