@@ -124,6 +124,7 @@ RUN curl -fSL "https://github.com/wg/wrk/archive/master.tar.gz" -o "wrk.tar.gz" 
     && cd /usr/local/wrk \
     && make \
     && chmod +x /usr/local/wrk/wrk
+RUN echo 'export PATH="$PATH:/usr/local/wrk"' >> /etc/bash.bashrc
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
