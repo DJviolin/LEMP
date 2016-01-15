@@ -33,10 +33,12 @@ root            soft    nofile            500000" >> /etc/security/limits.conf \
 ### Start of Nginx WEBSERVER setup
 RUN mkdir -p /var/www
 # Modify www-data user and set UID, GID to 500
-RUN groupmod -g 500 www-data \
-    && usermod -u 500 www-data \
-    && chown -R www-data:www-data /var/www \
-    && chmod g+s /var/www
+#RUN groupmod -g 500 www-data \
+    #&& usermod -u 500 www-data \
+    #&& "find / -user <OLDUID> -exec chown -h <NEWUID> {} \;" \
+    #&& "find / -group <OLDGID> -exec chgrp -h <NEWGID> {} \;" \
+    #&& chown -R www-data:www-data /var/www \
+    #&& chmod g+s /var/www
 ### End of Nginx WEBSERVER setup
 
 RUN rm -rf /var/lib/apt/lists/*
