@@ -32,8 +32,6 @@ Run docker-compose with:
 $ docker-compose --file $HOME/server-lemp/lemp/docker-compose.yml build
 ```
 
-Place your Wordpress install files into `$HOME/server-lemp/lemp/app` directory in a preferred folders structure. It will be copied into the container ONBUILD.
-
 Start the Systemd service:
 
 ```
