@@ -11,6 +11,9 @@ ENV NGINX_VERSION nginx-1.9.9.tar.gz
 ### Start of DEV environment deps
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y install \
+        # https://www.nginx.com/blog/benefits-of-microcaching-nginx/
+        ab \
+        # DEV ENV \
         curl \
         make \
         gcc \
