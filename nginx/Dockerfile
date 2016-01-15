@@ -29,19 +29,6 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         zlib1g-dev
 ### End of DEV environment deps
 
-# Benchmarking tools
-# https://www.nginx.com/blog/benefits-of-microcaching-nginx
-RUN apt-get -y install \
-    apache2-utils \
-    siege
-RUN curl -fSL "https://github.com/wg/wrk/archive/master.tar.gz" -o "wrk.tar.gz" \
-    && mkdir -p /usr/local/wrk \
-    && tar -xf "wrk.tar.gz" -C /usr/local/wrk --strip-components=1 \
-    && rm "wrk.tar.gz"* \
-    && cd /usr/local/wrk \
-    && make \
-    && chmod +x /usr/local/wrk/wrk
-
 ### Start of Downloading source files
 # Nginx
 RUN curl -fSL "http://nginx.org/download/$NGINX_VERSION" -o "$NGINX_VERSION" \
@@ -124,6 +111,19 @@ RUN groupadd nginx \
 # Allow Nginx to access /var/run/php-fpm/php-fpm.sock
 RUN usermod -aG www-data nginx
 ### End of Nginx setup
+
+# Benchmarking tools
+# https://www.nginx.com/blog/benefits-of-microcaching-nginx
+RUN apt-get -y install \
+    apache2-utils \
+    siege
+RUN curl -fSL "https://github.com/wg/wrk/archive/master.tar.gz" -o "wrk.tar.gz" \
+    && mkdir -p /usr/local/wrk \
+    && tar -xf "wrk.tar.gz" -C /usr/local/wrk --strip-components=1 \
+    && rm "wrk.tar.gz"* \
+    && cd /usr/local/wrk \
+    && make \
+    && chmod +x /usr/local/wrk/wrk
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
