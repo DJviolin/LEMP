@@ -127,7 +127,8 @@ RUN cd /usr/src/ffmpeg \
         #--enable-libx264 \
         #--enable-libopencv \
     && echo -e "Configuration done!"
-RUN make \
+RUN cd /usr/src/ffmpeg \
+    && make \
     && make install \
     && make distclean \
     && echo 'export PATH="$PATH:/usr/ffmpeg/bin"' >> /etc/bash.bashrc \
