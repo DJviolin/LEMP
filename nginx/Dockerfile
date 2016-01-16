@@ -128,9 +128,8 @@ RUN curl -fSL "https://github.com/wg/wrk/archive/master.tar.gz" -o "wrk.tar.gz" 
 RUN echo -e "\
 deb http://httpredir.debian.org/debian jessie-backports main contrib non-free" > /etc/apt/sources.list.d/jessie-backports.list
 RUN apt-get -y update && apt-get -y dist-upgrade \
-    && apt-get -y install \
-        libav-tools \
     && apt-get -y -t jessie-backports install \
+        libav-tools \
         ffmpeg
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
