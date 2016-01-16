@@ -56,11 +56,7 @@ $ ./service-stop.sh
 
 ## Wordpress post install
 
-1. Give 777 access for `$HOME/server-lemp/www/your-wordpress-site.com` folder and all of it's sub-files and folders on the host with:
-
-    $ sudo chmod -R 777 $HOME/server-lemp/www/your-wordpress-site.com
-
-2. You have to place this on the bottom of `wp-config.php`
+1. You have to place this on the bottom of `wp-config.php`
 
     ```
     define('FTP_PUBKEY','/etc/ssh/ssh_host_rsa_key.pub');
@@ -70,9 +66,9 @@ $ ./service-stop.sh
     define('FTP_HOST','127.0.0.1:22');
     ```
 
-3. Install [Nginx Helper](https://wordpress.org/plugins/nginx-helper/) plugin and turn on `Enable Purge` option.
+2. Install [Nginx Helper](https://wordpress.org/plugins/nginx-helper/) plugin and turn on `Enable Purge` option.
 
-4. You can verify that nginx Cache Purge option is installed. It should return `nginx-cache-purge` to the console:
+3. You can verify that nginx Cache Purge option is installed. It should return `nginx-cache-purge` to the console:
 
     ```
     $ docker exec -it lemp_nginx bash
