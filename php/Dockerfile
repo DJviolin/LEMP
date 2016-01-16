@@ -86,7 +86,6 @@ RUN cd /usr/src/php \
         # Extensions \
         --with-openssl \
         --without-sqlite3 \
-        --without-ftp \
         --with-zlib=/usr \
         --with-zlib-dir=/usr \
         --enable-bcmath \
