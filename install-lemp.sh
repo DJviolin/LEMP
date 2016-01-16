@@ -123,6 +123,7 @@ nginx:
     - "8080:80"
     - "8081:443"
   volumes:
+    - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
   volumes_from:
     - php
