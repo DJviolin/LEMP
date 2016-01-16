@@ -112,7 +112,7 @@ RUN groupadd nginx \
 RUN usermod -aG www-data nginx
 ### End of Nginx setup
 
-# Benchmarking tools
+# Benchmarking tools (ab, siege, wrk)
 # https://www.nginx.com/blog/benefits-of-microcaching-nginx
 RUN apt-get -y install \
     apache2-utils \
