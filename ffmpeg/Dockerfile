@@ -131,8 +131,7 @@ RUN make \
     && make install \
     && make distclean \
     && echo 'export PATH="$PATH:/usr/ffmpeg/bin"' >> /etc/bash.bashrc \
-    && cd $HOME \
-    && ffmpeg
+    && cd $HOME
 ### End of building
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
