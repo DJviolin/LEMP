@@ -186,3 +186,14 @@ nginx install configs not included:
 #RUN groupadd nginx -g 550 \
 #    && useradd nginx -g nginx -u 550 --system --no-create-home -s /bin/false \
 ```
+
+FFmpeg install configs removed:
+
+```
+RUN echo -e "\
+deb http://httpredir.debian.org/debian jessie-backports main contrib non-free" > /etc/apt/sources.list.d/jessie-backports.list
+RUN apt-get -y update && apt-get -y dist-upgrade \
+    && apt-get -y -t jessie-backports install \
+        libav-tools \
+        ffmpeg
+```
