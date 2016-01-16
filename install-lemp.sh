@@ -92,9 +92,9 @@ mariadb:
     - /var/run/mysqld
     - $DB_DIR/:/var/lib/mysql/:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
-ffmpegbuild:
-  build: ./ffmpegbuild
-  container_name: lemp_ffmpegbuild
+ffmpeg:
+  build: ./ffmpeg
+  container_name: lemp_ffmpeg
   links:
     - base
   volumes:
@@ -113,7 +113,7 @@ php:
     - base
     - phpmyadmin
     - mariadb
-    - ffmpegbuild
+    - ffmpeg
 nginx:
   build: ./nginx
   container_name: lemp_nginx
