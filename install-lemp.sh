@@ -98,7 +98,7 @@ ffmpeg:
   links:
     - base
   volumes:
-    - /usr/bin/ffmpeg
+    - /usr/local/bin
 php:
   build: ./php
   container_name: lemp_php

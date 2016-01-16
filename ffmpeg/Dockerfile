@@ -13,6 +13,9 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libav-tools \
         ffmpeg
 
+RUN mkdir -p /usr/local/ffmpeg \
+    && ln -sf /usr/bin/ffmpeg /usr/local/bin/ffmpeg
+
 RUN rm -rf /var/lib/apt/lists/*
 
 CMD ["tail", "-f", "/dev/null"]
