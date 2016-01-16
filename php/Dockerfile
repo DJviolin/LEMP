@@ -26,7 +26,6 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         ca-certificates \
         curl \
         librecode0 \
-        #libsqlite3-0 \
         libxml2 --no-install-recommends \
         # phpize deps \
         autoconf \
@@ -53,9 +52,7 @@ RUN curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILEN
 # --enable-mysqlnd is included below because it's harder to compile after the fact the extensions are (since it's a plugin for several extensions, not an extension in itself)
 RUN apt-get -y install \
         libcurl4-openssl-dev --no-install-recommends \
-        #libreadline6-dev --no-install-recommends \
         librecode-dev --no-install-recommends \
-        #libsqlite3-dev --no-install-recommends \
         libssl-dev --no-install-recommends \
         libxml2-dev --no-install-recommends \
         # Own dependencies \
@@ -68,16 +65,10 @@ RUN apt-get -y install \
         libicu-dev --no-install-recommends \
         libmcrypt-dev --no-install-recommends \
         libmysqlclient-dev --no-install-recommends \
-        libmysqld-dev --no-install-recommends \
-        #libpspell-dev --no-install-recommends \
-        # Own dependencies - WP SSH2 \
-        libssh2-1 \
-        libssh2-1-dev --no-install-recommends
+        libmysqld-dev --no-install-recommends
 # Fixing "configure: error: Unable to locate gmp.h"
 RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h 
 # Configuring the build
-# http://wordpress.stackexchange.com/questions/42098/what-are-php-extensions-and-libraries-wp-needs-and-or-uses
-# https://wordpress.org/support/topic/wowdpress-php-dependencies
 RUN cd /usr/src/php \
     && ./configure \
         # Installation directories \
@@ -85,7 +76,6 @@ RUN cd /usr/src/php \
         # Fine tuning of the installation directories \
         --with-libdir=/lib/x86_64-linux-gnu \
         # SAPI modules \
-        #--disable-cli \
         --enable-fpm \
         --with-fpm-user=www-data \
         --with-fpm-group=www-data \
@@ -103,7 +93,6 @@ RUN cd /usr/src/php \
         --enable-calendar \
         --with-curl \
         --enable-exif \
-        #--enable-ftp \
         --with-gd \
         --with-jpeg-dir=/usr \
         --with-png-dir=/usr \
@@ -118,35 +107,17 @@ RUN cd /usr/src/php \
         --enable-mbstring \
         --with-mcrypt \
         --with-mysqli=/usr/bin/mysql_config \
-        #--enable-pcntl \
         --disable-pdo \
-        #--with-pdo-mysql=/usr \
         --without-pdo-sqlite \
         --disable-phar \
-        #--with-pspell \
-        #--with-readline \
         --with-recode=/usr \
-        #--enable-soap \
         --enable-sockets \
         --enable-sysvmsg \
         --enable-sysvsem \
         --enable-sysvshm \
-        #--enable-wddx \
         --enable-zip \
-        #--enable-mysqlnd \
         # PEAR \
         --without-pear \
-        # Zend added \
-        #--with-mysql=/usr \
-        #--with-apxs2=/usr/bin/apxs2 \
-        # Misc - Added by Docker installer \
-        #--enable-mysqlnd \
-        #--with-mysqli=/usr/bin/mysql_config \
-        #--with-curl \
-        #--with-openssl \
-        #--with-readline \
-        #--with-recode \
-        #--with-zlib \
     && echo -e "Configuration done!"
 
 RUN cd /usr/src/php \
@@ -154,22 +125,6 @@ RUN cd /usr/src/php \
     && make install \
     && { find /usr/local/php7/bin /usr/local/php7/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
     && make clean
-
-### Start of PECL SSH2 install
-# https://github.com/php/pecl-networking-ssh2
-RUN cd ~ \
-    && mkdir -p /usr/src/ssh2 \
-    && curl -fSL "https://github.com/php/pecl-networking-ssh2/archive/master.tar.gz" -o "pecl-networking-ssh2.tar.gz" \
-    && tar -xzf "pecl-networking-ssh2.tar.gz" -C /usr/src/ssh2 --strip-components=1 \
-    && rm -rf pecl-networking-ssh2.tar.gz \
-    && cd /usr/src/ssh2 \
-    && /usr/local/php7/bin/phpize \
-    && ./configure \
-        --with-ssh2 \
-        --with-php-config=/usr/local/php7/bin/php-config \
-    && make \
-    && make install
-### End of PECL SSH2 install
 
 ### Start of PHP 7 setup
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
