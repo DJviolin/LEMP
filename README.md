@@ -36,7 +36,6 @@ Start the Systemd service:
 
 ```
 $ cd $HOME/server-lemp/lemp
-$ chmod +x service-start.sh service-stop.sh
 $ ./service-start.sh
 ```
 
