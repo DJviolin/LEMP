@@ -166,7 +166,7 @@ LEMP stack has successfully built!\n\n\
 Run docker-compose with:\n\
   $ docker-compose --file $REPO_DIR/docker-compose.yml build\n\
 Run the systemd service with:\n\
-  $ cd $REPO_DIR && chmod +x service-start.sh && ./service-start.sh\n\
+  $ cd $REPO_DIR && ./service-start.sh\n\
 Stop the systemd service with:\n\
-  $ cd $REPO_DIR && chmod +x service-stop.sh && ./service-stop.sh"
+  $ cd $REPO_DIR && ./service-stop.sh"
 echo -e "\nAll done! Exiting..."
