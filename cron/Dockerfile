@@ -8,7 +8,7 @@ LABEL Description="Cron" Vendor="Istvan Lantos" Version="1.0"
 
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y install \
-        supervisor \
+        #supervisor \
         cron
 
 RUN mkdir -p /var/log/supervisord
