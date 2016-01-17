@@ -25,6 +25,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         # persistent / runtime deps \
         ca-certificates \
         curl \
+        cron \
         librecode0 \
         libxml2 --no-install-recommends \
         # phpize deps \
