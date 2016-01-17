@@ -130,6 +130,14 @@ RUN cd /usr/src/php \
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 ### End of PHP 7 setup
 
+RUN apt-get -y install \
+    supervisor \
+    cron
+RUN mkdir -p /var/log/supervisord
+
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
-CMD ["/usr/local/php7/sbin/php-fpm", "--nodaemonize", "--fpm-config", "/usr/local/php7/etc/php-fpm.conf"]
+#CMD ["/usr/local/php7/sbin/php-fpm", "--nodaemonize", "--fpm-config", "/usr/local/php7/etc/php-fpm.conf"]
+
+COPY etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
