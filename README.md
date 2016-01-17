@@ -58,11 +58,13 @@ $ ./service-stop.sh
 1. You have to place this on the bottom of `wp-config.php`
 
     ```
-    define('FTP_PUBKEY','/etc/ssh/ssh_host_rsa_key.pub');
-    define('FTP_PRIKEY','/etc/ssh/ssh_host_rsa_key');
-    define('FTP_USER','root');
-    define('FTP_PASS','');
-    define('FTP_HOST','127.0.0.1:22');
+    define('DISABLE_WP_CRON', true);
+    ```
+
+    This will turn off default cron jobs from WP. Then you have to create a file at `$HOME/server-lemp/lemp/php/etc/Crontab` and place this:
+
+    ```
+    */5 * * * * php /var/www/your-wp-install-dir/wp-cron.php
     ```
 
 2. Install [Nginx Helper](https://wordpress.org/plugins/nginx-helper/) plugin and turn on `Enable Purge` option.
