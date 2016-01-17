@@ -1,5 +1,7 @@
 ## TODO
 
+https://www.lucasrolff.com/wordpress/why-wp-cron-sucks/
+
 WP specific settings in Nginx .conf files and SFTP access.
 
 ## Personal notes, only for development
