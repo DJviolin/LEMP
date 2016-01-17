@@ -17,7 +17,9 @@ deb http://security.debian.org stable/updates main contrib non-free\n\
 deb-src http://security.debian.org stable/updates main contrib non-free\n\
 deb http://httpredir.debian.org/debian stable-updates main contrib non-free\n\
 deb-src http://httpredir.debian.org/debian stable-updates main contrib non-free" > /etc/apt/sources.list
-RUN apt-get -y update && apt-get -y dist-upgrade
+RUN apt-get -y update && apt-get -y dist-upgrade \
+    && apt-get -y install \
+        cron
 
 ### Start of optimizations
 # https://easyengine.io/tutorials/linux/increase-open-files-limit/
