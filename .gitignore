@@ -4,4 +4,4 @@ lemp.service
 docker-compose.yml
 app/
 !app/Dockerfile
-php/etc/Crontab
+php/etc/cron.d/

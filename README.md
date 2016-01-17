@@ -61,11 +61,13 @@ $ ./service-stop.sh
     define('DISABLE_WP_CRON', true);
     ```
 
-    This will turn off default cron jobs from WP. Then you have to create a file at `$HOME/server-lemp/lemp/php/etc/Crontab` and place this:
+    This will turn off default cron jobs from WP. Then you have to create a file in `$HOME/server-lemp/lemp/php/etc/cron.d` directory and place this in there:
 
     ```
     */5 * * * * php /var/www/your-wp-install-dir/wp-cron.php
     ```
+
+    This hack will make cron jobs work.
 
 2. Install [Nginx Helper](https://wordpress.org/plugins/nginx-helper/) plugin and turn on `Enable Purge` option.
 
