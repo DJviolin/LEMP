@@ -55,7 +55,7 @@ $ ./service-stop.sh
 
 ## Wordpress post install
 
-1. You have to place this on the bottom of `wp-config.php`
+1. You have to place this on the bottom of your `wp-config.php`:
 
     ```
     define('DISABLE_WP_CRON', true);
@@ -67,7 +67,7 @@ $ ./service-stop.sh
     */5 * * * * php /var/www/your-wp-install-dir/wp-cron.php
     ```
 
-    This hack will make cron jobs work.
+    This hack will make cron jobs work again.
 
 2. Install [Nginx Helper](https://wordpress.org/plugins/nginx-helper/) plugin and turn on `Enable Purge` option.
 
