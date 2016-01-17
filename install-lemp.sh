@@ -99,6 +99,13 @@ ffmpeg:
     - base
   volumes:
     - /usr/ffmpeg
+cron:
+  build: ./cron
+  container_name: lemp_cron
+  links:
+    - base
+  volumes:
+    - ./etc/supervisor/conf.d/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
 php:
   build: ./php
   container_name: lemp_php
