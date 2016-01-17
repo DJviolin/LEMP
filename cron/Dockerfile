@@ -11,7 +11,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         #supervisor \
         cron
 
-RUN mkdir -p /var/log/supervisord
+#RUN mkdir -p /var/log/supervisord
 
 RUN rm -rf /var/lib/apt/lists/*
 
