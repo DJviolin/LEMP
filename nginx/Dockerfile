@@ -12,6 +12,7 @@ ENV NGINX_VERSION nginx-1.9.9.tar.gz
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y install \
         curl \
+        cron \
         make \
         gcc \
         g++ \
