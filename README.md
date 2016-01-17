@@ -67,7 +67,7 @@ $ ./service-stop.sh
     */5 * * * * php /var/www/your-wp-install-dir/wp-cron.php
     ```
 
-    This hack will make cron jobs work again.
+    This hack will make cron jobs work again (like core, plugin, theme updates and scheduled tasks).
 
 2. Install [Nginx Helper](https://wordpress.org/plugins/nginx-helper/) plugin and turn on `Enable Purge` option.
 
