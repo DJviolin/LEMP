@@ -105,7 +105,11 @@ cron:
   links:
     - base
   volumes:
-    - ./etc/supervisor/conf.d/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
+    - /etc/cron.weekly
+    - /etc/cron.d
+    - /etc/cron.hourly
+    - /etc/cron.daily
+    - /etc/cron.monthly
 php:
   build: ./php
   container_name: lemp_php
@@ -121,6 +125,7 @@ php:
     - phpmyadmin
     - mariadb
     - ffmpeg
+    - cron
 nginx:
   build: ./nginx
   container_name: lemp_nginx
