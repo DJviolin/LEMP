@@ -62,7 +62,7 @@ cadvisor:
   image: google/cadvisor:latest
   container_name: lemp_cadvisor
   ports:
-    - "8082:8080"
+    - "8080:8080"
   volumes:
     - "/:/rootfs:ro"
     - "/var/run:/var/run:rw"
@@ -120,8 +120,8 @@ nginx:
   links:
     - base
   ports:
-    - "8080:80"
-    - "8081:443"
+    - "80:80"
+    - "443:443"
   volumes:
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
