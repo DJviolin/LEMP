@@ -146,4 +146,5 @@ RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/docker-entrypoint.sh"]
