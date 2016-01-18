@@ -131,9 +131,9 @@ RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 ### End of PHP 7 setup
 
 RUN apt-get -y install \
-    supervisor \
+    #supervisor \
     cron
-RUN mkdir -p /var/log/supervisord
+#RUN mkdir -p /var/log/supervisord
 
 RUN mkdir -p /root/lemp_php
 
