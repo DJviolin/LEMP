@@ -61,7 +61,6 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
 cadvisor:
   image: google/cadvisor:latest
   container_name: lemp_cadvisor
-  #net: "host"
   ports:
     - "8080:8080"
   volumes:
@@ -72,14 +71,12 @@ cadvisor:
 base:
   build: ./base
   container_name: lemp_base
-  #net: "host"
   volumes:
     - /root/lemp_base
     - $WWW_DIR:/var/www:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
-  #net: "host"
   volumes_from:
     - base
   volumes:
@@ -89,7 +86,6 @@ phpmyadmin:
 ffmpeg:
   build: ./ffmpeg
   container_name: lemp_ffmpeg
-  #net: "host"
   volumes_from:
     - phpmyadmin
   volumes:
@@ -100,7 +96,7 @@ mariadb:
   container_name: lemp_mariadb
   environment:
     - $MYSQL_GENERATED_PASS
-  #net: "host"
+  net: "host"
   volumes_from:
     - ffmpeg
   volumes:
@@ -108,22 +104,12 @@ mariadb:
     - /var/run/mysqld
     - $DB_DIR:/var/lib/mysql:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
-#www:
-#  image: lemp_base
-#  container_name: lemp_www
-#  net: "host"
-#  volumes_from:
-#    - base
-#  volumes:
-#    - /root/lemp_www
-#    - $WWW_DIR:/var/www:rw
 php:
   build: ./php
   container_name: lemp_php
-  #net: "host"
+  net: "host"
   volumes_from:
     - mariadb
-    #- www
   volumes:
     - /root/lemp_php
     - /var/run/php-fpm
@@ -131,7 +117,7 @@ php:
     - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
     - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
     - ./php/etc/supervisor/conf.d/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
-    #- ./php/etc/cron.d:/etc/cron.d:ro
+    - ./php/etc/cron.d:/etc/cron.d:ro
 nginx:
   build: ./nginx
   container_name: lemp_nginx
