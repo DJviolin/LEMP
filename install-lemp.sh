@@ -75,7 +75,7 @@ base:
   net: "host"
   volumes:
     - /root/lemp_base
-    - $WWW_DIR:/var/www:rw
+    #- $WWW_DIR:/var/www:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -108,12 +108,22 @@ mariadb:
     - /var/run/mysqld
     - $DB_DIR:/var/lib/mysql:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
+www:
+  image: lemp_base
+  container_name: lemp_www
+  net: "host"
+  volumes_from:
+    - base
+  volumes:
+    - /root/lemp_www
+    - $WWW_DIR:/var/www:rw
 php:
   build: ./php
   container_name: lemp_php
   net: "host"
   volumes_from:
     - mariadb
+    - www
   volumes:
     - /root/lemp_php
     - /var/run/php-fpm
