@@ -79,41 +79,31 @@ base:
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
-  net: "container:base"
+  #net: "container:base"
+  net: "host"
   volumes_from:
     - base
   volumes:
     - /root/lemp_phpmyadmin
     - /var/www/phpmyadmin
     - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
-mariadb:
-  build: ./mariadb
-  container_name: lemp_mariadb
-  environment:
-    - $MYSQL_GENERATED_PASS
-  net: "container:base"
-  volumes_from:
-    - base
-  volumes:
-    - /root/lemp_mariadb
-    - /var/run/mysqld
-    - $DB_DIR/:/var/lib/mysql/:rw
-    - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
 ffmpeg:
   build: ./ffmpeg
   container_name: lemp_ffmpeg
-  net: "container:base"
+  #net: "container:base"
+  net: "host"
   volumes_from:
-    - base
+    - phpmyadmin
   volumes:
     - /root/lemp_ffmpeg
     - /usr/ffmpeg
 #cron:
 #  build: ./cron
 #  container_name: lemp_cron
-#  net: "container:base"
+#  #net: "container:base"
+#  net: "host"
 #  volumes_from:
-#    - base
+#    - ffmpeg
 #  volumes:
 #    - /root/lemp_cron
 #    - /etc/cron.weekly
@@ -121,16 +111,32 @@ ffmpeg:
 #    - /etc/cron.hourly
 #    - /etc/cron.daily
 #    - /etc/cron.monthly
+mariadb:
+  build: ./mariadb
+  container_name: lemp_mariadb
+  environment:
+    - $MYSQL_GENERATED_PASS
+  #net: "container:base"
+  net: "host"
+  volumes_from:
+    - ffmpeg
+  volumes:
+    - /root/lemp_mariadb
+    - /var/run/mysqld
+    - $DB_DIR/:/var/lib/mysql/:rw
+    - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
 php:
   build: ./php
   container_name: lemp_php
-  net: "container:base"
+  #net: "container:base"
+  net: "host"
   volumes_from:
-    - base
-    - phpmyadmin
-    - mariadb
-    - ffmpeg
+    #- base
+    #- phpmyadmin
+    #- mariadb
+    #- ffmpeg
     #- cron
+    - mariadb
   volumes:
     - /root/lemp_php
     - /var/run/php-fpm
@@ -142,7 +148,8 @@ php:
 nginx:
   build: ./nginx
   container_name: lemp_nginx
-  net: "container:base"
+  #net: "container:base"
+  net: "host"
   ports:
     - "80:80"
     - "443:443"
