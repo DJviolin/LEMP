@@ -144,7 +144,7 @@ php:
     - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
     - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
     - ./php/etc/supervisor/conf.d/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
-    - ./php/etc/cron.d:/etc/cron.d:rw
+    - ./php/etc/cron.d/:/etc/cron.d/:rw
 nginx:
   build: ./nginx
   container_name: lemp_nginx
