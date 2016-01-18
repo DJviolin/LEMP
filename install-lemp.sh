@@ -69,12 +69,12 @@ cadvisor:
     - "/var/run:/var/run:rw"
     - "/sys:/sys:ro"
     - "/var/lib/docker/:/var/lib/docker:ro"
-base:
-  build: ./base
-  container_name: lemp_base
-  net: "host"
-  volumes:
-    - $WWW_DIR/:/var/www/:rw
+#base:
+#  build: ./base
+#  container_name: lemp_base
+#  net: "host"
+#  volumes:
+#    - $WWW_DIR/:/var/www/:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -149,6 +149,12 @@ nginx:
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
   volumes_from:
     - php
+base:
+  build: ./base
+  container_name: lemp_base
+  net: "host"
+  volumes:
+    - $WWW_DIR/:/var/www/:rw
 EOF
 cat $REPO_DIR/docker-compose.yml
 
