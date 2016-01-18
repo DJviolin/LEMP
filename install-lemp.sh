@@ -61,8 +61,9 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
 cadvisor:
   image: google/cadvisor:latest
   container_name: lemp_cadvisor
+  net: "host"
   ports:
-    - "127.0.0.1:8080:8080"
+    - "8080:8080"
   volumes:
     - "/:/rootfs:ro"
     - "/var/run:/var/run:rw"
@@ -71,6 +72,7 @@ cadvisor:
 base:
   build: ./base
   container_name: lemp_base
+  net: "host"
   volumes:
     - $WWW_DIR/:/var/www/:rw
 phpmyadmin:
@@ -78,6 +80,7 @@ phpmyadmin:
   container_name: lemp_phpmyadmin
   links:
     - base
+  net: "host"
   volumes:
     - /var/www/phpmyadmin
     - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
@@ -88,6 +91,7 @@ mariadb:
     - $MYSQL_GENERATED_PASS
   links:
     - base
+  net: "host"
   volumes:
     - /var/run/mysqld
     - $DB_DIR/:/var/lib/mysql/:rw
@@ -97,6 +101,7 @@ ffmpeg:
   container_name: lemp_ffmpeg
   links:
     - base
+  net: "host"
   volumes:
     - /usr/ffmpeg
 #cron:
@@ -104,6 +109,7 @@ ffmpeg:
 #  container_name: lemp_cron
 #  links:
 #    - base
+#  net: "host"
 #  volumes:
 #    - /etc/cron.weekly
 #    - /etc/cron.d
@@ -115,6 +121,7 @@ php:
   container_name: lemp_php
   links:
     - base
+  net: "host"
   volumes:
     - /var/run/php-fpm
     - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
@@ -133,9 +140,10 @@ nginx:
   container_name: lemp_nginx
   links:
     - base
+  net: "host"
   ports:
-    - "127.0.0.1:80:80"
-    - "127.0.0.1:443:443"
+    - "80:80"
+    - "443:443"
   volumes:
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
