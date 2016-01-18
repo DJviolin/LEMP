@@ -75,7 +75,7 @@ base:
   net: "host"
   volumes:
     - /root/lemp_base
-    - $WWW_DIR/:/var/www/:rw
+    - $WWW_DIR:/var/www:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -123,7 +123,7 @@ mariadb:
   volumes:
     - /root/lemp_mariadb
     - /var/run/mysqld
-    - $DB_DIR/:/var/lib/mysql/:rw
+    - $DB_DIR:/var/lib/mysql:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
 php:
   build: ./php
@@ -144,7 +144,7 @@ php:
     - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
     - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
     - ./php/etc/supervisor/conf.d/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
-    - ./php/etc/cron.d/:/etc/cron.d/:rw
+    - ./php/etc/cron.d:/etc/cron.d:rw
 nginx:
   build: ./nginx
   container_name: lemp_nginx
