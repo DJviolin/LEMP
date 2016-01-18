@@ -7,5 +7,4 @@ echo PID1 > /dev/null
 #/usr/sbin/cron -f
 /usr/sbin/cron
 
-#/usr/local/php7/sbin/php-fpm --nodaemonize --fpm-config /usr/local/php7/etc/php-fpm.conf
-/usr/local/php7/sbin/php-fpm --fpm-config /usr/local/php7/etc/php-fpm.conf
+/usr/local/php7/sbin/php-fpm --nodaemonize --fpm-config /usr/local/php7/etc/php-fpm.conf
