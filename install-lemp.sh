@@ -79,7 +79,7 @@ base:
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
-  net: "container:lemp_base"
+  net: "container:base"
   volumes_from:
     - base
   volumes:
@@ -91,7 +91,7 @@ mariadb:
   container_name: lemp_mariadb
   environment:
     - $MYSQL_GENERATED_PASS
-  net: "container:lemp_base"
+  net: "container:base"
   volumes_from:
     - base
   volumes:
@@ -102,7 +102,7 @@ mariadb:
 ffmpeg:
   build: ./ffmpeg
   container_name: lemp_ffmpeg
-  net: "container:lemp_base"
+  net: "container:base"
   volumes_from:
     - base
   volumes:
@@ -111,7 +111,7 @@ ffmpeg:
 #cron:
 #  build: ./cron
 #  container_name: lemp_cron
-#  net: "container:lemp_base"
+#  net: "container:base"
 #  volumes_from:
 #    - base
 #  volumes:
@@ -124,7 +124,7 @@ ffmpeg:
 php:
   build: ./php
   container_name: lemp_php
-  net: "container:lemp_base"
+  net: "container:base"
   volumes_from:
     - base
     - phpmyadmin
@@ -142,7 +142,7 @@ php:
 nginx:
   build: ./nginx
   container_name: lemp_nginx
-  net: "container:lemp_base"
+  net: "container:base"
   ports:
     - "80:80"
     - "443:443"
