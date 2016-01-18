@@ -20,6 +20,8 @@ RUN curl -fSL "http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-sta
     && rm "ffmpeg-release-64bit-static.tar.xz"* \
     && echo 'export PATH="$PATH:/usr/ffmpeg"' >> /etc/bash.bashrc
 
+RUN mkdir -p /root/lemp_ffmpeg
+
 RUN rm -rf /var/lib/apt/lists/*
 
 CMD ["tail", "-f", "/dev/null"]

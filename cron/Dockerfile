@@ -13,6 +13,8 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
 
 #RUN mkdir -p /var/log/supervisord
 
+RUN mkdir -p /root/lemp_cron
+
 RUN rm -rf /var/lib/apt/lists/*
 
 #COPY etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/

@@ -69,19 +69,21 @@ cadvisor:
     - "/var/run:/var/run:rw"
     - "/sys:/sys:ro"
     - "/var/lib/docker/:/var/lib/docker:ro"
-#base:
-#  build: ./base
-#  container_name: lemp_base
-#  net: "host"
-#  volumes:
-#    - $WWW_DIR/:/var/www/:rw
+base:
+  build: ./base
+  container_name: lemp_base
+  net: "host"
+  volumes:
+    - /root/lemp_base
+    - $WWW_DIR/:/var/www/:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
-  #links:
-  #  - base
   net: "container:lemp_base"
+  volumes_from:
+    - base
   volumes:
+    - /root/lemp_phpmyadmin
     - /var/www/phpmyadmin
     - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
 mariadb:
@@ -89,28 +91,31 @@ mariadb:
   container_name: lemp_mariadb
   environment:
     - $MYSQL_GENERATED_PASS
-  #links:
-  #  - base
   net: "container:lemp_base"
+  volumes_from:
+    - base
   volumes:
+    - /root/lemp_mariadb
     - /var/run/mysqld
     - $DB_DIR/:/var/lib/mysql/:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
 ffmpeg:
   build: ./ffmpeg
   container_name: lemp_ffmpeg
-  #links:
-  #  - base
   net: "container:lemp_base"
+  volumes_from:
+    - base
   volumes:
+    - /root/lemp_ffmpeg
     - /usr/ffmpeg
 #cron:
 #  build: ./cron
 #  container_name: lemp_cron
-#  links:
-#    - base
 #  net: "container:lemp_base"
+#  volumes_from:
+#    - base
 #  volumes:
+#    - /root/lemp_cron
 #    - /etc/cron.weekly
 #    - /etc/cron.d
 #    - /etc/cron.hourly
@@ -119,42 +124,34 @@ ffmpeg:
 php:
   build: ./php
   container_name: lemp_php
-  #links:
-  #  - base
   net: "container:lemp_base"
-  volumes:
-    - /var/run/php-fpm
-    - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
-    - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
-    - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
-    - ./php/etc/supervisor/conf.d/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
-    - ./php/etc/cron.d:/etc/cron.d:rw
   volumes_from:
     - base
     - phpmyadmin
     - mariadb
     - ffmpeg
     #- cron
+  volumes:
+    - /root/lemp_php
+    - /var/run/php-fpm
+    - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
+    - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
+    - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
+    - ./php/etc/supervisor/conf.d/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
+    - ./php/etc/cron.d:/etc/cron.d:rw
 nginx:
   build: ./nginx
   container_name: lemp_nginx
-  #links:
-  #  - base
   net: "container:lemp_base"
   ports:
     - "80:80"
     - "443:443"
-  volumes:
-    - /var/cache/nginx
-    - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
   volumes_from:
     - php
-base:
-  build: ./base
-  container_name: lemp_base
-  net: "host"
   volumes:
-    - $WWW_DIR/:/var/www/:rw
+    - /root/lemp_nginx
+    - /var/cache/nginx
+    - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 EOF
 cat $REPO_DIR/docker-compose.yml
 

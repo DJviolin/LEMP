@@ -135,6 +135,8 @@ RUN apt-get -y install \
     cron
 RUN mkdir -p /var/log/supervisord
 
+RUN mkdir -p /root/lemp_php
+
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
 #CMD ["/usr/local/php7/sbin/php-fpm", "--nodaemonize", "--fpm-config", "/usr/local/php7/etc/php-fpm.conf"]
