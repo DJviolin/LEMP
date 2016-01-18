@@ -79,7 +79,6 @@ base:
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
-  #net: "container:base"
   net: "host"
   volumes_from:
     - base
@@ -90,33 +89,17 @@ phpmyadmin:
 ffmpeg:
   build: ./ffmpeg
   container_name: lemp_ffmpeg
-  #net: "container:base"
   net: "host"
   volumes_from:
     - phpmyadmin
   volumes:
     - /root/lemp_ffmpeg
     - /usr/ffmpeg
-#cron:
-#  build: ./cron
-#  container_name: lemp_cron
-#  #net: "container:base"
-#  net: "host"
-#  volumes_from:
-#    - ffmpeg
-#  volumes:
-#    - /root/lemp_cron
-#    - /etc/cron.weekly
-#    - /etc/cron.d
-#    - /etc/cron.hourly
-#    - /etc/cron.daily
-#    - /etc/cron.monthly
 mariadb:
   build: ./mariadb
   container_name: lemp_mariadb
   environment:
     - $MYSQL_GENERATED_PASS
-  #net: "container:base"
   net: "host"
   volumes_from:
     - ffmpeg
@@ -128,14 +111,8 @@ mariadb:
 php:
   build: ./php
   container_name: lemp_php
-  #net: "container:base"
   net: "host"
   volumes_from:
-    #- base
-    #- phpmyadmin
-    #- mariadb
-    #- ffmpeg
-    #- cron
     - mariadb
   volumes:
     - /root/lemp_php
@@ -144,11 +121,10 @@ php:
     - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
     - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
     - ./php/etc/supervisor/conf.d/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
-    - ./php/etc/cron.d:/etc/cron.d:rw
+    - ./php/etc/cron.d:/etc/cron.d:ro
 nginx:
   build: ./nginx
   container_name: lemp_nginx
-  #net: "container:base"
   net: "host"
   ports:
     - "80:80"
