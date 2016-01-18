@@ -61,6 +61,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
 cadvisor:
   image: google/cadvisor:latest
   container_name: lemp_cadvisor
+  net: "host"
   ports:
     - "8080:8080"
   volumes:
@@ -71,13 +72,15 @@ cadvisor:
 base:
   build: ./base
   container_name: lemp_base
+  net: "host"
   volumes:
     - $WWW_DIR/:/var/www/:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
-  links:
-    - base
+  #links:
+  #  - base
+  net: "container:lemp_base"
   volumes:
     - /var/www/phpmyadmin
     - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
@@ -86,8 +89,9 @@ mariadb:
   container_name: lemp_mariadb
   environment:
     - $MYSQL_GENERATED_PASS
-  links:
-    - base
+  #links:
+  #  - base
+  net: "container:lemp_base"
   volumes:
     - /var/run/mysqld
     - $DB_DIR/:/var/lib/mysql/:rw
@@ -95,8 +99,9 @@ mariadb:
 ffmpeg:
   build: ./ffmpeg
   container_name: lemp_ffmpeg
-  links:
-    - base
+  #links:
+  #  - base
+  net: "container:lemp_base"
   volumes:
     - /usr/ffmpeg
 #cron:
@@ -104,6 +109,7 @@ ffmpeg:
 #  container_name: lemp_cron
 #  links:
 #    - base
+#  net: "container:lemp_base"
 #  volumes:
 #    - /etc/cron.weekly
 #    - /etc/cron.d
@@ -113,8 +119,9 @@ ffmpeg:
 php:
   build: ./php
   container_name: lemp_php
-  links:
-    - base
+  #links:
+  #  - base
+  net: "container:lemp_base"
   volumes:
     - /var/run/php-fpm
     - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
@@ -131,9 +138,9 @@ php:
 nginx:
   build: ./nginx
   container_name: lemp_nginx
-  links:
-    - base
-  #net: "host"
+  #links:
+  #  - base
+  net: "container:lemp_base"
   ports:
     - "80:80"
     - "443:443"
@@ -160,7 +167,7 @@ ExecStartPre=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql $DBBAK_DIR
 ExecStartPre=-/bin/bash -c '/usr/bin/tar -zcvf $DBBAK_DIR/sqlbackup_\$\$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStartPre.tar.gz $DBBAK_DIR/mysql --remove-files'
 ExecStartPre=-/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml kill
 ExecStartPre=-/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml rm --force
-ExecStart=/opt/bin/docker-compose --x-networking --x-network-driver host --file $REPO_DIR/docker-compose.yml up --force-recreate
+ExecStart=/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml up --force-recreate
 ExecStartPost=/usr/bin/etcdctl set /LEMP Running
 ExecStop=/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml stop
 ExecStopPost=/usr/bin/etcdctl rm /LEMP
@@ -179,7 +186,7 @@ cd $HOME
 echo -e "\n
 LEMP stack has successfully built!\n\n\
 Run docker-compose with:\n\
-  $ docker-compose --x-networking --x-network-driver host --file $REPO_DIR/docker-compose.yml build\n\
+  $ docker-compose --file $REPO_DIR/docker-compose.yml build\n\
 Run the systemd service with:\n\
   $ cd $REPO_DIR && ./service-start.sh\n\
 Stop the systemd service with:\n\

@@ -1,5 +1,11 @@
 ## TODO
 
+ExecStart=/opt/bin/docker-compose --x-networking --x-network-driver host --file $REPO_DIR/docker-compose.yml up --force-recreate
+
+  $ docker-compose --x-networking --x-network-driver host --file $REPO_DIR/docker-compose.yml build\n\
+
+  
+
 https://www.lucasrolff.com/wordpress/why-wp-cron-sucks/
 
 WP specific settings in Nginx .conf files and SFTP access.
