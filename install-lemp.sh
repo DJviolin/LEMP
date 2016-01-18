@@ -61,7 +61,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
 cadvisor:
   image: google/cadvisor:latest
   container_name: lemp_cadvisor
-  net: "host"
+  #net: "host"
   ports:
     - "8080:8080"
   volumes:
@@ -72,14 +72,14 @@ cadvisor:
 base:
   build: ./base
   container_name: lemp_base
-  net: "host"
+  #net: "host"
   volumes:
     - /root/lemp_base
-    #- $WWW_DIR:/var/www:rw
+    - $WWW_DIR:/var/www:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
-  net: "host"
+  #net: "host"
   volumes_from:
     - base
   volumes:
@@ -89,7 +89,7 @@ phpmyadmin:
 ffmpeg:
   build: ./ffmpeg
   container_name: lemp_ffmpeg
-  net: "host"
+  #net: "host"
   volumes_from:
     - phpmyadmin
   volumes:
@@ -100,7 +100,7 @@ mariadb:
   container_name: lemp_mariadb
   environment:
     - $MYSQL_GENERATED_PASS
-  net: "host"
+  #net: "host"
   volumes_from:
     - ffmpeg
   volumes:
@@ -108,22 +108,22 @@ mariadb:
     - /var/run/mysqld
     - $DB_DIR:/var/lib/mysql:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
-www:
-  image: lemp_base
-  container_name: lemp_www
-  net: "host"
-  volumes_from:
-    - base
-  volumes:
-    - /root/lemp_www
-    - $WWW_DIR:/var/www:rw
+#www:
+#  image: lemp_base
+#  container_name: lemp_www
+#  net: "host"
+#  volumes_from:
+#    - base
+#  volumes:
+#    - /root/lemp_www
+#    - $WWW_DIR:/var/www:rw
 php:
   build: ./php
   container_name: lemp_php
-  net: "host"
+  #net: "host"
   volumes_from:
     - mariadb
-    - www
+    #- www
   volumes:
     - /root/lemp_php
     - /var/run/php-fpm
