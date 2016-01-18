@@ -71,7 +71,6 @@ cadvisor:
 base:
   build: ./base
   container_name: lemp_base
-  net: "host"
   volumes:
     - $WWW_DIR/:/var/www/:rw
 phpmyadmin:
@@ -134,6 +133,7 @@ nginx:
   container_name: lemp_nginx
   links:
     - base
+  net: "host"
   ports:
     - "80:80"
     - "443:443"
