@@ -72,7 +72,7 @@ base:
   build: ./base
   container_name: lemp_base
   volumes:
-    - /root/lemp_base
+    #- /root/lemp_base
     - $WWW_DIR:/var/www:rw
 phpmyadmin:
   build: ./phpmyadmin
@@ -80,7 +80,7 @@ phpmyadmin:
   volumes_from:
     - base
   volumes:
-    - /root/lemp_phpmyadmin
+    #- /root/lemp_phpmyadmin
     - /var/www/phpmyadmin
     - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
 ffmpeg:
@@ -89,7 +89,7 @@ ffmpeg:
   volumes_from:
     - phpmyadmin
   volumes:
-    - /root/lemp_ffmpeg
+    #- /root/lemp_ffmpeg
     - /usr/ffmpeg
 mariadb:
   build: ./mariadb
@@ -100,7 +100,7 @@ mariadb:
   volumes_from:
     - ffmpeg
   volumes:
-    - /root/lemp_mariadb
+    #- /root/lemp_mariadb
     - /var/run/mysqld
     - $DB_DIR:/var/lib/mysql:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
@@ -111,7 +111,7 @@ php:
   volumes_from:
     - mariadb
   volumes:
-    - /root/lemp_php
+    #- /root/lemp_php
     - /var/run/php-fpm
     - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
     - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
@@ -128,7 +128,7 @@ nginx:
   volumes_from:
     - php
   volumes:
-    - /root/lemp_nginx
+    #- /root/lemp_nginx
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 EOF
