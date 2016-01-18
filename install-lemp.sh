@@ -96,7 +96,7 @@ mariadb:
   container_name: lemp_mariadb
   environment:
     - $MYSQL_GENERATED_PASS
-  net: "host"
+  #net: "host"
   volumes_from:
     - ffmpeg
   volumes:
@@ -107,7 +107,7 @@ mariadb:
 php:
   build: ./php
   container_name: lemp_php
-  net: "host"
+  #net: "host"
   volumes_from:
     - mariadb
   volumes:
