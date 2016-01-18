@@ -75,7 +75,7 @@ base:
   net: "host"
   volumes:
     - /root/lemp_base
-    - $WWW_DIR:/var/www:rw
+    #- $WWW_DIR:/var/www:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -135,6 +135,7 @@ nginx:
     - /root/lemp_nginx
     - /var/cache/nginx
     - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    - $WWW_DIR:/var/www:rw
 EOF
 cat $REPO_DIR/docker-compose.yml
 
