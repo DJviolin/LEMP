@@ -112,9 +112,9 @@ cron:
   container_name: lemp_cron
   volumes_from:
     - mariadb
-  volumes:
-    - /usr/sbin/cron
-    - ./cron/etc/cron.d:/etc/cron.d:ro
+  #volumes:
+    #- /usr/sbin/cron
+    #- ./cron/etc/cron.d:/etc/cron.d:ro
 php:
   build: ./php
   container_name: lemp_php
