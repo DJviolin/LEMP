@@ -33,7 +33,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
 # Nginx
 RUN curl -fSL "http://nginx.org/download/$NGINX_VERSION" -o "$NGINX_VERSION" \
     && curl -fSL "http://nginx.org/download/$NGINX_VERSION.asc" -o "$NGINX_VERSION.asc" \
-    #&& gpg --verify "$NGINX_VERSION.asc" \
+    && gpg --verify "$NGINX_VERSION.asc" \
     && mkdir -p /usr/src/nginx \
     && tar -xf "$NGINX_VERSION" -C /usr/src/nginx --strip-components=1 \
     && rm "$NGINX_VERSION"*
