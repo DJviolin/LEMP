@@ -16,6 +16,8 @@ https://docs.docker.com/engine/extend/plugins_volume/
 
 http://blog.docker.com/2015/11/docker-multi-host-networking-ga/
 
+https://blog.docker.com/2015/11/docker-multi-host-networking-ga/
+
 ## Prerequisites
 
 1. Linux
@@ -25,6 +27,12 @@ http://blog.docker.com/2015/11/docker-multi-host-networking-ga/
 5. Docker Client
 6. Systemd
 7. Docker-compose
+
+## Docker pre-configuration
+
+1. `$ docker network ls`
+
+2. `$ docker network create --driver overlay lempnet`
 
 ## Installation
 
