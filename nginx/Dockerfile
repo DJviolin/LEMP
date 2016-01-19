@@ -124,8 +124,6 @@ RUN curl -fSL "https://github.com/wg/wrk/archive/master.tar.gz" -o "wrk.tar.gz" 
     && chmod +x /usr/local/wrk/wrk \
     && echo 'export PATH="$PATH:/usr/local/wrk"' >> /etc/bash.bashrc
 
-#RUN mkdir -p /root/lemp_nginx
-
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
 WORKDIR /var/www
