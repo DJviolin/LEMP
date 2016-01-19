@@ -36,9 +36,19 @@ https://docs.docker.com/engine/extend/plugins_network/
 
 ## Docker pre-configuration
 
-1. `$ docker network ls`
+Creating an isolated network especially for this stack:
 
-2. `$ docker network create --driver overlay lempnet`
+1. Check the available networks in your host:
+
+    `$ docker network ls`
+
+2. With this command, you can inspect wich containers part of the default bridged network in Docker:
+
+    `$ docker network inspect bridge`
+
+3. Create an isolated new network with `overlay` driver:
+
+    `$ docker network create --driver overlay isolated_lemp`
 
 ## Installation
 
