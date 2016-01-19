@@ -71,19 +71,22 @@ cadvisor:
 base:
   build: ./base
   container_name: lemp_base
+  net: "none"
   volumes:
     - /root/lemp_base_volume
-    #- $WWW_DIR:/var/www:rw
-www:
-  image: lemp_base
-  container_name: lemp_www
-  volumes_from:
-    - base
-  volumes:
     - $WWW_DIR:/var/www:rw
+#www:
+#  image: lemp_base
+#  container_name: lemp_www
+#  net: "none"
+#  volumes_from:
+#    - base
+#  volumes:
+#    - $WWW_DIR:/var/www:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
+  net: "none"
   volumes_from:
     - base
   volumes:
@@ -92,6 +95,7 @@ phpmyadmin:
 ffmpeg:
   build: ./ffmpeg
   container_name: lemp_ffmpeg
+  net: "none"
   volumes_from:
     - phpmyadmin
   volumes:
@@ -99,6 +103,7 @@ ffmpeg:
 mariadb:
   build: ./mariadb
   container_name: lemp_mariadb
+  net: "host"
   environment:
     - $MYSQL_GENERATED_PASS
   volumes_from:
@@ -110,6 +115,7 @@ mariadb:
 cron:
   build: ./cron
   container_name: lemp_cron
+  net: "none"
   volumes_from:
     - mariadb
   volumes:
@@ -117,9 +123,10 @@ cron:
 php:
   build: ./php
   container_name: lemp_php
+  net: "host"
   volumes_from:
     - mariadb
-    - www
+    #- www
   volumes:
     - /var/run/php-fpm
     - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
@@ -130,7 +137,7 @@ php:
 nginx:
   build: ./nginx
   container_name: lemp_nginx
-  #net: "host"
+  net: "host"
   ports:
     - "80:80"
     - "443:443"
