@@ -43,6 +43,8 @@ RUN groupmod -g 500 www-data \
     && chmod g+s /var/www
 ### End of Nginx WEBSERVER setup
 
+RUN mkdir -p /root/lemp_base_volume
+
 RUN rm -rf /var/lib/apt/lists/*
 
 CMD ["tail", "-f", "/dev/null"]

@@ -18,6 +18,12 @@ http://blog.docker.com/2015/11/docker-multi-host-networking-ga/
 
 https://blog.docker.com/2015/11/docker-multi-host-networking-ga/
 
+Docker-compose networking:
+
+https://docs.docker.com/compose/networking/
+
+https://docs.docker.com/engine/extend/plugins_network/
+
 ## Prerequisites
 
 1. Linux
