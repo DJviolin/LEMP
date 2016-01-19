@@ -38,7 +38,7 @@ https://docs.docker.com/engine/extend/plugins_network/
 
 Creating an isolated network especially for this stack. This new method in favour of the future deprecation of the `--link` feature.
 
-1. Check the available networks in your host:
+1. Check the available networks in your host (the default ones are: bridge, none, host):
 
     `$ docker network ls`
 
