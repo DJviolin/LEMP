@@ -43,8 +43,6 @@ RUN rm -rf /var/lib/mysql \
 # etc/mysql/my.cnf: don't reverse lookup hostnames, they are usually another container
 ### End of MariaDB setup
 
-RUN mkdir -p /root/lemp_mariadb
-
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /

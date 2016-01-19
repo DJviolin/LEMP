@@ -4,6 +4,18 @@ Nginx + PHP-FPM 7 webserver through FastCGI with microcaching + MariaDB + includ
 
 Work in progress! NOT FOR PRODUCTION!
 
+TODO:
+
+https://www.rethinkdb.com/blog/docker-networking/
+
+https://blog.docker.com/2015/11/docker-1-9-production-ready-swarm-multi-host-networking/
+
+https://docs.docker.com/engine/userguide/dockervolumes/
+
+https://docs.docker.com/engine/extend/plugins_volume/
+
+http://blog.docker.com/2015/11/docker-multi-host-networking-ga/
+
 ## Prerequisites
 
 1. Linux

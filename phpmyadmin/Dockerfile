@@ -23,8 +23,6 @@ RUN mkdir -p /var/www \
     && rm -rf /var/www/phpmyadmin/js/jquery/src/ /var/www/phpmyadmin/examples /var/www/phpmyadmin/po/ \
     && ls -al /var/www && ls -al /var/www/phpmyadmin
 
-RUN mkdir -p /root/lemp_phpmyadmin
-
 RUN rm -rf /var/lib/apt/lists/*
 
 CMD ["tail", "-f", "/dev/null"]
