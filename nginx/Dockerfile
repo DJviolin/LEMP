@@ -31,6 +31,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
 
 ### Start of Downloading source files
 # Nginx
+RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
 RUN curl -fSL "http://nginx.org/download/$NGINX_VERSION" -o "$NGINX_VERSION" \
     && curl -fSL "http://nginx.org/download/$NGINX_VERSION.asc" -o "$NGINX_VERSION.asc" \
     && gpg --verify "$NGINX_VERSION.asc" \
