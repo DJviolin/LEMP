@@ -4,26 +4,6 @@ Nginx + PHP-FPM 7 webserver through FastCGI with microcaching + MariaDB + includ
 
 Work in progress! NOT FOR PRODUCTION!
 
-TODO:
-
-https://www.rethinkdb.com/blog/docker-networking/
-
-https://blog.docker.com/2015/11/docker-1-9-production-ready-swarm-multi-host-networking/
-
-https://docs.docker.com/engine/userguide/dockervolumes/
-
-https://docs.docker.com/engine/extend/plugins_volume/
-
-http://blog.docker.com/2015/11/docker-multi-host-networking-ga/
-
-https://blog.docker.com/2015/11/docker-multi-host-networking-ga/
-
-Docker-compose networking:
-
-https://docs.docker.com/compose/networking/
-
-https://docs.docker.com/engine/extend/plugins_network/
-
 ## Prerequisites
 
 1. Linux
@@ -49,6 +29,10 @@ Creating an isolated network especially for this stack. This new method in favou
 3. Create an isolated new network with `overlay` driver:
 
     `$ docker network create --driver overlay isolated_lemp`
+
+4. Inspecting the newly created network:
+
+    `docker network inspect isolated_lemp`
 
 ## Installation
 
@@ -143,3 +127,23 @@ $ chmod +x $HOME/bin/docker-compose
 # Reloading .bashrc without opening a new bash instance
 $ source $HOME/.bashrc
 ```
+
+## TODO:
+
+https://www.rethinkdb.com/blog/docker-networking/
+
+https://blog.docker.com/2015/11/docker-1-9-production-ready-swarm-multi-host-networking/
+
+https://docs.docker.com/engine/userguide/dockervolumes/
+
+https://docs.docker.com/engine/extend/plugins_volume/
+
+http://blog.docker.com/2015/11/docker-multi-host-networking-ga/
+
+https://blog.docker.com/2015/11/docker-multi-host-networking-ga/
+
+Docker-compose networking:
+
+https://docs.docker.com/compose/networking/
+
+https://docs.docker.com/engine/extend/plugins_network/
