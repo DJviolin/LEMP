@@ -73,14 +73,14 @@ base:
   container_name: lemp_base
   volumes:
     - /root/lemp_base_volume
+    #- $WWW_DIR:/var/www:rw
+www:
+  image: lemp_base
+  container_name: lemp_www
+  volumes_from:
+    - base
+  volumes:
     - $WWW_DIR:/var/www:rw
-#www:
-#  image: lemp_base
-#  container_name: lemp_www
-#  volumes_from:
-#    - base
-#  volumes:
-#    - $WWW_DIR:/var/www:rw
 phpmyadmin:
   build: ./phpmyadmin
   container_name: lemp_phpmyadmin
@@ -93,7 +93,7 @@ ffmpeg:
   build: ./ffmpeg
   container_name: lemp_ffmpeg
   volumes_from:
-    - phpmyadmin
+    - base
   volumes:
     - /usr/ffmpeg
 mariadb:
@@ -102,32 +102,26 @@ mariadb:
   environment:
     - $MYSQL_GENERATED_PASS
   volumes_from:
-    - ffmpeg
+    - base
   volumes:
     - /var/run/mysqld
     - $DB_DIR:/var/lib/mysql:rw
     - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
-cron:
-  build: ./cron
-  container_name: lemp_cron
-  volumes_from:
-    - mariadb
-  #volumes:
-    #- /usr/sbin/cron
-    #- ./cron/etc/cron.d:/etc/cron.d:ro
 php:
   build: ./php
   container_name: lemp_php
   volumes_from:
+    - www
+    - phpmyadmin
+    - ffmpeg
     - mariadb
-    #- www
   volumes:
     - /var/run/php-fpm
     - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
     - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
     - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
     - ./php/etc/supervisor/conf.d/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
-    #- ./php/etc/cron.d:/etc/cron.d:ro
+    - ./php/etc/cron.d:/etc/cron.d:ro
 nginx:
   build: ./nginx
   container_name: lemp_nginx

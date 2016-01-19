@@ -130,14 +130,14 @@ RUN cd /usr/src/php \
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 ### End of PHP 7 setup
 
-#RUN apt-get -y install \
-#    cron
+RUN apt-get -y install \
+    cron
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
-CMD ["/usr/local/php7/sbin/php-fpm", "--nodaemonize", "--fpm-config", "/usr/local/php7/etc/php-fpm.conf"]
+#CMD ["/usr/local/php7/sbin/php-fpm", "--nodaemonize", "--fpm-config", "/usr/local/php7/etc/php-fpm.conf"]
 
-#COPY docker-entrypoint.sh /
-#RUN chmod +x /docker-entrypoint.sh
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 ##ENTRYPOINT ["/docker-entrypoint.sh"]
-#CMD ["/docker-entrypoint.sh"]
+CMD ["/docker-entrypoint.sh"]
