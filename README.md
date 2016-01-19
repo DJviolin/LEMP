@@ -36,7 +36,7 @@ https://docs.docker.com/engine/extend/plugins_network/
 
 ## Docker pre-configuration
 
-Creating an isolated network especially for this stack:
+Creating an isolated network especially for this stack. This new method in favour of the future deprecation of the `--link` feature.
 
 1. Check the available networks in your host:
 
