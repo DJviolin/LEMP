@@ -58,9 +58,9 @@ echo -e "\nYour MySQL password ENV variable is:" $MYSQL_GENERATED_PASS
 
 echo -e "\nCreating: $REPO_DIR/docker-compose.yml\n"
 cat <<EOF > $REPO_DIR/docker-compose.yml
-version: 2
+#version: 2
 
-services:
+#services:
   cadvisor:
     image: google/cadvisor:latest
     container_name: lemp_cadvisor
@@ -72,67 +72,85 @@ services:
       - "/sys:/sys:ro"
       - "/var/lib/docker/:/var/lib/docker:ro"
   base:
-    build:
-      context: ./base
-      args:
-        buildno: 1
+    #build:
+    #  context: ./base
+    #  args:
+    #    buildno: 1
+    build: ./base
     container_name: lemp_base
+    volumes:
+      - /root/lemp_base_volume
   www:
     image: lemp_base
     container_name: lemp_www
+    volumes_from:
+      - base
     volumes:
       - $WWW_DIR:/var/www:rw
   phpmyadmin:
-    build:
-      context: ./phpmyadmin
-      args:
-        buildno: 2
+    #build:
+    #  context: ./phpmyadmin
+    #  args:
+    #    buildno: 2
+    build: ./phpmyadmin
     container_name: lemp_phpmyadmin
+    volumes_from:
+      - base
     volumes:
       - /var/www/phpmyadmin
       - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
   ffmpeg:
-    build:
-      context: ./ffmpeg
-      args:
-        buildno: 3
+    #build:
+    #  context: ./ffmpeg
+    #  args:
+    x    buildno: 3
+    build: ./ffmpeg
     container_name: lemp_ffmpeg
+    volumes_from:
+      - base
     volumes:
-      - ffmpeg_dir:/usr/ffmpeg
+      #- ffmpeg_dir:/usr/ffmpeg
+      - /usr/ffmpeg
   mariadb:
-    build:
-      context: ./mariadb
-      args:
-        buildno: 4
+    #build:
+    #  context: ./mariadb
+    #  args:
+    #    buildno: 4
+    build: ./mariadb
     container_name: lemp_mariadb
     environment:
       - $MYSQL_GENERATED_PASS
+    volumes_from:
+      - base
     volumes:
       - /var/run/mysqld
       - $DB_DIR:/var/lib/mysql:rw
       - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
   php:
-    build:
-      context: ./php
-      args:
-        buildno: 5
+    #build:
+    #  context: ./php
+    #  args:
+    #    buildno: 5
+    build: ./php
     container_name: lemp_php
     volumes_from:
       - www
       - phpmyadmin
+      - ffmpeg
       - mariadb
     volumes:
-      - ffmpeg_dir
+      #- ffmpeg_dir
       - /var/run/php-fpm
       - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
       - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
       - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
       - ./php/etc/cron.d:/etc/cron.d:ro
   nginx:
-    build:
-      context: ./nginx
-      args:
-        buildno: 6
+    #build:
+    #  context: ./nginx
+    #  args:
+    #    buildno: 6
+    build: ./nginx
     container_name: lemp_nginx
     ports:
       - "80:80"
@@ -143,9 +161,9 @@ services:
       - /var/cache/nginx
       - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 
-volumes:
-  ffmpeg_dir:
-    driver: default
+#volumes:
+#  ffmpeg_dir:
+#    driver: default
 
 # Changing the settings of the app-wide default network
 #networks:
