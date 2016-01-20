@@ -72,75 +72,59 @@ services:
       - "/sys:/sys:ro"
       - "/var/lib/docker/:/var/lib/docker:ro"
   base:
-    build:
-      context: ./base
-      dockerfile: Dockerfile
-      args:
-        buildno: 1
+    build: ./base
     container_name: lemp_base
+    volumes:
+      - /root/lemp_base_volume
   www:
     image: lemp_base
     container_name: lemp_www
+    volumes_from:
+      - base
     volumes:
       - $WWW_DIR:/var/www:rw
   phpmyadmin:
-    build:
-      context: ./phpmyadmin
-      dockerfile: Dockerfile
-      args:
-        buildno: 2
+    build: ./phpmyadmin
     container_name: lemp_phpmyadmin
+    volumes_from:
+      - base
     volumes:
-      - phpmyadmin_dir:/var/www/phpmyadmin
+      - /var/www/phpmyadmin
       - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
   ffmpeg:
-    build:
-      context: ./ffmpeg
-      dockerfile: Dockerfile
-      args:
-        buildno: 3
+    build: ./ffmpeg
     container_name: lemp_ffmpeg
+    volumes_from:
+      - base
     volumes:
-      - ffmpeg_dir:/usr/ffmpeg
+      - /usr/ffmpeg
   mariadb:
-    build:
-      context: ./mariadb
-      dockerfile: Dockerfile
-      args:
-        buildno: 4
+    build: ./mariadb
     container_name: lemp_mariadb
     environment:
       - $MYSQL_GENERATED_PASS
+    volumes_from:
+      - base
     volumes:
       - /var/run/mysqld
       - $DB_DIR:/var/lib/mysql:rw
       - ./mariadb/etc/mysql/my.cnf:/etc/mysql/my.cnf:ro
   php:
-    build:
-      context: ./php
-      dockerfile: Dockerfile
-      args:
-        buildno: 5
+    build: ./php
     container_name: lemp_php
     volumes_from:
       - www
-      #- phpmyadmin
-      #- ffmpeg
+      - phpmyadmin
+      - ffmpeg
       - mariadb
     volumes:
-      - phpmyadmin_dir
-      - ffmpeg_dir
       - /var/run/php-fpm
       - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
       - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
       - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
       - ./php/etc/cron.d:/etc/cron.d:ro
   nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-      args:
-        buildno: 6
+    build: ./nginx
     container_name: lemp_nginx
     ports:
       - "80:80"
@@ -152,9 +136,7 @@ services:
       - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 
 volumes:
-  phpmyadmin_dir:
-    driver: default
-  ffmpeg_dir:
+  www:
     driver: default
 
 # Changing the settings of the app-wide default network
