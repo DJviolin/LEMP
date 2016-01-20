@@ -149,7 +149,7 @@ ExecStartPre=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql $DBBAK_DIR
 ExecStartPre=-/bin/bash -c '/usr/bin/tar -zcvf $DBBAK_DIR/sqlbackup_\$\$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStartPre.tar.gz $DBBAK_DIR/mysql --remove-files'
 ExecStartPre=-/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml kill
 ExecStartPre=-/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml rm --force
-ExecStart=/opt/bin/docker-compose --x-networking --x-network-driver=hos --file $REPO_DIR/docker-compose.yml up --force-recreate
+ExecStart=/opt/bin/docker-compose --x-networking --x-network-driver=host --file $REPO_DIR/docker-compose.yml up --force-recreate
 ExecStartPost=/usr/bin/etcdctl set /LEMP Running
 ExecStop=/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml stop
 ExecStopPost=/usr/bin/etcdctl rm /LEMP
