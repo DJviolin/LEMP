@@ -23,8 +23,9 @@ RUN echo 'export PATH="$PATH:/usr/local/php7/bin:/usr/local/php7/sbin"' >> /etc/
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y install \
         # persistent / runtime deps \
-        ca-certificates \
         curl \
+        cron \
+        ca-certificates \
         librecode0 \
         libxml2 --no-install-recommends \
         # phpize deps \
@@ -130,14 +131,8 @@ RUN cd /usr/src/php \
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 ### End of PHP 7 setup
 
-RUN apt-get -y install \
-    cron
-
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
-
-#CMD ["/usr/local/php7/sbin/php-fpm", "--nodaemonize", "--fpm-config", "/usr/local/php7/etc/php-fpm.conf"]
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
-##ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/docker-entrypoint.sh"]
