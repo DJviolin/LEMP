@@ -26,9 +26,9 @@ Creating an isolated network especially for this stack. This new method in favou
 
     `$ docker network inspect bridge`
 
-3. Create an isolated new network with `overlay` driver:
+3. Create an isolated new network with `bridge` driver:
 
-    `$ docker network create --driver overlay isolated_lemp`
+    `$ docker network create --driver bridge isolated_lemp`
 
 4. Inspecting the newly created network:
 
