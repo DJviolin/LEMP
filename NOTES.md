@@ -75,6 +75,14 @@ Remove all docker containers:
     $ docker stop $(docker ps -a -q) && docker rm -f $(docker ps -a -q)
     $ docker rmi -f $(docker images -q)
 
+Remove all unused images:
+
+    $ docker images -q |xargs docker rmi
+
+Remove all unused containers:
+
+    $ docker ps -q |xargs docker rm
+
 Make sure that exited containers are deleted:
 
     $ docker rm -v $(docker ps -a -q -f status=exited)
@@ -205,3 +213,9 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         libav-tools \
         ffmpeg
 ```
+
+## Linux notes:
+
+Available free space:
+
+    $ df -h
