@@ -73,7 +73,6 @@ base:
   container_name: lemp_base
   volumes:
     - /root/lemp_base_volume
-    #- $WWW_DIR:/var/www:rw
 www:
   image: lemp_base
   container_name: lemp_www
