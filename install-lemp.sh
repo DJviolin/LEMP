@@ -74,7 +74,6 @@ services:
   base:
     build:
       context: ./base
-      dockerfile: Dockerfile
       args:
         buildno: 1
     container_name: lemp_base
@@ -86,7 +85,6 @@ services:
   phpmyadmin:
     build:
       context: ./phpmyadmin
-      dockerfile: Dockerfile
       args:
         buildno: 2
     container_name: lemp_phpmyadmin
@@ -96,7 +94,6 @@ services:
   ffmpeg:
     build:
       context: ./ffmpeg
-      dockerfile: Dockerfile
       args:
         buildno: 3
     container_name: lemp_ffmpeg
@@ -105,7 +102,6 @@ services:
   mariadb:
     build:
       context: ./mariadb
-      dockerfile: Dockerfile
       args:
         buildno: 4
     container_name: lemp_mariadb
@@ -118,7 +114,6 @@ services:
   php:
     build:
       context: ./php
-      dockerfile: Dockerfile
       args:
         buildno: 5
     container_name: lemp_php
@@ -138,7 +133,6 @@ services:
   nginx:
     build:
       context: ./nginx
-      dockerfile: Dockerfile
       args:
         buildno: 6
     container_name: lemp_nginx
