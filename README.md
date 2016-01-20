@@ -14,26 +14,6 @@ Work in progress! NOT FOR PRODUCTION!
 6. Systemd
 7. Docker-compose
 
-## Docker pre-configuration
-
-Creating an isolated network especially for this stack. This new method in favour of the future deprecation of the `--link` feature.
-
-1. Check the available networks in your host (the default ones are: bridge, none, host):
-
-    `$ docker network ls`
-
-2. With this command, you can inspect wich containers part of the default bridged network in Docker:
-
-    `$ docker network inspect bridge`
-
-3. Create an isolated new network with `bridge` driver:
-
-    `$ docker network create --driver bridge isolated_lemp`
-
-4. Inspecting the newly created network:
-
-    `docker network inspect isolated_lemp`
-
 ## Installation
 
 Basic install script provided. Run only `./install-lemp.sh` and follow the instructions in the script! You doesn't even need to clone this repo (the script will do it anyway), just only download this file to your host and run it if you wish!
