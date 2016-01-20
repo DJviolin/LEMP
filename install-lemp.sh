@@ -89,7 +89,7 @@ services:
         buildno: 2
     container_name: lemp_phpmyadmin
     volumes:
-      - phpmyadmin_dir:/var/www/phpmyadmin
+      - /var/www/phpmyadmin
       - ./phpmyadmin/var/www/phpmyadmin/config.inc.php:/var/www/phpmyadmin/config.inc.php:rw
   ffmpeg:
     build:
@@ -119,11 +119,9 @@ services:
     container_name: lemp_php
     volumes_from:
       - www
-      #- phpmyadmin
-      #- ffmpeg
+      - phpmyadmin
       - mariadb
     volumes:
-      - phpmyadmin_dir
       - ffmpeg_dir
       - /var/run/php-fpm
       - ./php/usr/local/php7/etc/php-fpm.conf:/usr/local/php7/etc/php-fpm.conf:ro
@@ -146,8 +144,6 @@ services:
       - ./nginx/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 
 volumes:
-  phpmyadmin_dir:
-    driver: default
   ffmpeg_dir:
     driver: default
 
