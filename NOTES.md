@@ -4,7 +4,13 @@ ExecStart=/opt/bin/docker-compose --x-networking --x-network-driver host --file 
 
   $ docker-compose --x-networking --x-network-driver host --file $REPO_DIR/docker-compose.yml build\n\
 
-  
+## Docker-compose 1.6.0 changes
+
+https://github.com/docker/compose/blob/1.6.0-rc1/docs/compose-file.md
+
+https://github.com/docker/compose/blob/1.6.0-rc1/docs/networking.md
+
+## wp-cron.php
 
 https://www.lucasrolff.com/wordpress/why-wp-cron-sucks/
 
