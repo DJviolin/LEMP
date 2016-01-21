@@ -5,5 +5,4 @@ docker-compose.yml
 app/
 !app/Dockerfile
 php/etc/cron.d/
-cron/etc/cron.d
-var/spool/cron/crontabs
+php/var/spool/cron/crontabs
