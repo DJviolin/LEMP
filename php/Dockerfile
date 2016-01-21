@@ -25,6 +25,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         # persistent / runtime deps \
         curl \
         cron \
+        rsyslog \
         ca-certificates \
         librecode0 \
         libxml2 --no-install-recommends \
@@ -135,13 +136,9 @@ RUN apt-get -y install \
     vim
 
 # cron fix
-RUN chmod 600 /etc/crontab \
-    && chown -R root:root /etc/cron.d
+#RUN chmod 600 /etc/crontab
 
-RUN apt-get -y install \
-    rsyslog
-
-#COPY etc/cron.d /etc/cron.d
+COPY etc/cron.d /etc/cron.d
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
