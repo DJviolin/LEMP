@@ -16,6 +16,14 @@ https://www.lucasrolff.com/wordpress/why-wp-cron-sucks/
 
 WP specific settings in Nginx .conf files and SFTP access.
 
+```
+#*/5 * * * * php /var/www/pussybnb.com/wp-cron.php > /dev/null 2>&1
+#*/5 * * * * php /var/www/pussybnb.com/wp-cron.php?doing_wp_cron > /dev/null 2>&1
+#*/5 * * * * curl -vs -o /dev/null file:///var/www/pussybnb.com/wp-cron.php > /dev/null 2>&1
+
+*/5 * * * * php /var/www/pussybnb.com/wp-cron.php
+```
+
 ## Personal notes, only for development
 
 Nginx was rebuilt from [source](https://www.nginx.com/resources/wiki/start/topics/tutorials/installoptions/) soon (list all the configured modules: `$ sudo nginx -V`).
