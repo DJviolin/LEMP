@@ -78,11 +78,13 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
     #    buildno: 1
     build: ./base
     container_name: lemp_base
+    net: ${NETWORK}
     volumes:
       - /root/lemp_base_volume
   www:
     image: lemp_base
     container_name: lemp_www
+    net: ${NETWORK}
     volumes_from:
       - base
     volumes:
@@ -94,6 +96,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
     #    buildno: 2
     build: ./phpmyadmin
     container_name: lemp_phpmyadmin
+    net: ${NETWORK}
     volumes_from:
       - base
     volumes:
@@ -106,6 +109,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
     #    buildno: 3
     build: ./ffmpeg
     container_name: lemp_ffmpeg
+    net: ${NETWORK}
     volumes_from:
       - base
     volumes:
@@ -120,6 +124,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
     container_name: lemp_mariadb
     environment:
       - $MYSQL_GENERATED_PASS
+    net: ${NETWORK}
     volumes_from:
       - base
     volumes:
@@ -133,6 +138,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
     #    buildno: 5
     build: ./php
     container_name: lemp_php
+    net: ${NETWORK}
     volumes_from:
       - www
       - phpmyadmin
@@ -155,6 +161,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
     ports:
       - "80:80"
       - "443:443"
+    net: ${NETWORK}
     volumes_from:
       - php
     volumes:
@@ -188,7 +195,8 @@ ExecStartPre=-/usr/bin/docker cp lemp_mariadb:/var/lib/mysql $DBBAK_DIR
 ExecStartPre=-/bin/bash -c '/usr/bin/tar -zcvf $DBBAK_DIR/sqlbackup_\$\$(date +%%Y-%%m-%%d_%%H-%%M-%%S)_ExecStartPre.tar.gz $DBBAK_DIR/mysql --remove-files'
 ExecStartPre=-/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml kill
 ExecStartPre=-/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml rm --force
-ExecStart=/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml up --force-recreate
+#ExecStart=/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml up --force-recreate
+ExecStart=/bin/bash -c 'NETWORK=isolated_lemp docker-compose --file $REPO_DIR/docker-compose.yml up --force-recreate'
 ExecStartPost=/usr/bin/etcdctl set /LEMP Running
 ExecStop=/opt/bin/docker-compose --file $REPO_DIR/docker-compose.yml stop
 ExecStopPost=/usr/bin/etcdctl rm /LEMP

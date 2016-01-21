@@ -14,6 +14,10 @@ Work in progress! NOT FOR PRODUCTION!
 6. Systemd
 7. Docker-compose
 
+## Pre-configuration
+
+`docker network create -d bridge isolated_lemp`
+
 ## Installation
 
 Basic install script provided. Run only `./install-lemp.sh` and follow the instructions in the script! You doesn't even need to clone this repo (the script will do it anyway), just only download this file to your host and run it if you wish!
