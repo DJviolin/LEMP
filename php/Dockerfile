@@ -141,6 +141,8 @@ RUN chmod 600 /etc/crontab \
 RUN apt-get -y install \
     rsyslog
 
+COPY etc/cron.d /etc/cron.d
+
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /
