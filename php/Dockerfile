@@ -131,6 +131,9 @@ RUN cd /usr/src/php \
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 ### End of PHP 7 setup
 
+RUN apt-get -y install \
+    vim
+
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /
