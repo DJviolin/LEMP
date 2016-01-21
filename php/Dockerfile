@@ -134,6 +134,13 @@ RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 RUN apt-get -y install \
     vim
 
+# cron fix
+RUN chmod 600 /etc/crontab \
+    && chown -R root:root /etc/cron.d
+
+RUN apt-get -y install \
+    rsyslog
+
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /
