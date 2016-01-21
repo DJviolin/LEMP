@@ -1,0 +1,2 @@
+# m h  dom mon dow   command
+*/5 *   * * *   php /var/www/pussybnb.com/wp-cron.php
