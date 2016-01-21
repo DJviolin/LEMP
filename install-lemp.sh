@@ -166,10 +166,10 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
 #    driver: default
 
 # Changing the settings of the app-wide default network
-networks:
-  default:
+#networks:
+#  default:
     # Use the overlay driver for multi-host communication
-    driver: host
+#    driver: host
 EOF
 cat $REPO_DIR/docker-compose.yml
 
