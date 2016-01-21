@@ -124,7 +124,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
     container_name: lemp_mariadb
     environment:
       - $MYSQL_GENERATED_PASS
-    net: "isolated_lemp"
+    net: "none"
     volumes_from:
       - base
     volumes:
