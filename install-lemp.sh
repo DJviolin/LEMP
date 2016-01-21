@@ -139,7 +139,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
     build: ./php
     container_name: lemp_php
     #net: "isolated_lemp"
-    net: "host"
+    #net: "host"
     volumes_from:
       - www
       - phpmyadmin
@@ -163,7 +163,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
       - "80:80"
       - "443:443"
     #net: "isolated_lemp"
-    net: "host"
+    #net: "host"
     volumes_from:
       - php
     volumes:
