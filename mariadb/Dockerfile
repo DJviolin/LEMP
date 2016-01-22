@@ -13,6 +13,8 @@ RUN groupadd -r mysql && useradd -r -g mysql mysql
 
 RUN mkdir /docker-entrypoint-initdb.d
 
+RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 199369E5404BD5FC7D2FE43BCBCB082A1BB943DB
+
 RUN echo -e "\
 # MariaDB $MARIADB_MAJOR repository list\n\
 # http://downloads.mariadb.org/mariadb/repositories\n\
