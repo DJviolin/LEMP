@@ -6,3 +6,4 @@ app/
 !app/Dockerfile
 php/etc/cron.d/
 php/var/spool/cron/crontabs
+php/etc/crontab
