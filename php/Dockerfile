@@ -136,7 +136,7 @@ RUN apt-get -y install \
     vim
 
 # cron fix
-#RUN chmod 600 /etc/crontab
+RUN chmod 600 /etc/crontab
 
 COPY etc/cron.d /etc/cron.d
 
