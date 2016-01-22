@@ -22,6 +22,15 @@ Basic install script provided. Run only `./install-lemp.sh` and follow the instr
 $ curl -L https://raw.github.com/DJviolin/LEMP/master/install-lemp.sh > $HOME/install-lemp.sh && chmod +x $HOME/install-lemp.sh && cd $HOME && ./install-lemp.sh && rm -rf $HOME/install-lemp.sh
 ```
 
+Than place a file at `$HOME/server-lemp/lemp/php/etc/cron.d/your-filename` with the content of:
+
+```
+# m h dom mon dow user  command
+*/5 *   * * *   www-data    php /var/www/your-website-folder/wp-cron.php > /dev/null 2>&1
+```
+
+This will make Wordpress cron jobs work again at every 5 minutes.
+
 The script will create the `docker-compose.yml` and `lemp.service` files inside the cloned repo, which are needed for docker-compose and systemd.
 
 ## Usage
