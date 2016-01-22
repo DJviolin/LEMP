@@ -22,7 +22,7 @@ COPY etc/crontab /etc/crontab
 RUN chmod 600 /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
 RUN touch /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
 
-RUN rm -rf /usr/src/* /var/lib/apt/lists/*
+RUN rm -rf /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
