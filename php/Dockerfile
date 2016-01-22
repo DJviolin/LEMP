@@ -135,12 +135,13 @@ RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 RUN apt-get -y install \
     vim
 
-# cron fix
-RUN chmod 600 /etc/crontab
+#cron fixes
+RUN chmod 600 /etc/crontab \
+    && chmod 600 /var/spool/cron/crontabs/*
+    && touch /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
 
-#COPY etc/cron.d /etc/cron.d
-COPY var/spool/cron/crontabs /var/spool/cron/crontabs
-RUN chmod 0600 /var/spool/cron/crontabs/www-data
+COPY etc/cron.d /etc/cron.d
+#COPY var/spool/cron/crontabs /var/spool/cron/crontabs
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
