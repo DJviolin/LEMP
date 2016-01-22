@@ -138,7 +138,7 @@ RUN apt-get -y install \
 # cron fix
 RUN chmod 600 /etc/crontab
 
-COPY etc/cron.d /etc/cron.d
+#COPY etc/cron.d /etc/cron.d
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
