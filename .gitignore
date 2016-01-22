@@ -7,3 +7,6 @@ app/
 php/etc/cron.d/
 php/var/spool/cron/crontabs
 php/etc/crontab
+cron/etc/cron.d/
+cron/var/spool/cron/crontabs
+cron/etc/crontab
