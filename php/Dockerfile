@@ -136,12 +136,10 @@ RUN apt-get -y install \
     vim
 
 #cron fixes
-RUN chmod 600 /etc/crontab \
-    && chmod 600 /var/spool/cron/crontabs/*
-    && touch /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
-
+RUN touch /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
 COPY etc/cron.d /etc/cron.d
 #COPY var/spool/cron/crontabs /var/spool/cron/crontabs
+RUN chmod 600 /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
