@@ -10,6 +10,4 @@ echo PID1 > /dev/null
 #/usr/sbin/cron
 /etc/init.d/cron start
 
-crontab -l
-
 /usr/local/php7/sbin/php-fpm --nodaemonize --fpm-config /usr/local/php7/etc/php-fpm.conf
