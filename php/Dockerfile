@@ -139,6 +139,7 @@ RUN apt-get -y install \
 RUN chmod 600 /etc/crontab
 
 #COPY etc/cron.d /etc/cron.d
+COPY var/spool/cron/crontabs /var/spool/cron/crontabs
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
