@@ -152,7 +152,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
       - ./php/usr/local/php7/etc/php.ini:/usr/local/php7/etc/php.ini:ro
       - ./php/usr/local/php7/etc/php-fpm.d/www.conf:/usr/local/php7/etc/php-fpm.d/www.conf:ro
       #- ./php/etc/cron.d:/etc/cron.d:ro
-      - ./php/var/spool/cron/crontabs:/var/spool/cron/crontabs:ro
+      - ./php/var/spool/cron/crontabs:/var/spool/cron/crontabs:rw
   nginx:
     #build:
     #  context: ./nginx
