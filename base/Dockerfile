@@ -22,13 +22,13 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         apt-utils \
         locales
 
-RUN echo "Europe/Budapest" > /etc/timezone \
-    && dpkg-reconfigure -f noninteractive tzdata
 # Set the locale
 RUN locale-gen en_US.UTF-8  
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
+RUN echo "Europe/Budapest" > /etc/timezone \
+    && dpkg-reconfigure -f noninteractive tzdata locales
 
 ### Start of optimizations
 # https://easyengine.io/tutorials/linux/increase-open-files-limit/
