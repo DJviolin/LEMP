@@ -24,8 +24,6 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y install \
         # persistent / runtime deps \
         curl \
-        cron \
-        rsyslog \
         ca-certificates \
         librecode0 \
         libxml2 --no-install-recommends \
@@ -131,24 +129,6 @@ RUN cd /usr/src/php \
 ### Start of PHP 7 setup
 RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 ### End of PHP 7 setup
-
-RUN apt-get -y install \
-    vim
-
-#cron fixes
-#RUN touch /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
-##COPY etc/cron.d /etc/cron.d
-#COPY etc/crontab /etc/crontab
-##COPY var/spool/cron/crontabs /var/spool/cron/crontabs
-#RUN chmod 600 /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
-#RUN touch /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
-
-# Add crontab file in the cron directory
-#ADD etc/cron.d/hello-cron /etc/cron.d/hello-cron
-# Give execution rights on the cron job
-#RUN chmod 0644 /etc/cron.d/hello-cron
-# Create the log file to be able to run tail
-#RUN touch /var/log/cron.log
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 

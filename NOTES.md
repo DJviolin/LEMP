@@ -258,3 +258,47 @@ https://wordpress.org/plugins/wp-missed-schedule/faq/
 
 https://wordpress.org/plugins/easycron/
 
+## php cron removal
+
+```
+#/etc/init.d/rsyslog start
+
+#Stay in foreground mode, don’t daemonize.
+#/usr/sbin/cron -f &
+#/usr/sbin/cron
+#/etc/init.d/cron start
+```
+
+cron rsyslog
+
+```
+RUN apt-get -y install \
+    vim
+
+#cron fixes
+#RUN touch /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
+##COPY etc/cron.d /etc/cron.d
+#COPY etc/crontab /etc/crontab
+##COPY var/spool/cron/crontabs /var/spool/cron/crontabs
+#RUN chmod 600 /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
+#RUN touch /etc/crontab /etc/cron.d/* /var/spool/cron/crontabs/*
+
+# Add crontab file in the cron directory
+#ADD etc/cron.d/hello-cron /etc/cron.d/hello-cron
+# Give execution rights on the cron job
+#RUN chmod 0644 /etc/cron.d/hello-cron
+# Create the log file to be able to run tail
+#RUN touch /var/log/cron.log
+```
+
+```
+# m h dom mon dow user  command
+#*/5 *   * * *   www-data    php /var/www/pussybnb.com/wp-cron.php
+#*/5 *   * * *   root    curl -vs -o /dev/null file:///var/www/pussybnb.com/wp-cron.php > /dev/null 2>&1
+#*/5 *   * * *   www-data    /usr/local/php7/php /var/www/pussybnb.com/wp-cron.php > /dev/null 2>&1
+#*/5 * * * * curl -vs -o /dev/null http://127.0.0.1/pussybnb.com/wp-cron.php > /dev/null 2>&1
+#*/5 *   * * *   www-data    php /var/www/pussybnb.com/wp-cron.php > /dev/null 2>&1
+#*/1 *   * * *   www-data    php /var/www/pussybnb.com/wp-cron.php >> /var/log/wp-cron.log 2>&1
+#*/5 *   * * *   www-data    php /var/www/pussybnb.com/wp-cron.php >> /var/log/wp-cron.log 2>&1
+*/1 *   * * *   root    date >> /var/log/cron-test.log 2>&1
+```
