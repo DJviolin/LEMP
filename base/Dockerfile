@@ -22,11 +22,12 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         apt-utils \
         locales
 
-# Set the locale
-RUN locale-gen en_US.UTF-8  
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
+# Set the locale 
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
+RUN locale-gen en_US.UTF-8
+RUN update-locale LC_CTYPE=en_US.UTF-8
 RUN echo "Europe/Budapest" > /etc/timezone \
     && dpkg-reconfigure -f noninteractive tzdata locales
 
