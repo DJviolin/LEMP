@@ -10,4 +10,3 @@ php/etc/crontab
 cron/etc/cron.d/
 cron/var/spool/cron/crontabs
 cron/etc/crontab
-php/cron-jobs.sh
