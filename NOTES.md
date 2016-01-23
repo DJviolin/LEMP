@@ -233,3 +233,15 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
 Available free space:
 
     $ df -h
+
+## Crontab alternative:
+
+```
+#!/bin/bash
+while true; do
+  python /opt/com.org.project/main.py >> /opt/com.org.project/var/log/cron.log
+  sleep 60
+done
+
+ENTRYPOINT ["/bin/bash", "/loop_main.sh" ]
+```

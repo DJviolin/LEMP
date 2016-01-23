@@ -115,16 +115,16 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
     volumes:
       #- ffmpeg_dir:/usr/ffmpeg
       - /usr/ffmpeg
-  cron:
+  #cron:
     #build:
     #  context: ./cron
     #  args:
     #    buildno: 4
-    build: ./cron
-    container_name: lemp_cron
+  #  build: ./cron
+  #  container_name: lemp_cron
     #net: "none"
-    volumes_from:
-      - base
+  #  volumes_from:
+  #    - base
   mariadb:
     #build:
     #  context: ./mariadb
