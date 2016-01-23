@@ -22,10 +22,7 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         apt-utils \
         locales
 
-# Set the locale 
-#ENV LANG en_US.UTF-8
-#ENV LANGUAGE en_US:en
-#ENV LC_ALL en_US.UTF-8
+# Set the locale
 RUN echo -e "\
 LC_ALL=en_US.UTF-8\n\
 LANG=en_US.UTF-8\n\
