@@ -11,9 +11,6 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN ln -sf /bin/bash /bin/sh && ln -sf /bin/bash /bin/sh.distrib
 RUN echo "Europe/Budapest" > /etc/timezone \
     && dpkg-reconfigure -f noninteractive tzdata
-RUN locale-gen --no-purge en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
 
 RUN echo -e "\
 deb http://httpredir.debian.org/debian stable main contrib non-free\n\
@@ -23,6 +20,12 @@ deb-src http://security.debian.org stable/updates main contrib non-free\n\
 deb http://httpredir.debian.org/debian stable-updates main contrib non-free\n\
 deb-src http://httpredir.debian.org/debian stable-updates main contrib non-free" > /etc/apt/sources.list
 RUN apt-get -y update && apt-get -y dist-upgrade
+
+# Set the locale
+RUN locale-gen --no-purge en_US.UTF-8  
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8
 
 ### Start of optimizations
 # https://easyengine.io/tutorials/linux/increase-open-files-limit/
