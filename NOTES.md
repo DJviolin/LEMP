@@ -252,3 +252,9 @@ http://stackoverflow.com/questions/34957338/if-adding-a-command-that-repeats-eve
 
 https://www.ekito.fr/people/run-a-cron-job-with-docker/
 
+## wp-cron alternatives
+
+https://wordpress.org/plugins/wp-missed-schedule/faq/
+
+https://wordpress.org/plugins/easycron/
+
