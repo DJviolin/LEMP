@@ -9,8 +9,6 @@ LABEL Description="This image is the base of the other app images in this projec
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
 RUN ln -sf /bin/bash /bin/sh && ln -sf /bin/bash /bin/sh.distrib
-RUN echo "Europe/Budapest" > /etc/timezone \
-    && dpkg-reconfigure -f noninteractive tzdata
 
 RUN echo -e "\
 deb http://httpredir.debian.org/debian stable main contrib non-free\n\
@@ -21,8 +19,11 @@ deb http://httpredir.debian.org/debian stable-updates main contrib non-free\n\
 deb-src http://httpredir.debian.org/debian stable-updates main contrib non-free" > /etc/apt/sources.list
 RUN apt-get -y update && apt-get -y dist-upgrade \
     && apt-get -y install \
+        apt-utils \
         locales
 
+RUN echo "Europe/Budapest" > /etc/timezone \
+    && dpkg-reconfigure -f noninteractive tzdata
 # Set the locale
 RUN locale-gen en_US.UTF-8  
 ENV LANG en_US.UTF-8  
