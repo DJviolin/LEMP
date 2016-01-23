@@ -27,6 +27,7 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
+RUN echo "LANG=en_US.UTF-8" >> /etc/environment
 RUN echo "Europe/Budapest" > /etc/timezone \
     && dpkg-reconfigure -f noninteractive tzdata locales
 
