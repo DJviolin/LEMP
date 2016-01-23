@@ -260,6 +260,12 @@ https://wordpress.org/plugins/wp-missed-schedule/faq/
 
 https://wordpress.org/plugins/easycron/
 
+https://yoast.com/wp-cron-control/
+
+https://wordpress.org/plugins/wp-cron-control
+
+https://wordpress.org/plugins/wp-crontrol/
+
 ## php cron removal
 
 ```
