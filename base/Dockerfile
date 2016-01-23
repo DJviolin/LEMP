@@ -23,9 +23,13 @@ RUN apt-get -y update && apt-get -y dist-upgrade \
         locales
 
 # Set the locale 
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+#ENV LANG en_US.UTF-8
+#ENV LANGUAGE en_US:en
+#ENV LC_ALL en_US.UTF-8
+RUN echo -e "\
+LC_ALL=en_US.UTF-8\n\
+LANG=en_US.UTF-8\n\
+LANGUAGE=en_US.UTF-8" >> /etc/environment
 RUN locale \
     && locale-gen "en_US.UTF-8" \
     && dpkg-reconfigure locales
