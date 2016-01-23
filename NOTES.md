@@ -245,3 +245,10 @@ done
 
 ENTRYPOINT ["/bin/bash", "/loop_main.sh" ]
 ```
+
+## Running cron jobs with Docker:
+
+http://stackoverflow.com/questions/34957338/if-adding-a-command-that-repeats-every-10-minutes-to-crontab-when-does-the-firs/34960575#34960575
+
+https://www.ekito.fr/people/run-a-cron-job-with-docker/
+
