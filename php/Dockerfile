@@ -132,6 +132,8 @@ RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
+WORKDIR /var/log
+
 COPY cron-jobs.sh /
 RUN chmod +x /cron-jobs.sh
 

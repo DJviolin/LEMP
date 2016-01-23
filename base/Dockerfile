@@ -19,10 +19,12 @@ deb http://security.debian.org stable/updates main contrib non-free\n\
 deb-src http://security.debian.org stable/updates main contrib non-free\n\
 deb http://httpredir.debian.org/debian stable-updates main contrib non-free\n\
 deb-src http://httpredir.debian.org/debian stable-updates main contrib non-free" > /etc/apt/sources.list
-RUN apt-get -y update && apt-get -y dist-upgrade
+RUN apt-get -y update && apt-get -y dist-upgrade \
+    && apt-get -y install \
+        locales
 
 # Set the locale
-RUN locale-gen --no-purge en_US.UTF-8  
+RUN locale-gen en_US.UTF-8  
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
