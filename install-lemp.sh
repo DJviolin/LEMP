@@ -122,7 +122,7 @@ cat <<EOF > $REPO_DIR/docker-compose.yml
     #    buildno: 4
     build: ./cron
     container_name: lemp_cron
-    net: "none"
+    #net: "none"
     volumes_from:
       - base
   mariadb:
