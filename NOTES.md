@@ -86,6 +86,8 @@ http://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#example
 
 Remove all docker containers:
 
+    $ docker rm -f $(docker ps -a -q) && docker rmi -f $(docker images -q) && sudo rm -rf /var/lib/docker/volumes/*
+
     $ docker stop $(docker ps -a -q) && docker rm -f $(docker ps -a -q)
     $ docker rmi -f $(docker images -q)
 
