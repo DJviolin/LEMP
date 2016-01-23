@@ -70,10 +70,15 @@ $ ./service-stop.sh
     define('DISABLE_WP_CRON', true);
     ```
 
-    This will turn off default cron jobs from WP. Then you have to create a file in `$HOME/server-lemp/lemp/php/etc/cron.d` directory and place this in there:
+    This will turn off default cron jobs from WP. Then you have to create a file in `$HOME/server-lemp/lemp/php/cron-jobs.sh` directory and place this in there:
 
     ```
-    */5 * * * * php /var/www/your-wp-install-dir/wp-cron.php
+    #!/bin/bash
+
+    while true; do
+      date >> /var/log/cron-test.log 2>&1
+      sleep 60
+    done
     ```
 
     This hack will make cron jobs work again (like core, plugin, theme updates and scheduled tasks).
