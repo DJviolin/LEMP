@@ -132,8 +132,8 @@ RUN mkdir -p /var/run/php-fpm && mkdir -p /var/log/php-fpm
 
 RUN rm -rf /usr/src/* /var/lib/apt/lists/*
 
-COPY cron-jobs.sh /
-RUN chmod +x /cron-jobs.sh
+#COPY cron-jobs.sh /
+#RUN chmod +x /cron-jobs.sh
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
