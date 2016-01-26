@@ -310,3 +310,50 @@ RUN apt-get -y install \
 #*/5 *   * * *   www-data    php /var/www/pussybnb.com/wp-cron.php >> /var/log/wp-cron.log 2>&1
 */1 *   * * *   root    date >> /var/log/cron-test.log 2>&1
 ```
+
+```
+    server {
+    # server is one/domain!
+        listen       80;
+        listen       [::]:80 ipv6only=on;
+        server_name  0.0.0.0;
+        root   /var/www/domain;
+        index  index.php index.html index.htm;
+        set $skip_cache 1;
+
+        location / {
+            try_files $uri $uri/ /index.php?$query_string;
+        }    
+
+        error_page  404              /404.html;
+        location = /404.html {
+            root   /etc/nginx/html;
+            allow  all;
+        }
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /etc/nginx/html;
+        }
+
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        location ~ \.php$ {
+            fastcgi_pass    unix:/var/run/php-fpm/php-fpm.sock;
+            fastcgi_index   index.php;
+            fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+
+            try_files      $uri =404;
+
+            fastcgi_connect_timeout 75;
+            fastcgi_send_timeout 180;
+            fastcgi_read_timeout 240;
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+            fastcgi_intercept_errors on; 
+        }
+    }
+```
