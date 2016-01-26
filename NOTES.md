@@ -357,3 +357,10 @@ RUN apt-get -y install \
         }
     }
 ```
+
+```
+        # Exclude folder from the domain
+        location ^~ /domain {
+            deny all;
+        }
+```
